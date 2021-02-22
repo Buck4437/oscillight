@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Wave Emission</title>
+        <meta name="title" content="Wave Emission">
+        <meta name="description" content="Made for IGJ 2021">
+
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+        <link rel="stylesheet" href="stylesheets/core.css">
+        <link rel="stylesheet" href="stylesheets/styles.css">
+        <link rel="stylesheet" href="stylesheets/colors.css">
+        <link rel="stylesheet" href="stylesheets/loading.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="loading">
+            Loading...<br>
+            This shouldn't take longer than a few seconds...
+        </div>
+        <div id="app">
+            <header>
+                <div>
+                    Light: {{format(game.light)}}
+                </div>
+            </header>
+
+            <main class="main">
+                <div class="nav-bar">
+                    <button v-for="(tab, i) in tabs" @click="switchTab(i)">
+                        {{tab}}
+                    </button>
+                </div>
+
+                <div class="tab-con">
+                    <component :is="currentTabComponent" :game="game"></component>
+                    <!-- <main-tab v-show="currentTab === 'Main'"></main-tab>
+
+                    <settings-tab v-show="currentTab === 'Settings'"
+                                  :game="game"></settings-tab> -->
+                </div>
+            </main>
+         </div>
+
+         <!-- Development !-->
+         <script src="javascripts/libraries/vue.js"></script>
+
+         <!-- Production !-->
+         <!-- <script src="javascripts/libraries/vue.min.js"></script> -->
+         <script src="javascripts/libraries/break_infinity.min.js"></script>
+
+         <script src="javascripts/components/BaseMenuButton.js"></script>
+         <script src="javascripts/components/TooltipButton.js"></script>
+
+         <script src="javascripts/components/BaseModal.js"></script>
+         <script src="javascripts/components/ConfirmationModal.js"></script>
+         <script src="javascripts/components/PromptModal.js"></script>
+
+         <script src="javascripts/components/WaveTab.js"></script>
+         <script src="javascripts/components/BaseProgressBar.js"></script>
+
+         <script src="javascripts/components/SettingsTab.js"></script>
+
+         <script src="javascripts/database/wave.js"></script>
+
+         <script src="javascripts/game.js"></script>
+         <script src="javascripts/update.js"></script>
+         <script src="javascripts/util.js"></script>
+         <script src="javascripts/index.js"></script>
+    </body>
+</html>
+
+<!-- TODO: Save fixer -->

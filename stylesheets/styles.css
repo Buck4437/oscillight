@@ -272,7 +272,7 @@ main {
     margin-bottom: 16px;
 }
 
-.accel-con {
+.decel-con {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -282,15 +282,36 @@ main {
     margin-top: 16px;
 }
 
-.accel-btn {
-    width: 160px;
-    height: 60px;
+.decel-btn {
+    margin: 8px;
+    min-width: 224px;
+    min-height: 60px;
     padding: 8px;
 }
 
-.accel-bar {
-    width: 240px;
+.decel-bar {
+    margin: 8px;
+    box-sizing: border-box;
+    min-width: 370px;
     height: 60px;
+}
+
+.upg-con {
+    margin-top: 16px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.upg-btn {
+    width: 208px;
+    margin: 8px;
+    min-height: 108px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 /* settings */

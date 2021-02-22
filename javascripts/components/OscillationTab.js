@@ -1,6 +1,6 @@
 "use strict";
 
-Vue.component("wave-tab", {
+Vue.component("oscillation-tab", {
     data() {
         return {
             canvas: {
@@ -18,6 +18,9 @@ Vue.component("wave-tab", {
         },
         getSpeed() {
             return (DATABASE_WAVE.light.speed(this.game)) / 360
+        },
+        getUpgrades() {
+            return DATABASE_WAVE.upgrades
         }
     },
     watch: {
@@ -66,10 +69,10 @@ Vue.component("wave-tab", {
         format(num) {
             return toSci(num)
         },
-        accel() {
-            if (!this.game.accelerate.active) {
-                this.game.accelerate.active = true;
-                this.game.accelerate.timer = 1;
+        decel() {
+            if (!this.game.decelereate.active) {
+                this.game.decelereate.active = true;
+                this.game.decelereate.timer = 1;
             }
         }
     },
@@ -84,13 +87,19 @@ Vue.component("wave-tab", {
         <canvas class="wave-display" :width="canvas.width" :height="canvas.height"/>
         The photon is releasing {{format(getProduction)}} Light per second<br>
         Oscillation speed: {{format(getSpeed)}} Hz
-        <div class="accel-con">
-            <button class="accel-btn" @click="accel">
-                Accelerate particle!
+        <div class="decel-con">
+            <button class="decel-btn" @click="decel">
+                Decelereate the photon!
             </button>
-            <progress-bar class="accel-bar"
-                          :percentage="this.game.accelerate.timer * 100"
+            <progress-bar class="decel-bar"
+                          :percentage="this.game.decelereate.timer * 100"
                           :color="getCssVar('--color-yellow')"/>
+        </div>
+        <div v-if="game.unlocks.upgrades" class="upg-con">
+            <oscillation-tab-upgrade v-for="upg in getUpgrades"
+                              :game="game"
+                              :upgrade="upg"
+                              :key="upg.id"/>
         </div>
     </div>
     `

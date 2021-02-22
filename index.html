@@ -2,8 +2,8 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Wave Emission</title>
-        <meta name="title" content="Wave Emission">
+        <title>Light Emission</title>
+        <meta name="title" content="Light Emission">
         <meta name="description" content="Made for IGJ 2021">
 
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
@@ -34,10 +34,6 @@
 
                 <div class="tab-con">
                     <component :is="currentTabComponent" :game="game"></component>
-                    <!-- <main-tab v-show="currentTab === 'Main'"></main-tab>
-
-                    <settings-tab v-show="currentTab === 'Settings'"
-                                  :game="game"></settings-tab> -->
                 </div>
             </main>
          </div>
@@ -56,8 +52,9 @@
          <script src="javascripts/components/ConfirmationModal.js"></script>
          <script src="javascripts/components/PromptModal.js"></script>
 
-         <script src="javascripts/components/WaveTab.js"></script>
+         <script src="javascripts/components/OscillationTab.js"></script>
          <script src="javascripts/components/BaseProgressBar.js"></script>
+         <script src="javascripts/components/OscillationTabUpgrade.js"></script>
 
          <script src="javascripts/components/SettingsTab.js"></script>
 
@@ -69,3 +66,17 @@
          <script src="javascripts/index.js"></script>
     </body>
 </html>
+
+<!-- IDEA: Automation / Reflection at 1e3? -->
+<!-- IDEA: Reflection: more powerful upgs -->
+<!-- IDEA: Refraction: Shape waveform -->
+<!-- IDEA: Interference: ??? -->
+
+<!-- IDEA: Upg that makes sin abs (polarizer)-->
+<!-- IDEA: Upg that strengthen photon decelerator -->
+<!-- IDEA: Upg that ^ light gain by maybe 1.5 (to make active more useful) -->
+
+<!-- IDEA: Auto freezer if higher than 1-->
+
+<!-- IDEA: Reflection mechanics: beam that bounce in laser room and boost production based on bounce/position etc -->
+<!-- IDEA: Later upg that converts Accelerate particle to "Speed up time" -->

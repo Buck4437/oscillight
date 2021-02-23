@@ -8,7 +8,10 @@ var app = new Vue({
     },
     computed: {
         tabs() {
-            return ["Oscillation", "Settings"]
+            let tabs = ["Oscillation"]
+            if (this.game.unlocks.reflection) tabs.push("Reflection")
+            tabs.push("Settings")
+            return tabs
         },
         currentTabComponent() {
             return this.currentTab.toLowerCase() + "-tab"
@@ -93,12 +96,14 @@ function gameLoop(that){
         g.light = g.light.add(DATABASE_WAVE.light.rate(g, true).times(dt))
     }
 
-    if (g.decelereate.active) {
-        g.decelereate.timer = Math.max(0, g.decelereate.timer - dt / DATABASE_WAVE.light.decelTime(g))
-        if (g.decelereate.timer <= 0) g.decelereate.active = false
+    if (g.decelerate.active) {
+        g.decelerate.timer = Math.max(0, g.decelerate.timer - dt / DATABASE_WAVE.light.decelTime(g))
+        if (g.decelerate.timer <= 0) g.decelerate.active = false
     }
 
-    if (g.light.gte(20)) g.unlocks.upgrades = true;
+    if (g.light.gte(17.5)) g.unlocks.upgrades = true;
+    if (g.light.gte(50)) g.unlocks.decelerate = true;
+    if (g.light.gte(2000)) g.unlocks.reflection = true;
 
     g.lastTick += dt * 1000
 }

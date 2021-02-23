@@ -1,15 +1,21 @@
 var game = {
-    period: 0,
+    period: 270,
     light: new Decimal(0),
-    decelereate: {
+    decelerate: {
         active: false,
         timer: 0
     },
     upgrades: {
         1: 0, 2: 0, 3: 0, 4: 0
     },
+    reflection: {
+        period: 0
+    },
     unlocks: {
-        upgrades: false
+        upgrades: false,
+        decelerate: false,
+        reflection: false,
+        mirror: false
     },
     settings: {
         theme: 0

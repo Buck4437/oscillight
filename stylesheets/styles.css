@@ -284,7 +284,7 @@ main {
     flex-direction: row;
 }
 
-/* main */
+/* oscillation tab */
 
 .main {
     display: flex;
@@ -339,6 +339,14 @@ main {
     justify-content: space-around;
 }
 
+/* reflection */
+
+.reflection-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* settings */
 
 .settings-tab{
@@ -356,7 +364,6 @@ main {
     margin-bottom: 16px;
 }
 
-
 /* presets */
 .mini-header {
     font-size: 24px;
@@ -369,41 +376,16 @@ main {
     text-transform: uppercase;
 }
 
-/* All Mobile Sizes (devices and browser) */
-@media only screen and (max-width: 767px) {
-
-    /* main */
-
-
-    /* tabs */
-
-    /* .tab-con {
-        width: 100%;
-        margin-left: 0;
-    } */
+.btn.locked {
 
 }
 
-/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
-/* @media only screen and (min-width: 480px) and (max-width: 767px) {
+.btn.buyable {
+    border-color: var(--color-green);
+}
 
-} */
-
-/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-/* @media only screen and (max-width: 479px) {
-
-    body {
-        min-width: 288px;
-    }
-
-    .modal {
-        max-width: 80vw;
-    }
-
-    .settings-tab{
-        display: flex;
-        flex-grow: 0;
-        align-self: center;
-        flex-direction: column;
-    }
-} */
+.btn.max {
+    border-color: var(--color-max);
+    background-color: var(--background-max);
+    cursor: default;
+}

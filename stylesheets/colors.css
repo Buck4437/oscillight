@@ -8,10 +8,13 @@
     --tooltip: #ffffff;
     --modal: #00000080;
 
-    --color-red: #FF1507;
-    --color-green: #00EA00;
-    --color-blue: #3B0EFF;
-     --color-yellow: #FFB700;
+    --color-red: #ff1507;
+    --color-green: #00ea00;
+    --color-blue: #3B0eff;
+    --color-yellow: #ffff00;
+
+    --color-max: var(--color);
+    --background-max: var(--color-yellow);
 
     --tooltip-background: #323232;
 }
@@ -25,8 +28,11 @@
     --hover: #d9d9d926;
     --tooltip: #d9d9d9;
 
-    --color-red: #FF200C;
-    --color-green: #00FC00;
-    --color-blue: #5013FF;
-    --color-yellow: #F2F367;
+    --color-red: #ff200c;
+    --color-green: #00fc00;
+    --color-blue: #5013ff;
+    --color-yellow: #f2f367;
+
+    --color-max: var(--color-yellow);
+    --background-max: var(--background);
 }

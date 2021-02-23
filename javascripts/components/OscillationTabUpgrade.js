@@ -35,7 +35,7 @@ Vue.component("oscillation-tab-upgrade", {
     mounted() {
     },
     template: `
-    <button class="upg-btn" :class="getState" @click="buy">
+    <button class="btn upg-btn" :class="getState" @click="buy">
         <div class="upg-name">
             {{upgrade.name}}
         </div>

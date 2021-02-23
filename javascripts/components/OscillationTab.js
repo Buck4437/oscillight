@@ -13,14 +13,17 @@ Vue.component("oscillation-tab", {
         game: Object
     },
     computed: {
+        getEnergy() {
+            return DATABASE_WAVE.light.energy(this.game)
+        },
         getProduction() {
             return DATABASE_WAVE.light.rate(this.game)
         },
         getSpeed() {
             return (DATABASE_WAVE.light.speed(this.game)) / 360
         },
-        getUpgrades() {
-            return DATABASE_WAVE.upgrades
+        getUnlockedUpgrades() {
+            return DATABASE_WAVE.upgrades.filter(u => this.game.unlocks.decelerate ? true : u.id <= 2)
         }
     },
     watch: {
@@ -70,9 +73,9 @@ Vue.component("oscillation-tab", {
             return toSci(num)
         },
         decel() {
-            if (!this.game.decelereate.active) {
-                this.game.decelereate.active = true;
-                this.game.decelereate.timer = 1;
+            if (!this.game.decelerate.active) {
+                this.game.decelerate.active = true;
+                this.game.decelerate.timer = 1;
             }
         }
     },
@@ -82,21 +85,21 @@ Vue.component("oscillation-tab", {
     template: `
     <div class="tab main">
         <div class="mini-header">
-            Energy level
+            Energy level: {{format(getEnergy)}}
         </div>
         <canvas class="wave-display" :width="canvas.width" :height="canvas.height"/>
         The photon is releasing {{format(getProduction)}} Light per second<br>
         Oscillation speed: {{format(getSpeed)}} Hz
-        <div class="decel-con">
+        <div class="decel-con" v-if="game.unlocks.decelerate">
             <button class="decel-btn" @click="decel">
-                Decelereate the photon!
+                Decelerate the photon!
             </button>
             <progress-bar class="decel-bar"
-                          :percentage="this.game.decelereate.timer * 100"
+                          :percentage="this.game.decelerate.timer * 100"
                           :color="getCssVar('--color-yellow')"/>
         </div>
         <div v-if="game.unlocks.upgrades" class="upg-con">
-            <oscillation-tab-upgrade v-for="upg in getUpgrades"
+            <oscillation-tab-upgrade v-for="upg in getUnlockedUpgrades"
                               :game="game"
                               :upgrade="upg"
                               :key="upg.id"/>

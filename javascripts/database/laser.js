@@ -9,31 +9,39 @@ const DATABASE_LASER = {
             let m = Math.max(0, t/60)
             let power;
 
-            if (m <= 1) {
-                power = Math.pow(m, 2);
-            } else if (m <= 2) {
-                power = Math.pow(2 - m, 2)
+            if (m <= 0.5) {
+                power = Math.pow(2 * m, 2);
+            } else if (m <= 1) {
+                power = 1;
+            } else if (m <= 1.5) {
+                power = Math.pow(2 * (1.5 - m), 2)
             } else {
-                power = Math.min((m - 2) / 10, 1.9)
+                power = Math.min((m - 1.5) / 20, 0.9)
             }
 
             return Math.max(0, Math.min(1, power)) // 0 <= power <= 1
 
         },
-        state: (g) => {
-            let m = g.laser.time
-            if (m <= 1) {
-                return "Charging"
-            } else if (m <= 2) {
-                return "Overheat"
-            } else if (m <= 40) {
-                return "Tuning"
-            } else {
-                return "Stablized"
-            }
-        },
-        effect: (g) => {
+        effect(g) {
+            let base = 1 + this.power(g.laser.time)
 
+            return base
+        },
+        status: (g) => {
+            if (!g.laser.active) return "deactivated"
+
+            let m = g.laser.time/60
+            if (m <= 0.5) {
+                return "charging"
+            } else if (m <= 1) {
+                return "charged"
+            } else if (m <= 1.5) {
+                return "overheat"
+            } else if (m <= 19.5) {
+                return "tuning"
+            } else {
+                return "stablized"
+            }
         }
     }
 }

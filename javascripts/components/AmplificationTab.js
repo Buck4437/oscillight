@@ -24,11 +24,29 @@ Vue.component("amplification-tab", {
         },
         canBuy() {
             return this.game.light.gte(this.getCost);
+        },
+        getEnergyLevel() {
+            return Math.round(this.getPower(this.game.laser.time) * 1000) / 1000
+        },
+        isActive() {
+            return this.game.laser.active
+        },
+        getToggleLaserState() {
+            return this.isActive ? "on" : "off"
+        },
+        getStatus() {
+            return DATABASE_LASER.laser.status(this.game);
+        },
+        getEffect() {
+            return DATABASE_LASER.laser.effect(this.game);
         }
     },
     methods: {
         getCssVar(name) {
             return getCssVar(name);
+        },
+        getPower(t = 0) {
+            return DATABASE_LASER.laser.power(t)
         },
         draw() {
             let w = this.canvas.width, h = this.canvas.height;
@@ -48,28 +66,35 @@ Vue.component("amplification-tab", {
             ctx.beginPath()
 
             for (let x = 0; x <= 360; x += 1) { // 360 steps
-                let dt = t >= 180 ? t - 180 : 0
-                ctx.lineTo(w/360 * x, h * this.getY(x + dt)); // draw the point
+                let dt = t >= 60 ? t - 60 : 0
+                ctx.lineTo(w/360 * x, h * this.getY(x / 3 + dt)); // draw the point
             }
             ctx.stroke(); // strokes the drawing to the canvas
 
             ctx.beginPath();
-            ctx.arc(w/360 * (t >= 180 ? 180 : t) , h * this.getY(t), 10, 0, 2 * Math.PI);
+            ctx.arc(w/360 * (t >= 60 ? 180 : t * 3) , h * this.getY(t), 10, 0, 2 * Math.PI);
             ctx.fillStyle = this.getCssVar("--color-red")
             ctx.fill()
             ctx.stroke()
         },
         getY(t = 0) {
-            return 0.9 - DATABASE_LASER.laser.power(t) * 0.8
+            return 0.9 - this.getPower(t) * 0.8
         },
-        format(num) {
-            return toSci(num)
+        format(num, a, b) {
+            return toSci(num, a, b)
         },
         unlock() {
             if (this.canBuy) {
                 this.game.light = this.game.light.minus(this.getCost)
                 this.game.unlocks.laser = true
             }
+        },
+        toggle() {
+            this.game.laser.active = !this.isActive
+            this.game.laser.time = 0; //reset
+        },
+        capFirstLetter(str) {
+            return str.charAt(0).toUpperCase() + str.substring(1)
         }
     },
     mounted() {
@@ -78,7 +103,24 @@ Vue.component("amplification-tab", {
     template: `
     <div class="tab laser">
         <div v-if="game.unlocks.laser" class="laser-content">
+            <div class="mini-header"
+                 :class="{
+                     'warning': getStatus === 'overheat',
+                     'green': ['charged', 'stablized'].includes(getStatus)
+                 }">
+                Laser status: {{capFirstLetter(getStatus)}}
+            </div>
+
             <canvas class="laser-display" :width="canvas.width" :height="canvas.height"/>
+
+            <span>Energy level: {{format(getEnergyLevel, 2, 3)}}</span>
+            <span>=> ^{{format(getEffect)}} to light gain</span>
+
+            <button class="toggle-laser-btn"
+                    :class="getToggleLaserState"
+                    @click="toggle">
+                {{isActive ? "Deactivate" : "Activate"}} the laser!
+            </button>
         </div>
         <button v-else class="upg-btn"
                       :class="canBuy ? 'canBuy' : 'locked'"

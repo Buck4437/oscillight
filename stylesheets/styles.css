@@ -324,8 +324,21 @@ main {
 
 /* laser tab */
 
+.laser-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .laser-display {
     border: 2px solid var(--color);
+    margin-bottom: 16px;
+}
+
+.toggle-laser-btn {
+    margin-top: 20px;
+    width: 200px;
+    height: 108px;
 }
 
 /* settings */
@@ -393,4 +406,17 @@ main {
     border-color: var(--color-max);
     background-color: var(--background-max);
     cursor: default;
+}
+
+button.on {
+    border-color: var(--color-green);
+}
+
+button.off {
+    border-color: var(--color-red);
+}
+
+.green {
+    color: var(--color-green);
+    border-color: var(--color-green);
 }

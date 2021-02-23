@@ -8,6 +8,7 @@ const DATABASE_WAVE = {
             base = base.add(g.upgrades[1])
 
             return base.times(Decimal.pow(2, g.upgrades[2]))
+                       .pow(DATABASE_LASER.laser.effect(g))
         },
         speed: g => {
             let base = 20

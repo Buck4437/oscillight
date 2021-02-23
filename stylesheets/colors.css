@@ -15,6 +15,7 @@
 
     --color-max: var(--color);
     --background-max: var(--color-yellow);
+    --background-hall: #d0d0d0;
 
     --tooltip-background: #323232;
 }
@@ -35,4 +36,5 @@
 
     --color-max: var(--color-yellow);
     --background-max: var(--background);
+    --background-hall: #323232;
 }

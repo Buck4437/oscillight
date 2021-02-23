@@ -8,14 +8,9 @@ var game = {
     upgrades: {
         1: 0, 2: 0, 3: 0, 4: 0
     },
-    reflection: {
-        period: 0
-    },
     unlocks: {
         upgrades: false,
-        decelerate: false,
-        reflection: false,
-        mirror: false
+        decelerate: false
     },
     settings: {
         theme: 0

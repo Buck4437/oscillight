@@ -45,12 +45,12 @@ Vue.component("oscillation-tab", {
             let c = this.$el.querySelector(".wave-display") // get the canvas object to draw onto
             let ctx = c.getContext("2d"); // will use simpe 2D context on the canvas
             ctx.clearRect(0, 0, w, h); // clear the canvas
-            ctx.beginPath()
 
             ctx.strokeStyle = this.getCssVar("--color")
             ctx.lineWidth = 2;
 
             ctx.moveTo(0, h/2);  // back to the left before drawing the sine
+            ctx.beginPath()
 
             for (let x = 0; x <= 360; x += 1) { // 360 steps (degrees) for entire sine period
                 let y = this.getY(x) // calculate y flipped horizontally, converting from DEG to RADIAN

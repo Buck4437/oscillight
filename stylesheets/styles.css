@@ -321,32 +321,6 @@ main {
     height: 60px;
 }
 
-.upg-con {
-    margin-top: 16px;
-    max-width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.upg-btn {
-    width: 208px;
-    margin: 8px;
-    min-height: 108px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-/* reflection */
-
-.reflection-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 /* settings */
 
 .settings-tab{
@@ -376,21 +350,39 @@ main {
     text-transform: uppercase;
 }
 
-.btn.locked {
+.upg-con {
+    margin-top: 16px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.upg-btn {
+    width: 208px;
+    margin: 8px;
+    min-height: 134px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.upg-btn.locked {
     border-color: var(--color-red);
     cursor: default;
 }
 
-.btn.locked:hover {
+.upg-btn.locked:hover {
     background-color: inherit;
 }
 
 
-.btn.buyable {
+.upg-btn.canBuy {
     border-color: var(--color-green);
 }
 
-.btn.max {
+.upg-btn.max {
     border-color: var(--color-max);
     background-color: var(--background-max);
     cursor: default;

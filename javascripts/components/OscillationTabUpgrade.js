@@ -14,13 +14,13 @@ Vue.component("oscillation-tab-upgrade", {
         },
         getState() {
             if (this.getLevel >= this.upgrade.cap) return "max"
-            else if (this.getCost.lte(this.game.light)) return "buyable"
+            else if (this.getCost.lte(this.game.light)) return "canBuy"
             return "locked"
         }
     },
     methods: {
         buy() {
-            if (this.getState === "buyable") {
+            if (this.getState === "canBuy") {
                 this.game.light = this.game.light.minus(this.getCost)
                 this.game.upgrades[this.upgrade.id]++;
             }
@@ -35,7 +35,7 @@ Vue.component("oscillation-tab-upgrade", {
     mounted() {
     },
     template: `
-    <button class="btn upg-btn" :class="getState" @click="buy">
+    <button class="upg-btn" :class="getState" @click="buy">
         <div class="upg-name">
             {{upgrade.name}}
         </div>

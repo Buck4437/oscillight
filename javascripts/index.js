@@ -9,7 +9,6 @@ var app = new Vue({
     computed: {
         tabs() {
             let tabs = ["Oscillation"]
-            if (this.game.unlocks.reflection) tabs.push("Reflection")
             tabs.push("Settings")
             return tabs
         },
@@ -103,7 +102,6 @@ function gameLoop(that){
 
     if (g.light.gte(17.5)) g.unlocks.upgrades = true;
     if (g.light.gte(50)) g.unlocks.decelerate = true;
-    if (g.light.gte(2000)) g.unlocks.reflection = true;
 
     g.lastTick += dt * 1000
 }

@@ -48,7 +48,7 @@ const DATABASE_WAVE = {
         },
         {
             id: 4,
-            name: "Freezer",
+            name: "Cooler",
             desc: "Photon deceleration is 30% more powerful",
             base: new Decimal(100),
             scale: new Decimal(15),

@@ -33,7 +33,7 @@ Vue.component("reflection-tab", {
 
             let c = this.$el.querySelector("canvas") // get the canvas object to draw onto
 
-            if (c === null) return //Haven't unlocked mirror
+            if (c === null) return //Haven't unlocked mirror => break
 
             let ctx = c.getContext("2d"); // will use simpe 2D context on the canvas
             ctx.clearRect(0, 0, w, h); // clear the canvas

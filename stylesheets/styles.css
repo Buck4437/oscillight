@@ -377,8 +377,14 @@ main {
 }
 
 .btn.locked {
-
+    border-color: var(--color-red);
+    cursor: default;
 }
+
+.btn.locked:hover {
+    background-color: inherit;
+}
+
 
 .btn.buyable {
     border-color: var(--color-green);

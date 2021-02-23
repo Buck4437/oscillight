@@ -4,6 +4,10 @@ function gameLoop(that){
 
     g.period = (g.period + DATABASE_WAVE.light.speed(g) * dt) % 360
 
+    if (g.laser.active) {
+        g.laser.time += dt;
+    }
+
     if (dt < 60) {
         g.light = g.light.add(DATABASE_WAVE.light.rate(g).times(dt))
     } else {

@@ -20,7 +20,7 @@ Vue.component("amplification-tab", {
     },
     computed: {
         getCost() {
-            return DATABASE_LASER.cost
+            return DATABASE_LASER.laser.cost
         },
         canBuy() {
             return this.game.light.gte(this.getCost);
@@ -32,7 +32,7 @@ Vue.component("amplification-tab", {
         },
         draw() {
             let w = this.canvas.width, h = this.canvas.height;
-
+            let t = this.game.laser.time;
             // I just copied the code from Oscillation tab
 
             let c = this.$el.querySelector(".laser-display") // get the canvas object to draw onto
@@ -44,25 +44,23 @@ Vue.component("amplification-tab", {
             ctx.strokeStyle = this.getCssVar("--color")
             ctx.lineWidth = 2;
 
-            ctx.moveTo(0, h/2);  // back to the left before drawing the sine
+            ctx.moveTo(0, h);
             ctx.beginPath()
 
             for (let x = 0; x <= 360; x += 1) { // 360 steps
-                let y = this.getY(x) // calculate y flipped horizontally, converting from DEG to RADIAN
-                ctx.lineTo(w/360 * x, h/360 * y); // draw the point
+                let dt = t >= 180 ? t - 180 : 0
+                ctx.lineTo(w/360 * x, h * this.getY(x + dt)); // draw the point
             }
             ctx.stroke(); // strokes the drawing to the canvas
 
             ctx.beginPath();
-            ctx.arc(w/360 * 180, h/360 * this.getY(180), 10, 0, 2 * Math.PI);
+            ctx.arc(w/360 * (t >= 180 ? 180 : t) , h * this.getY(t), 10, 0, 2 * Math.PI);
             ctx.fillStyle = this.getCssVar("--color-red")
             ctx.fill()
             ctx.stroke()
-
-            //area under sine curve is 1
         },
-        getY(x) {
-            return 180.0 + Math.sin(x * Math.PI / 180 + Math.radian(this.game.period)) * 160;
+        getY(t = 0) {
+            return 0.9 - DATABASE_LASER.laser.power(t) * 0.8
         },
         format(num) {
             return toSci(num)

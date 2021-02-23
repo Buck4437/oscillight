@@ -94,7 +94,7 @@ function gameLoop(that){
     }
 
     if (g.decelereate.active) {
-        g.decelereate.timer = Math.max(0, g.decelereate.timer - dt)
+        g.decelereate.timer = Math.max(0, g.decelereate.timer - dt / DATABASE_WAVE.light.decelTime(g))
         if (g.decelereate.timer <= 0) g.decelereate.active = false
     }
 

@@ -9,7 +9,22 @@ Vue.component("settings-tab", {
             showImportModal: false
         }
     },
+    props: {
+        game: Object
+    },
     methods: {
+        importSave(save) {
+            this.showImportModal = false;
+
+            if (save === null || save === "") return
+            if (isValidSave(save)) {
+                localStorage.setItem(SAVE_NAME, window.atob(save))
+                window.location.reload()
+            }
+        },
+        exportSave() {
+            copyText(btoa(JSON.stringify(this.game)));
+        },
         switchTheme() {
             this.game.settings.theme ++;
             if (this.game.settings.theme >= themes.length) {
@@ -22,14 +37,19 @@ Vue.component("settings-tab", {
             location.reload();
         }
     },
-    props: {
-        game: Object
-    },
     template: `
     <div class="tab settings-tab">
         <button @click="switchTheme">
             Theme: {{themes[game.settings.theme]}}
         </button>
+
+        <button @click="showImportModal = true">
+            Import
+        </button>
+
+        <tooltip-button @click="exportSave" tooltip="Copied!">
+            Export
+        </tooltip-button>
 
         <button class="warning" @click="showWipeDataModal = true">
             Wipe all data
@@ -42,6 +62,14 @@ Vue.component("settings-tab", {
 
             Are you sure you want to wipe all user data? <span class="warning">This cannot be undone!</span>
         </confirmation-modal>
+
+        <prompt-modal v-if="showImportModal" @submit="importSave" @close="showImportModal = false">
+            <template #header>
+                Import
+            </template>
+
+            Please paste your save file here: <span class="warning">(Your current save will be overwritten!)</span>
+        </prompt-modal>
     </div>
     `
 })

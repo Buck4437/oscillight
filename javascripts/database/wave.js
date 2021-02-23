@@ -10,14 +10,14 @@ const DATABASE_WAVE = {
         },
         speed: g => {
             let base = 20
-            if (g.decelereate.active === true) base = 5
+            if (g.decelereate.active === true) base = 5 / Math.pow(1.3, g.upgrades[3])
 
             return base * Math.pow(2, g.upgrades[1])
         },
         decelTime: g => {
             let base = 1
 
-            return base * Math.pow(1.5, g.upgrades[3])
+            return base
         }
     },
     upgrades: [
@@ -40,7 +40,7 @@ const DATABASE_WAVE = {
         {
             id: 3,
             name: "Freezer",
-            desc: "Photon deceleration lasts 50% longer",
+            desc: "Photon deceleration is 30% more powerful",
             base: new Decimal(30),
             scale: new Decimal(15),
             cap: 5

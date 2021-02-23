@@ -179,10 +179,10 @@ button.is-active {
 }
 
 .modal-prompt-footer button {
+    padding: 8px;
     font-size: 16px;
     flex-grow: 0;
     margin: 8px;
-    padding: 8px;
 }
 
 .modal-confirm-header {
@@ -208,6 +208,31 @@ button.is-active {
     padding: 8px 16px;
     min-width: 80px;
 }
+
+.modal-alert-header {
+    font-size: 20px;
+    padding: 8px;
+}
+
+.modal-alert-content {
+    font-size: 16px;
+    padding: 8px;
+    padding-bottom: 16px;
+}
+
+.modal-alert-footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-alert-btn {
+    font-size: 16px;
+    flex-grow: 0;
+    margin: 8px;
+    padding: 8px 16px;
+    min-width: 80px;
+}
+
 
 /* actual layout */
 

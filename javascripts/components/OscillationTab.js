@@ -43,6 +43,7 @@ Vue.component("oscillation-tab", {
 
             // source: https://stackoverflow.com/questions/29917446/drawing-sine-wave-in-canvas
             let c = this.$el.querySelector(".wave-display") // get the canvas object to draw onto
+            if (c === null) return; // Stops running if the canvas is hidden
             let ctx = c.getContext("2d"); // will use simpe 2D context on the canvas
             ctx.clearRect(0, 0, w, h); // clear the canvas
 

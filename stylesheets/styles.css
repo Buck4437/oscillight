@@ -321,6 +321,13 @@ main {
     height: 60px;
 }
 
+
+/* laser tab */
+
+.laser-display {
+    border: 2px solid var(--color);
+}
+
 /* settings */
 
 .settings-tab{

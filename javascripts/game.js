@@ -8,9 +8,15 @@ var game = {
     upgrades: {
         1: 0, 2: 0, 3: 0, 4: 0
     },
+    laser: {
+        active: false,
+        time: 0
+    },
     unlocks: {
         upgrades: false,
-        decelerate: false
+        decelerate: false,
+        amplification: false,
+        laser: false
     },
     settings: {
         theme: 0

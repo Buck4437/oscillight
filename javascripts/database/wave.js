@@ -32,7 +32,7 @@ const DATABASE_WAVE = {
         },
         {
             id: 2,
-            name: "Amplifier",
+            name: "Exciter",
             desc: "Double Light gain",
             base: new Decimal(30),
             scale: new Decimal(6),

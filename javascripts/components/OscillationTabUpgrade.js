@@ -7,7 +7,7 @@ Vue.component("oscillation-tab-upgrade", {
     },
     computed: {
         getLevel() {
-            return this.game.upgrades[this.upgrade.id]
+            return this.game.upgrades[this.upgrade.id] || 0
         },
         getCost() {
             return this.upgrade.base.times(Decimal.pow(this.upgrade.scale, this.getLevel))
@@ -22,7 +22,7 @@ Vue.component("oscillation-tab-upgrade", {
         buy() {
             if (this.getState === "canBuy") {
                 this.game.light = this.game.light.minus(this.getCost)
-                this.game.upgrades[this.upgrade.id]++;
+                this.game.upgrades[this.upgrade.id] = this.getLevel() + 1
             }
         },
         format(num) {

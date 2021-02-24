@@ -2,14 +2,13 @@ var game = {
     period: 270,
     light: new Decimal(0),
     decelerate: {
-        active: false,
-        timer: 0
+        isActive: false
     },
     upgrades: {
-        1: 0, 2: 0, 3: 0, 4: 0
+        1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0
     },
     laser: {
-        active: false,
+        isActive: false,
         time: 0
     },
     unlocks: {

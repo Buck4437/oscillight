@@ -28,8 +28,8 @@ Vue.component("amplification-tab", {
         getEnergyLevel() {
             return Math.round(this.getPower(this.game.laser.time) * 1000) / 1000
         },
-        isActive() {
-            return this.game.laser.active
+        isLaserActive() {
+            return this.game.laser.isActive
         },
         getToggleLaserState() {
             return this.isActive ? "on" : "off"
@@ -90,7 +90,7 @@ Vue.component("amplification-tab", {
             }
         },
         toggle() {
-            this.game.laser.active = !this.isActive
+            this.game.laser.isActive = !this.isLaserActive
             this.game.laser.time = 0; //reset
         },
         capFirstLetter(str) {
@@ -119,7 +119,7 @@ Vue.component("amplification-tab", {
             <button class="toggle-laser-btn"
                     :class="getToggleLaserState"
                     @click="toggle">
-                {{isActive ? "Deactivate" : "Activate"}} the laser!
+                {{isLaserActive ? "Deactivate" : "Activate"}} the laser!
             </button>
         </div>
         <button v-else class="upg-btn"

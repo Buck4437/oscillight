@@ -12,7 +12,7 @@ var app = new Vue({
 
             if (this.game.unlocks.amplification) tabs.push("Amplification")
             tabs.push("Settings")
-            
+
             return tabs
         },
         currentTabComponent() {
@@ -62,6 +62,7 @@ var app = new Vue({
 
 function saveFixer(obj, def) {
     let data = {}
+    if (obj === null) obj = {}
     if (Array.isArray(def)) {
         if (def.length === 0) {
             return Array.isArray(obj) ? obj : def;

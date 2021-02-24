@@ -1,6 +1,6 @@
 const DATABASE_LASER = {
     laser: {
-        cost: new Decimal(2500),
+        cost: new Decimal(5000),
         power: (t = 0) => {
             // The unit used is second
 
@@ -28,7 +28,7 @@ const DATABASE_LASER = {
             return base
         },
         status: (g) => {
-            if (!g.laser.active) return "deactivated"
+            if (!g.laser.isActive) return "deactivated"
 
             let m = g.laser.time/60
             if (m <= 0.5) {

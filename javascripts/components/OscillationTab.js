@@ -23,7 +23,21 @@ Vue.component("oscillation-tab", {
             return (DATABASE_WAVE.light.speed(this.game)) / 360
         },
         getUnlockedUpgrades() {
-            return DATABASE_WAVE.upgrades.filter(u => this.game.unlocks.decelerate ? true : u.id <= 2)
+            return DATABASE_WAVE.upgrades.filter(u => {
+                let maxTier = 1;
+                if (this.game.unlocks.laser) {
+                    maxTier = 3
+                } else if (this.game.unlocks.decelerate) {
+                    maxTier = 2
+                }
+                return u.tier <= maxTier
+            })
+        },
+        isDecelActive() {
+            return this.game.decelerate.isActive
+        },
+        getToggleDecelState() {
+            return this.isDecelActive ? "on" : "off"
         }
     },
     watch: {
@@ -74,10 +88,7 @@ Vue.component("oscillation-tab", {
             return toSci(num)
         },
         decel() {
-            if (!this.game.decelerate.active) {
-                this.game.decelerate.active = true;
-                this.game.decelerate.timer = 1;
-            }
+            this.game.decelerate.isActive = !this.isDecelActive;
         }
     },
     mounted() {
@@ -92,12 +103,11 @@ Vue.component("oscillation-tab", {
         The photon is releasing {{format(getProduction)}} Light per second<br>
         Oscillation speed: {{format(getSpeed)}} Hz
         <div class="decel-con" v-if="game.unlocks.decelerate">
-            <button class="decel-btn" @click="decel">
-                Decelerate the photon!
+            <button class="decel-btn"
+                    :class="getToggleDecelState"
+                    @click="decel">
+                {{isDecelActive ? "Cancel deceleration!" : "Decelerate the photon!"}}
             </button>
-            <progress-bar class="decel-bar"
-                          :percentage="this.game.decelerate.timer * 100"
-                          :color="getCssVar('--color-yellow')"/>
         </div>
         <div v-if="game.unlocks.upgrades" class="upg-con">
             <oscillation-tab-upgrade v-for="upg in getUnlockedUpgrades"

@@ -4,7 +4,7 @@ function gameLoop(that){
 
     g.period = (g.period + DATABASE_WAVE.light.speed(g) * dt) % 360
 
-    if (g.laser.active) {
+    if (g.laser.isActive) {
         g.laser.time += dt;
     }
 
@@ -12,11 +12,6 @@ function gameLoop(that){
         g.light = g.light.add(DATABASE_WAVE.light.rate(g).times(dt))
     } else {
         g.light = g.light.add(DATABASE_WAVE.light.rate(g, true).times(dt))
-    }
-
-    if (g.decelerate.active) {
-        g.decelerate.timer = Math.max(0, g.decelerate.timer - dt / DATABASE_WAVE.light.decelTime(g))
-        if (g.decelerate.timer <= 0) g.decelerate.active = false
     }
 
     if (g.light.gte(17.5)) g.unlocks.upgrades = true;

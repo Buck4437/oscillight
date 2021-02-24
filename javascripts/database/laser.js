@@ -15,8 +15,10 @@ const DATABASE_LASER = {
                 power = 1;
             } else if (m <= 1.5) {
                 power = Math.pow(2 * (1.5 - m), 2)
-            } else {
+            } else if (m <= 19.5) {
                 power = Math.min((m - 1.5) / 20, 0.9)
+            } else {
+                power = (0.95 - 4 / (m + 0.5))
             }
 
             return Math.max(0, Math.min(1, power)) // 0 <= power <= 1
@@ -24,6 +26,7 @@ const DATABASE_LASER = {
         },
         effect(g) {
             let base = 1 + this.power(g.laser.time)
+                         + 0.1 * g.upgrades[7]
 
             return base
         },
@@ -38,9 +41,9 @@ const DATABASE_LASER = {
             } else if (m <= 1.5) {
                 return "overheat"
             } else if (m <= 19.5) {
-                return "tuning"
+                return "stablizing"
             } else {
-                return "stablized"
+                return "softcapped"
             }
         }
     }

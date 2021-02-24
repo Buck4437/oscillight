@@ -302,7 +302,7 @@ main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     margin-top: 16px;
 }
@@ -312,6 +312,20 @@ main {
     min-width: 224px;
     min-height: 60px;
     padding: 8px;
+}
+
+.auto-decel-btn {
+    min-width: 120px;
+    min-height: 60px;
+    margin-right: 16px;
+}
+
+.auto-decel-field {
+    background-color: inherit;
+    border-width: 0 0 2px 0;
+    border-color: var(--color);
+    outline: none;
+    transition: none;
 }
 
 /* laser tab */
@@ -371,6 +385,10 @@ main {
     flex-wrap: wrap;
 }
 
+.upg-btn div:not(.upg-name){
+    font-size: 12px;
+}
+
 .upg-btn {
     width: 208px;
     margin: 8px;
@@ -405,6 +423,11 @@ button.on {
 }
 
 button.off {
+    border-color: var(--color-red);
+}
+
+.red {
+    color: var(--color-red);
     border-color: var(--color-red);
 }
 

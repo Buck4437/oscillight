@@ -93,7 +93,6 @@ function isValidSave(save){
     }
 }
 
-
 function isEmpty(obj) {
     for (let key in obj) {
         if (obj.hasOwnProperty(key)) {
@@ -105,4 +104,15 @@ function isEmpty(obj) {
 
 function isNumber(val) {
     return typeof val === 'number' && isFinite(val)
+}
+
+function isNumberString(str) {
+    if (/^ *$/.test(str)) return false
+
+    let num = Number(str)
+    return !isNaN(num)
+}
+
+function isFunction(functionToCheck) {
+    return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 }

@@ -2,6 +2,14 @@ function gameLoop(that){
     let g = that.game;
     let dt = (Date.now() - g.lastTick) / 1000
 
+    if (g.decelerate.auto && isNumberString(g.decelerate.value)) {
+        if (DATABASE_WAVE.light.energy(g) > g.decelerate.value) {
+            g.decelerate.isActive = true
+        } else {
+            g.decelerate.isActive = false
+        }
+    }
+
     g.period = (g.period + DATABASE_WAVE.light.speed(g) * dt) % 360
 
     if (g.laser.isActive) {

@@ -6,10 +6,12 @@ const DATABASE_WAVE = {
             if (imprecise) base = new Decimal(1) //average value
 
             base = base.add(g.upgrades[1])
+                       .times(Decimal.pow(2, g.upgrades[2]))
+                       .times(g.upgrades[8] > 0 ? DATABASE_WAVE.upgrades[7].current(g) : 1) //8th upgrade
 
-            return base.times(Decimal.pow(2, g.upgrades[2]))
-                       .pow(DATABASE_LASER.laser.effect(g))
+            return base.pow(DATABASE_LASER.laser.effect(g))
                        .pow(Decimal.pow(1.03, g.upgrades[5]))
+                       .times(Decimal.pow(2, g.upgrades[9]))
         },
         speed: g => {
             let base = 20
@@ -26,21 +28,21 @@ const DATABASE_WAVE = {
             desc: "Increase base light gain by 1",
             base: new Decimal(18),
             scale: new Decimal(7),
-            cap: 100
+            cap: 50
         },
         {
             id: 2,
             tier: 1,
             name: "Exciter",
-            desc: "Double Light gain",
+            desc: "Double base light gain",
             base: new Decimal(18),
             scale: new Decimal(6),
-            cap: 100
+            cap: 50
         },
         {
             id: 3,
             tier: 2,
-            name: "Accelerator",
+            name: "Vibrator",
             desc: "Double wave frequency",
             base: new Decimal(100),
             scale: new Decimal(10),
@@ -58,38 +60,48 @@ const DATABASE_WAVE = {
         {
             id: 5,
             tier: 3,
-            name: "Multiplier",
+            name: "Accelerator",
             desc: "^1.03 to light gain",
             base: new Decimal(1e10),
             scale: new Decimal(1e5),
             cap: 5
         },
-        // {
-        //     id: 6,
-        //     tier: 3,
-        //     name: "Decelerator",
-        //     desc: "Unlock automation for photon deceleration",
-        //     base: new Decimal(1e13),
-        //     scale: new Decimal(1e99),
-        //     cap: 1
-        // },
-        // {
-        //     id: 7,
-        //     tier: 3,
-        //     name: "Decelerator",
-        //     desc: "Unlock automation for photon deceleration",
-        //     base: new Decimal(1e13),
-        //     scale: new Decimal(1e99),
-        //     cap: 1
-        // },
-        // {
-        //     id: 8,
-        //     tier: 3,
-        //     name: "Decelerator",
-        //     desc: "Unlock automation for photon deceleration",
-        //     base: new Decimal(1e13),
-        //     scale: new Decimal(1e99),
-        //     cap: 1
-        // }
+        {
+            id: 6,
+            tier: 3,
+            name: "Decelerator",
+            desc: "Unlock automation for photon deceleration",
+            base: new Decimal(1e13),
+            scale: new Decimal(1e99),
+            cap: 1
+        },
+        {
+            id: 7,
+            tier: 3,
+            name: "Charger",
+            desc: "Laser is 10% more powerful",
+            base: new Decimal(5e15),
+            scale: new Decimal(1e99),
+            cap: 1
+        },
+        {
+            id: 8,
+            tier: 3,
+            name: "Amplifier",
+            desc: "Extra base multipler to light based on current energy level",
+            base: new Decimal(1e40),
+            scale: new Decimal(1e99),
+            current: (g) => DATABASE_WAVE.light.energy(g) * 5 + 1,
+            cap: 1
+        },
+        {
+            id: 9,
+            tier: 3,
+            name: "Transformer",
+            desc: "Double light gain",
+            base: new Decimal(1e50),
+            scale: new Decimal(5),
+            cap: 1000
+        }
     ],
 }

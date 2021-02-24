@@ -38,6 +38,18 @@ Vue.component("oscillation-tab", {
         },
         getToggleDecelState() {
             return this.isDecelActive ? "on" : "off"
+        },
+        isAutoUnlocked() {
+            return this.game.upgrades[6] >= 1
+        },
+        isAutoActive() {
+            return this.game.decelerate.auto
+        },
+        getAutoState() {
+            return this.isAutoActive ? "on" : "off"
+        },
+        isValidValue() {
+            return isNumberString(this.game.decelerate.value)
         }
     },
     watch: {
@@ -89,10 +101,13 @@ Vue.component("oscillation-tab", {
         },
         decel() {
             this.game.decelerate.isActive = !this.isDecelActive;
+        },
+        toggleAuto() {
+            this.game.decelerate.auto = !this.isAutoActive;
         }
     },
     mounted() {
-        this.draw()
+        this.draw();
     },
     template: `
     <div class="tab main">
@@ -100,15 +115,31 @@ Vue.component("oscillation-tab", {
             Energy level: {{format(getEnergy)}}
         </div>
         <canvas class="wave-display" :width="canvas.width" :height="canvas.height"/>
+
         The photon is releasing {{format(getProduction)}} Light per second<br>
         Oscillation speed: {{format(getSpeed)}} Hz
+
         <div class="decel-con" v-if="game.unlocks.decelerate">
             <button class="decel-btn"
                     :class="getToggleDecelState"
                     @click="decel">
                 {{isDecelActive ? "Cancel deceleration!" : "Decelerate the photon!"}}
             </button>
+
+            <button v-if="isAutoUnlocked"
+                    class="auto-decel-btn"
+                    :class="getAutoState"
+                    @click="toggleAuto">
+                Auto: {{isAutoActive ? "On" : "Off"}}
+            </button>
+
+            <span v-if="isAutoUnlocked">
+                Decelerate only when energy level is above:&nbsp<input class="auto-decel-field"
+                                                                       v-model="game.decelerate.value"
+                                                                       :class="{'red': !isValidValue}">
+            </span>
         </div>
+
         <div v-if="game.unlocks.upgrades" class="upg-con">
             <oscillation-tab-upgrade v-for="upg in getUnlockedUpgrades"
                               :game="game"

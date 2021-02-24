@@ -16,6 +16,12 @@ Vue.component("oscillation-tab-upgrade", {
             if (this.getLevel >= this.upgrade.cap) return "max"
             else if (this.getCost.lte(this.game.light)) return "canBuy"
             return "locked"
+        },
+        getCurrent() {
+            let c = this.upgrade.current;
+            if (c === undefined) return undefined
+            else if (isFunction(c)) return c(this.game);
+            return c;
         }
     },
     methods: {
@@ -25,8 +31,8 @@ Vue.component("oscillation-tab-upgrade", {
                 this.game.upgrades[this.upgrade.id] = this.getLevel + 1
             }
         },
-        format(num) {
-            return toSci(num, 2, 0);
+        format(num, a = 2, b = 0) {
+            return toSci(num, a, b);
         },
         getCssVar(name) {
             return getCssVar(name);
@@ -41,6 +47,9 @@ Vue.component("oscillation-tab-upgrade", {
         </div>
         <div class="upg-desc">
             {{upgrade.desc}}
+        </div>
+        <div v-if="getCurrent !== undefined" class="upg-current">
+            Current: x{{format(getCurrent, 2, 2)}}
         </div>
         <div v-if="getState !== 'max'" class="upg-cost">
             Cost: {{format(getCost)}} Light

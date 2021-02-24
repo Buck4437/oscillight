@@ -32,7 +32,7 @@ Vue.component("amplification-tab", {
             return this.game.laser.isActive
         },
         getToggleLaserState() {
-            return this.isActive ? "on" : "off"
+            return this.isLaserActive ? "on" : "off"
         },
         getStatus() {
             return DATABASE_LASER.laser.status(this.game);
@@ -106,7 +106,7 @@ Vue.component("amplification-tab", {
             <div class="mini-header"
                  :class="{
                      'warning': getStatus === 'overheat',
-                     'green': ['charged', 'stablized'].includes(getStatus)
+                     'green': ['charged', 'softcapped'].includes(getStatus)
                  }">
                 Laser status: {{capFirstLetter(getStatus)}}
             </div>

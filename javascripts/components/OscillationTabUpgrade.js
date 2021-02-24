@@ -22,7 +22,7 @@ Vue.component("oscillation-tab-upgrade", {
         buy() {
             if (this.getState === "canBuy") {
                 this.game.light = this.game.light.minus(this.getCost)
-                this.game.upgrades[this.upgrade.id] = this.getLevel() + 1
+                this.game.upgrades[this.upgrade.id] = this.getLevel + 1
             }
         },
         format(num) {

@@ -32,7 +32,7 @@ Vue.component("amplification-tab-lens", {
     mounted() {
     },
     template: `
-    <div>
+    <div class="lens-upg-con">
         <div class="lens-upg upg" disabled
                 :class="[lens.color, {'is-active': isActive}]">
             <div class="upg-name">

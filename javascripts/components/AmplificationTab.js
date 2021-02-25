@@ -148,11 +148,11 @@ Vue.component("amplification-tab", {
             </button>
 
             <button v-if="!game.unlocks.lenses"
-                          class="upg-btn"
+                          class="upg-btn unlock-lens"
                           :class="canBuyLenses ? 'canBuy' : 'locked'"
                           @click="unlockLenses">
-                <span>Unlock Lenses</span>
-                <span>Cost: {{format(getLensesCost)}} Light</span>
+                <div>Unlock Lenses</div>
+                <div>Cost: {{format(getLensesCost)}} Light</div>
             </button>
 
             <div v-else class="lenses-context">

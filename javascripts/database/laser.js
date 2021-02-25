@@ -14,7 +14,7 @@ const DATABASE_LASER = {
 
             if ((g.lenses & 1) !== 0) { // 1st lens
                 v.chargedP = 1.5;
-                v.overheat = 0.7;
+                v.overheat = 0.75;
             }
 
             if ((g.lenses & 2) !== 0) { // 2nd lens
@@ -98,7 +98,7 @@ const DATABASE_LASER = {
             id: 1,
             tier: 1,
             name: "Crank it up!",
-            desc: "The energy level of the laser when charged is higher, but it overheats 60% faster",
+            desc: "The energy level of the laser when charged is 50% higher, but it overheats 50% faster",
             color: "red"
         },
         {

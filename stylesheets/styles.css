@@ -347,7 +347,7 @@ main {
     margin-bottom: 16px;
 }
 
-.toggle-laser-btn {
+.toggle-laser-btn, .unlock-lens {
     margin: 20px;
     width: 200px;
     height: 80px;
@@ -360,16 +360,23 @@ main {
     align-items: center;
 }
 
+.lens-upg-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .lens-upg {
     border: 2px solid;
+    padding: 8px;
 }
 
 .equip-btn {
-    margin: 8px;
-    width: 208px;
-    height: 30px;
+	margin-top: 8px;
+	width: 208px;
+	height: 30px;
+    box-sizing: content-box;
 }
-
 /* settings */
 
 .settings-tab{

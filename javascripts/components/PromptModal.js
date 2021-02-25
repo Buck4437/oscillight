@@ -6,6 +6,9 @@ Vue.component("prompt-modal", {
             input: ""
         }
     },
+    mounted() {
+        this.$el.querySelector("input").focus()
+    },
     template: `
     <base-modal @close="$emit('close')">
         <template #header>

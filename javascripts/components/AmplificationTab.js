@@ -121,7 +121,7 @@ Vue.component("amplification-tab", {
     },
     template: `
     <div class="tab laser">
-        <button v-if="!game.unlocks.laser" class="upg-btn"
+        <button v-if="!game.unlocks.laser" class="upg"
                       :class="canBuy ? 'canBuy' : 'locked'"
                       @click="unlock">
             <span>Unlock Laser</span>
@@ -148,7 +148,7 @@ Vue.component("amplification-tab", {
             </button>
 
             <button v-if="!game.unlocks.lenses"
-                          class="upg-btn unlock-lens"
+                          class="upg"
                           :class="canBuyLenses ? 'canBuy' : 'locked'"
                           @click="unlockLenses">
                 <div>Unlock Lenses</div>

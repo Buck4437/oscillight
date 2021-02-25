@@ -19,7 +19,8 @@ var game = {
         decelerate: false,
         amplification: false,
         laser: false,
-        lenses: false
+        lenses: false,
+        prism: false
     },
     settings: {
         theme: 0

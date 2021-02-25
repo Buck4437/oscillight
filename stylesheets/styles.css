@@ -347,7 +347,7 @@ main {
     margin-bottom: 16px;
 }
 
-.toggle-laser-btn, .unlock-lens {
+.toggle-laser-btn {
     margin: 20px;
     width: 200px;
     height: 80px;
@@ -377,6 +377,7 @@ main {
 	height: 30px;
     box-sizing: content-box;
 }
+
 /* settings */
 
 .settings-tab{

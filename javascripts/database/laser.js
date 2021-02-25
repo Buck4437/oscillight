@@ -13,18 +13,18 @@ const DATABASE_LASER = {
             }
 
             if ((g.lenses & 1) !== 0) { // 1st lens
-                v.chargedP = 1.5;
-                v.overheat = 0.75;
+                v.chargedP *= 1.3;
+                v.overheat = 0.8;
             }
 
             if ((g.lenses & 2) !== 0) { // 2nd lens
-                v.chargedP = 1.4;
-                v.softcappedP = 1.33;
+                v.chargedP *= 1.2;
+                v.softcappedP *= 1.2;
             }
 
             if ((g.lenses & 4) !== 0) { // 3rd lens
-                v.softcappedP = 1.455;
-                v.softcapped = 97.5;
+                v.softcappedP *= 1.3;
+                v.softcapped *= 2;
             }
 
             return v
@@ -98,21 +98,21 @@ const DATABASE_LASER = {
             id: 1,
             tier: 1,
             name: "Crank it up!",
-            desc: "The energy level of the laser when charged is 50% higher, but it overheats 50% faster",
+            desc: "The energy level of the laser when charged is 30% higher, but it overheats 40% faster",
             color: "red"
         },
         {
             id: 2,
             tier: 1,
             name: "Catalyst",
-            desc: "The energy level of the laser is 40% higher",
+            desc: "The energy level of the laser is 20% higher",
             color: "green"
         },
         {
             id: 3,
             tier: 1,
             name: "Coolant stablization",
-            desc: "The energy level softcap is 50% higher, but it takes x5 time to stablize the laser",
+            desc: "The energy level softcap is 30% higher, but it takes x2 time to stablize the laser",
             color: "blue"
         }
     ]

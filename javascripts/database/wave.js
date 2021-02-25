@@ -8,7 +8,7 @@ const DATABASE_WAVE = {
             base = base.add(g.upgrades[1])
                        .times(Decimal.pow(2, g.upgrades[2]))
                        .times(g.upgrades[8] > 0 ? DATABASE_WAVE.upgrades[7].current(g) : 1) //8th upgrade
-                       .times(Decimal.pow(1.2, g.upgrades[10]))
+                       .times(Decimal.pow(1.5, g.upgrades[10]))
 
             return base.pow(DATABASE_LASER.laser.effect(g))
                        .pow(Decimal.pow(1.03, g.upgrades[5]))
@@ -108,7 +108,7 @@ const DATABASE_WAVE = {
             id: 10,
             tier: 3,
             name: "Multiplier",
-            desc: "x1.2 to base light gain",
+            desc: "x1.5 to base light gain",
             base: new Decimal(1e50),
             scale: new Decimal(11),
             cap: 100

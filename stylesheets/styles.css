@@ -1,11 +1,11 @@
 /* global stuff */
 
 * {
-    color: var(--color);
     transition: color 0.5s, background-color 0.5s, border 0.5s;
 }
 
 body{
+    color: var(--color);
     margin: 16px;
     font-size: 16px;
     background-color: var(--background);
@@ -13,6 +13,10 @@ body{
 
 body.is-active {
     overflow: hidden;
+}
+
+input, select, textarea, button {
+    color: inherit;
 }
 
 button {
@@ -255,7 +259,7 @@ header {
 /* main content */
 
 main {
-    flex-grow: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -266,7 +270,7 @@ main {
     margin: 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     margin-bottom: 16px;
 }
 
@@ -279,18 +283,19 @@ main {
 /* tabs */
 
 .tab-con {
-    flex-grow: 1;
+    width: 100%;
     display: flex;
     flex-direction: row;
 }
 
-/* oscillation tab */
-
-.main {
+.tab {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+/* oscillation tab */
 
 .wave-display {
     border: 2px solid var(--color);
@@ -332,6 +337,7 @@ main {
 
 .laser-content {
     display: flex;
+    width: 100%;
     flex-direction: column;
     align-items: center;
 }
@@ -342,9 +348,26 @@ main {
 }
 
 .toggle-laser-btn {
-    margin-top: 20px;
+    margin: 20px;
     width: 200px;
-    height: 108px;
+    height: 80px;
+}
+
+.lenses-context {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lens-upg {
+    border: 2px solid;
+}
+
+.equip-btn {
+    margin: 8px;
+    width: 208px;
+    height: 30px;
 }
 
 /* settings */
@@ -354,6 +377,7 @@ main {
     flex-grow: 1;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .settings-tab>button{
@@ -385,34 +409,34 @@ main {
     flex-wrap: wrap;
 }
 
-.upg-btn div:not(.upg-name){
+.upg div:not(.upg-name){
     font-size: 12px;
 }
 
-.upg-btn {
+.upg {
     width: 208px;
     margin: 8px;
     min-height: 134px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    text-align: center;
 }
 
-.upg-btn.locked {
+button.locked {
     border-color: var(--color-red);
     cursor: default;
 }
 
-.upg-btn.locked:hover {
+button.locked:hover {
     background-color: inherit;
 }
 
-
-.upg-btn.canBuy {
+button.canBuy {
     border-color: var(--color-green);
 }
 
-.upg-btn.max {
+button.max {
     border-color: var(--color-max);
     background-color: var(--background-max);
     cursor: default;
@@ -431,7 +455,40 @@ button.off {
     border-color: var(--color-red);
 }
 
+.red.is-active {
+    color:var(--background);
+    border-color: var(--color-red);
+    background-color: var(--color-red);
+}
+
 .green {
     color: var(--color-green);
     border-color: var(--color-green);
+}
+
+.green.is-active {
+    color: var(--background);
+    border-color: var(--color-green);
+    background-color:var(--color-green);
+}
+
+.blue {
+    color: var(--color-blue);
+    border-color: var(--color-blue);
+}
+
+.blue.is-active {
+    color: var(--background);
+    border-color: var(--color-blue);
+    background-color: var(--color-blue);
+}
+
+.disabled {
+    color: var(--disabled);
+    border-color: var(--disabled);
+    cursor: default;
+}
+
+.disabled:hover {
+    background-color: inherit;
 }

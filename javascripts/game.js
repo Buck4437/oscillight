@@ -13,11 +13,13 @@ var game = {
         isActive: false,
         time: 0
     },
+    lenses: 0, // 4 => lens 3 active, 3 => lens 1 and 2 active... etc
     unlocks: {
         upgrades: false,
         decelerate: false,
         amplification: false,
-        laser: false
+        laser: false,
+        lenses: false
     },
     settings: {
         theme: 0

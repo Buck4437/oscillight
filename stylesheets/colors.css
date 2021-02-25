@@ -7,6 +7,7 @@
     --hover: #4f595726;
     --tooltip: #ffffff;
     --modal: #00000080;
+    --disabled: #4f595750;
 
     --color-red: #ff1507;
     --color-green: #00ea00;
@@ -15,7 +16,6 @@
 
     --color-max: var(--color);
     --background-max: var(--color-yellow);
-    --background-hall: #d0d0d0;
 
     --tooltip-background: #323232;
 }
@@ -28,6 +28,7 @@
     --warning: #cf6679;
     --hover: #d9d9d926;
     --tooltip: #d9d9d9;
+    --disabled: #d9d9d950;
 
     --color-red: #ff200c;
     --color-green: #00fc00;
@@ -36,5 +37,4 @@
 
     --color-max: var(--color-yellow);
     --background-max: var(--background);
-    --background-hall: #323232;
 }

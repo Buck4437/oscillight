@@ -12,13 +12,11 @@ var app = new Vue({
 
             if (this.game.unlocks.amplification) tabs.push("Amplification")
             if (this.game.unlocks.prism) tabs.push("Dispersion")
+            if (this.game.unlocks.interference) tabs.push("Interference")
             tabs.push("Settings")
 
             return tabs
-        },
-        // currentTabComponent() {
-        //     return this.currentTab.toLowerCase() + "-tab"
-        // }
+        }
     },
     methods: {
         toTabComponent(str = "") {

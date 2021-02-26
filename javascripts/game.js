@@ -22,6 +22,11 @@ var game = {
         auto: false,
         value: ""
     },
+    interference: {
+        current: 0, // binary
+        completed: [], //binary
+        upgrades: 0 // binary
+    },
     unlocks: {
         upgrades: false,
         decelerate: false,
@@ -29,7 +34,8 @@ var game = {
         laser: false,
         lenses: false,
         prism: false,
-        rainbowUpgrades: false
+        rainbowUpgrades: false,
+        interference: false
     },
     settings: {
         theme: 0

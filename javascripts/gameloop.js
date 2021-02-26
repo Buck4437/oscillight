@@ -37,6 +37,7 @@ function gameLoop(that){
     if (g.light.gte(50)) g.unlocks.decelerate = true;
     if (g.light.gte(1000)) g.unlocks.amplification = true;
     if (g.light.gte(1e60)) g.unlocks.prism = true;
+    if (g.rainbow.gte(1000)) g.unlocks.interference = true;
 
     g.lastTick += dt * 1000
 }

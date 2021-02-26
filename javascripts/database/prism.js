@@ -114,12 +114,6 @@ const DATABASE_PRISM = {
             name: "Backup laser",
             desc: "Keep laser after activating prism",
             cost: new Decimal(300)
-        },
-        // {
-        //     id: 13,
-        //     name: "Self-amplification",
-        //     desc: "Gain more rainbow based on your unspent rainbow",
-        //     cost: new Decimal(10000)
-        // }
+        }
     ]
 }

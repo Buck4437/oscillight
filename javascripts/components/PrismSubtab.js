@@ -12,7 +12,15 @@ Vue.component("prism-subtab", {
     props: {
         game: Object
     },
+    watch: {
+        theme() {
+            this.draw()
+        }
+    },
     computed: {
+        theme() {
+            return this.game.settings.theme
+        },
         getUnlocked() {
             return this.game.unlocks.rainbow
         },

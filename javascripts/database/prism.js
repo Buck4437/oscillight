@@ -17,7 +17,7 @@ const DATABASE_PRISM = {
             g.laser.time = 0
         }
 
-        g.rainbow = g.rainbow.add(this.gain(g))
+        g.rainbow = g.rainbow.add(Decimal.floor(this.gain(g))) //displayed with decimals for dramatic effect
         g.light = new Decimal(0)
         g.resets ++
         g.unlocks.rainbowUpgrades = true
@@ -59,49 +59,49 @@ const DATABASE_PRISM = {
         },
         {
             id: 4,
-            name: "Shallow multiplier",
+            name: "Shallow amplification",
             desc: "Multiplier to light gain based on number of prism activations",
             current: (g) => Math.pow(g.resets, 1.5) + 1,
-            cost: new Decimal(2)
+            cost: new Decimal(3)
         },
         {
             id: 5,
-            name: "Deep multiplier",
+            name: "Deep amplification",
             desc: "Multiplier to base light based on number of prism activations",
             current: (g) => Math.pow(g.resets, 0.3) + 1,
-            cost: new Decimal(2)
+            cost: new Decimal(3)
         },
         {
             id: 6,
             name: "Quick charge",
             desc: "Laser charges and stablizes 80% faster",
-            cost: new Decimal(2)
+            cost: new Decimal(4)
         },
         {
             id: 7,
-            name: "Active boost",
+            name: "Anti-prism",
             desc: "Your unspent rainbow boost light gain",
             current: (g) => Decimal.pow(Decimal.log10(g.rainbow.times(5).plus(1)) + 1, 4).plus(1),
-            cost: new Decimal(25)
+            cost: new Decimal(30)
         },
         {
             id: 8,
             name: "Resonance",
             desc: "Unlock autobuyer for oscillation upgrades",
-            cost: new Decimal(25)
+            cost: new Decimal(30)
         },
         {
             id: 9,
             name: "Backup decelerator",
             desc: "Keep photon deceleration when activating prism",
-            cost: new Decimal(25)
+            cost: new Decimal(30)
         },
         {
             id: 10,
-            name: "Passive boost",
+            name: "Colored lens",
             desc: "Your unspent rainbow boost laser",
             current: (g) => Decimal.log10(g.rainbow.plus(1)) / 30 + 1,
-            cost: new Decimal(120)
+            cost: new Decimal(200)
         },
         {
             id: 11,
@@ -113,7 +113,7 @@ const DATABASE_PRISM = {
             id: 12,
             name: "Backup laser",
             desc: "Keep laser after activating prism",
-            cost: new Decimal(120)
+            cost: new Decimal(300)
         },
         // {
         //     id: 13,

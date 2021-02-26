@@ -25,7 +25,7 @@ Vue.component("oscillation-tab", {
         getUnlockedUpgrades() {
             return DATABASE_WAVE.upgrades.filter(u => {
                 let maxTier = 1;
-                if (this.game.unlocks.laser) {
+                if (this.game.unlocks.laser || this.game.unlocks.prism) {
                     maxTier = 3
                 } else if (this.game.unlocks.decelerate) {
                     maxTier = 2
@@ -104,6 +104,9 @@ Vue.component("oscillation-tab", {
         },
         toggleAuto() {
             this.game.decelerate.auto = !this.isAutoActive;
+        },
+        buyMax() {
+            this.$refs.upg.forEach(upg => upg.buyMax());
         }
     },
     mounted() {
@@ -133,18 +136,24 @@ Vue.component("oscillation-tab", {
                 Auto: {{isAutoActive ? "On" : "Off"}}
             </button>
 
-            <span v-if="isAutoUnlocked">
+            <span v-if="isAutoUnlocked" class="auto-desc">
                 Decelerate only when energy level is above:&nbsp<input class="auto-decel-field"
                                                                        v-model="game.decelerate.value"
                                                                        :class="{'red': !isValidValue}">
             </span>
         </div>
 
+        <button v-if="game.unlocks.rainbowUpgrades" class="buy-max" @click="buyMax">
+            Buy max
+        </button>
+
         <div v-if="game.unlocks.upgrades" class="upg-con">
+
             <oscillation-tab-upgrade v-for="upg in getUnlockedUpgrades"
                               :game="game"
                               :upgrade="upg"
-                              :key="upg.id"/>
+                              :key="upg.id"
+                              ref="upg"/>
         </div>
     </div>
     `

@@ -11,7 +11,7 @@ Vue.component("upgrades-subtab", {
     },
     computed: {
         getUnlockedUpgrades() {
-            return DATABASE_PRISM.rainbow.upgrades;
+            return DATABASE_PRISM.upgrades;
         }
     },
     methods: {
@@ -21,7 +21,7 @@ Vue.component("upgrades-subtab", {
     },
     template: `
     <div class="tab">
-        <div class="upg-con">
+        <div class="upg-con prism-upg-con">
             <dispersion-tab-upgrade v-for="upg in getUnlockedUpgrades"
                                     :game="game"
                                     :upgrade="upg"

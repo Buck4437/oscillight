@@ -333,6 +333,16 @@ main {
     transition: none;
 }
 
+.auto-desc {
+    margin: 8px;
+}
+
+.buy-max {
+	width: 150px;
+	height: 70px;
+	margin: 8px;
+}
+
 /* laser tab */
 
 .laser-content {
@@ -414,9 +424,23 @@ main {
     width: 240px;
 }
 
+.prism-energy, .prism-activations, .prism-warning {
+    margin: 8px;
+}
+
+.prism-warning {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .prism-btn {
     width: 240px;
     height: 120px;
+}
+
+.prism-upg-con {
+    width: 700px /* show 3 upgrades per row */
 }
 
 /* settings */

@@ -17,10 +17,19 @@ Vue.component("prism-subtab", {
             return this.game.unlocks.rainbow
         },
         getGain() {
-            return DATABASE_PRISM.rainbow.gain(this.game);
+            return DATABASE_PRISM.gain(this.game);
         },
         canActivate() {
             return this.getGain.gt(0);
+        },
+        getGainInt() {
+            return this.format(this.getGain, 2, 0)
+        },
+        getGainDec() {
+            return "." + this.format(this.getGain, 2, 2).split(".")[1]
+        },
+        getActivations() {
+            return this.game.resets
         }
     },
     methods: {
@@ -69,15 +78,26 @@ Vue.component("prism-subtab", {
             </div>
             <canvas class="prism-display" :width="canvas.width" :height="canvas.height"/>
             <div class="prism-output">
-                    ==> {{format(getGain, 2, 0)}} Rainbow
+                    <span v-if="getGain.lt(10)">==> {{getGainInt}}<span class="disabled">{{getGainDec}}</span> Rainbow</span>
+                    <span v-else>==> {{format(getGain, 2, 0)}} Rainbow</span>
             </div>
         </div>
 
-        Activating the prism will:
-        <ul>
-            <li>Convert all your light into rainbow</li>
-            <li class="warning">Reset all your oscillation upgrades, laser and lenses</li>
-        </ul>
+        <div class="prism-energy">
+            Activation energy: <span :class="canActivate ? 'green' : 'red'">1e60 Light</span>
+        </div>
+
+        <div class="prism-activations">
+            Number of activations: {{format(getActivations, 2, 0)}}
+        </div>
+
+        <div class="prism-warning">
+            Activating the prism will:
+            <ul>
+                <li>Convert all your light into rainbow</li>
+                <li class="warning">Reset all your oscillation upgrades, laser and lenses</li>
+            </ul>
+        </div>
 
         <button class="prism-btn"
                 @click="activate"

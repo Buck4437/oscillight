@@ -31,6 +31,17 @@ Vue.component("oscillation-tab-upgrade", {
                 this.game.upgrades[this.upgrade.id] = this.getLevel + 1
             }
         },
+        buyMax() {
+            for (let i = 0; i < 15; i++) {
+                if (this.getState !== "canBuy") return
+                this.buy();
+            }
+            let s = this.upgrade.scale, y = this.game.light, k = this.upgrade.base
+            let levels = Math.max(0, Math.floor(Decimal.log(y/k, s)));
+            this.buy();
+
+            this.game.upgrades[this.upgrade.id] = levels;
+        },
         format(num, a = 2, b = 0) {
             return toSci(num, a, b);
         },

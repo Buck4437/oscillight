@@ -9,13 +9,16 @@ const DATABASE_WAVE = {
                        .times(Decimal.pow(2, g.upgrades[2]))
                        .times(DATABASE_WAVE.upgrades[7].apply(g)) //8th upgrade
                        .times(Decimal.pow(1.5, g.upgrades[10]))
+                       .times(DATABASE_PRISM.applyUpg(g, 5))
 
             return base.pow(DATABASE_LASER.laser.effect(g))
                        .pow(Decimal.pow(1.03, g.upgrades[5]))
+
                        .times(Decimal.pow(2, g.upgrades[9]))
-                       .times(DATABASE_PRISM.rainbow.upgrades[0].apply(g))
-                       .times(DATABASE_PRISM.rainbow.upgrades[1].apply(g))
-                       .times(DATABASE_PRISM.rainbow.upgrades[2].apply(g))
+                       .times(DATABASE_PRISM.applyUpg(g, 1))
+                       .times(DATABASE_PRISM.applyUpg(g, 2))
+                       .times(DATABASE_PRISM.applyUpg(g, 3))
+                       .times(DATABASE_PRISM.applyUpg(g, 4))
         },
         speed: g => {
             let base = 20

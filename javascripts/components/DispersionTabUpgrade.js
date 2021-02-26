@@ -51,7 +51,7 @@ Vue.component("dispersion-tab-upgrade", {
         <div v-if="getCurrent !== undefined" class="upg-current">
             Currently: x{{format(getCurrent, 2, 2)}}
         </div>
-        <div v-if="getState !== 'max'" class="upg-cost">
+        <div v-if="!isBought" class="upg-cost">
             Cost: {{format(upgrade.cost)}} Rainbow
         </div>
     </button>

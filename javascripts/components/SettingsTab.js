@@ -58,7 +58,7 @@ Vue.component("settings-tab", {
         </div>
 
         <div class="extra">
-            Game created by Buck | <a target="_blank" href="https://discord.com/invite/N8MuKMz">Discord</a>
+            Game created by Buck | Made for IGJ 2021 | <a target="_blank" href="https://discord.com/invite/N8MuKMz">Discord</a>
         </div>
 
         <confirmation-modal v-if="showWipeDataModal" @yes="reset" @no="showWipeDataModal = false">

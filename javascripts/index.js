@@ -11,6 +11,7 @@ var app = new Vue({
             let tabs = ["Oscillation"]
 
             if (this.game.unlocks.amplification) tabs.push("Amplification")
+            if (this.game.unlocks.prism) tabs.push("Dispersion")
             tabs.push("Settings")
 
             return tabs

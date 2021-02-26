@@ -378,6 +378,47 @@ main {
     box-sizing: content-box;
 }
 
+/* prism */
+
+.subtab-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+.subtab-nav button {
+    margin-right: 16px;
+    min-width: 90px;
+    min-height: 36px;
+}
+
+.subtab-con {
+    width: 100%;
+}
+
+.prism-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.prism-input, .prism-output {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 16px;
+    font-size: 18px;
+    width: 240px;
+}
+
+.prism-btn {
+    width: 240px;
+    height: 120px;
+}
+
 /* settings */
 
 .settings-tab{
@@ -499,4 +540,8 @@ button.off {
 
 .disabled:hover {
     background-color: inherit;
+}
+
+.invisible {
+    visibility: hidden;
 }

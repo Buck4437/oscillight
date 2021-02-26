@@ -19,6 +19,7 @@ const DATABASE_WAVE = {
                        .times(DATABASE_PRISM.applyUpg(g, 2))
                        .times(DATABASE_PRISM.applyUpg(g, 3))
                        .times(DATABASE_PRISM.applyUpg(g, 4))
+                       .times(DATABASE_PRISM.applyUpg(g, 7))
         },
         speed: g => {
             let base = 20

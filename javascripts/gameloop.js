@@ -10,6 +10,10 @@ function gameLoop(that){
         }
     }
 
+    if (g.autobuyUpgrades) {
+        that.$refs[that.tabs[0]][0].buyMax()
+    }
+
     g.period = (g.period + DATABASE_WAVE.light.speed(g) * dt) % 360
 
     if (g.laser.isActive) {
@@ -20,6 +24,13 @@ function gameLoop(that){
         g.light = g.light.add(DATABASE_WAVE.light.rate(g).times(dt))
     } else {
         g.light = g.light.add(DATABASE_WAVE.light.rate(g, true).times(dt))
+    }
+
+    if (g.activate.auto && isNumberString(g.activate.value)) {
+        let val = new Decimal(g.activate.value)
+        if (DATABASE_PRISM.gain(g).gte(val)) {
+            DATABASE_PRISM.reset(g);
+        }
     }
 
     if (g.light.gte(17.5)) g.unlocks.upgrades = true;

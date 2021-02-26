@@ -17,7 +17,11 @@ var game = {
     rainbow: new Decimal(0),
     resets: 0,
     rainbowUpgrades: 0, // Binary
-    autoUpgrades: false,
+    autobuyUpgrades: false,
+    activate: {
+        auto: false,
+        value: ""
+    },
     unlocks: {
         upgrades: false,
         decelerate: false,

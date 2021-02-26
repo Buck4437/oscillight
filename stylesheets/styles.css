@@ -36,6 +36,10 @@ button.is-active {
     color: var(--background);
 }
 
+ul {
+    margin: none;
+}
+
 /* custom elements */
 
 /* progress bar */
@@ -319,25 +323,12 @@ main {
     padding: 8px;
 }
 
-.auto-decel-btn {
-    min-width: 120px;
-    min-height: 60px;
-    margin-right: 16px;
+.buy-max-con {
+    display: flex;
+    flex-direction: row;
 }
 
-.auto-decel-field {
-    background-color: inherit;
-    border-width: 0 0 2px 0;
-    border-color: var(--color);
-    outline: none;
-    transition: none;
-}
-
-.auto-desc {
-    margin: 8px;
-}
-
-.buy-max {
+.buy-max, .autobuy-btn {
 	width: 150px;
 	height: 70px;
 	margin: 8px;
@@ -434,18 +425,20 @@ main {
     align-items: center;
 }
 
-.prism-btn {
-    width: 240px;
-    height: 120px;
+.prism-warning li {
+    margin: 8px 0;
 }
 
-.prism-upg-con {
-    width: 700px /* show 3 upgrades per row */
+.prism-btn { /* same as decel */
+	margin: 8px;
+	min-width: 224px;
+	min-height: 60px;
+	padding: 8px;
 }
 
 /* settings */
 
-.settings-tab{
+.settings-btn-con{
     display: flex;
     flex-grow: 1;
     flex-direction: row;
@@ -453,12 +446,21 @@ main {
     justify-content: center;
 }
 
-.settings-tab>button{
+.settings-btn-con>button{
     align-self: flex-start;
     width: 192px;
     min-height: 96px;
     margin-right: 16px;
     margin-bottom: 16px;
+}
+
+.extra {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    padding: 16px;
 }
 
 /* presets */
@@ -494,6 +496,24 @@ main {
     flex-direction: column;
     justify-content: space-around;
     text-align: center;
+}
+
+.auto-btn {
+    min-width: 120px;
+    min-height: 60px;
+    margin: 8px;
+}
+
+.auto-field {
+    background-color: inherit;
+    border-width: 0 0 2px 0;
+    border-color: var(--color);
+    outline: none;
+    transition: none;
+}
+
+.auto-desc {
+    margin: 8px;
 }
 
 button.locked {
@@ -568,4 +588,11 @@ button.off {
 
 .invisible {
     visibility: hidden;
+}
+
+/* override */
+
+.prism-upg-con {
+    width: 700px; /* show 3 upgrades per row */
+    justify-content: center;
 }

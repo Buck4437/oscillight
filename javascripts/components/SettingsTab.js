@@ -39,21 +39,27 @@ Vue.component("settings-tab", {
     },
     template: `
     <div class="tab settings-tab">
-        <button @click="switchTheme">
-            Theme: {{themes[game.settings.theme]}}
-        </button>
+        <div class="settings-btn-con">
+            <button @click="switchTheme">
+                Theme: {{themes[game.settings.theme]}}
+            </button>
 
-        <button @click="showImportModal = true">
-            Import
-        </button>
+            <button @click="showImportModal = true">
+                Import
+            </button>
 
-        <tooltip-button @click="exportSave" tooltip="Copied!">
-            Export
-        </tooltip-button>
+            <tooltip-button @click="exportSave" tooltip="Copied!">
+                Export
+            </tooltip-button>
 
-        <button class="warning" @click="showWipeDataModal = true">
-            Wipe all data
-        </button>
+            <button class="warning" @click="showWipeDataModal = true">
+                Wipe all data
+            </button>
+        </div>
+
+        <div class="extra">
+            Game created by Buck | <a target="_blank" href="https://discord.com/invite/N8MuKMz">Discord</a>
+        </div>
 
         <confirmation-modal v-if="showWipeDataModal" @yes="reset" @no="showWipeDataModal = false">
             <template #header>

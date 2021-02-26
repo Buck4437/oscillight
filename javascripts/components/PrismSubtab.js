@@ -4,8 +4,8 @@ Vue.component("prism-subtab", {
     data() {
         return {
             canvas: {
-                width: 240,
-                height: 240
+                width: 120,
+                height: 120
             }
         }
     },
@@ -30,6 +30,24 @@ Vue.component("prism-subtab", {
         },
         getActivations() {
             return this.game.resets
+        },
+        isAutoUnlocked() {
+            return this.hasUpg(11)
+        },
+        isAutoActive() {
+            return this.game.activate.auto
+        },
+        getAutoState() {
+            return this.isAutoActive ? "on" : "off"
+        },
+        isValidValue() {
+            return isNumberString(this.game.activate.value)
+        },
+        warning() {
+            let str = "Reset all your oscillation upgrades"
+            str += this.hasUpg(9) ? " (Except photon deceleration upgrade)" : ""
+            str += !this.hasUpg(12) ? ", laser and lenses" : ""
+            return str;
         }
     },
     methods: {
@@ -65,6 +83,12 @@ Vue.component("prism-subtab", {
             if (this.canActivate) {
                 DATABASE_PRISM.reset(this.game)
             }
+        },
+        toggleAuto() {
+            this.game.activate.auto = !this.isAutoActive;
+        },
+        hasUpg(i) {
+            return DATABASE_PRISM.hasUpg(this.game, i)
         }
     },
     mounted() {
@@ -95,15 +119,32 @@ Vue.component("prism-subtab", {
             Activating the prism will:
             <ul>
                 <li>Convert all your light into rainbow</li>
-                <li class="warning">Reset all your oscillation upgrades, laser and lenses</li>
+                <li class="warning">
+                    {{warning}}
+                </li>
             </ul>
         </div>
 
-        <button class="prism-btn"
-                @click="activate"
-                :class="{'disabled': !canActivate}">
-            Activate the prism!
-        </button>
+        <div>
+            <button class="prism-btn"
+                    @click="activate"
+                    :class="{'disabled': !canActivate}">
+                Activate the prism!
+            </button>
+
+            <button v-if="isAutoUnlocked"
+                    class="auto-btn"
+                    :class="getAutoState"
+                    @click="toggleAuto">
+                Auto: {{isAutoActive ? "On" : "Off"}}
+            </button>
+        </div>
+
+        <span v-if="isAutoUnlocked" class="auto-desc">
+            Activate the prism at X Rainbow:&nbsp<input class="auto-field"
+                                                        v-model="game.activate.value"
+                                                        :class="{'red': !isValidValue}">
+        </span>
     </div>
     `
 })

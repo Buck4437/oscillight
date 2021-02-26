@@ -16,11 +16,14 @@ var app = new Vue({
 
             return tabs
         },
-        currentTabComponent() {
-            return this.currentTab.toLowerCase() + "-tab"
-        }
+        // currentTabComponent() {
+        //     return this.currentTab.toLowerCase() + "-tab"
+        // }
     },
     methods: {
+        toTabComponent(str = "") {
+            return str.toLowerCase() + "-tab"
+        },
         format(num, a, b) {
             return toSci(num, a, b);
         },

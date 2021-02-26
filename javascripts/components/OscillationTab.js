@@ -50,7 +50,16 @@ Vue.component("oscillation-tab", {
         },
         isValidValue() {
             return isNumberString(this.game.decelerate.value)
-        }
+        },
+        isAutobuyUnlocked() {
+            return DATABASE_PRISM.hasUpg(this.game, 8)
+        },
+        isAutobuyActive() {
+            return this.game.autobuyUpgrades;
+        },
+        getAutobuyState() {
+            return this.isAutobuyActive ? "on" : "off"
+        },
     },
     watch: {
         game: {
@@ -105,6 +114,9 @@ Vue.component("oscillation-tab", {
         toggleAuto() {
             this.game.decelerate.auto = !this.isAutoActive;
         },
+        toggleAutobuy() {
+            this.game.autobuyUpgrades = !this.isAutobuyActive;
+        },
         buyMax() {
             this.$refs.upg.forEach(upg => upg.buyMax());
         }
@@ -130,22 +142,31 @@ Vue.component("oscillation-tab", {
             </button>
 
             <button v-if="isAutoUnlocked"
-                    class="auto-decel-btn"
+                    class="auto-btn"
                     :class="getAutoState"
                     @click="toggleAuto">
                 Auto: {{isAutoActive ? "On" : "Off"}}
             </button>
 
             <span v-if="isAutoUnlocked" class="auto-desc">
-                Decelerate only when energy level is above:&nbsp<input class="auto-decel-field"
+                Decelerate only when energy level is above:&nbsp<input class="auto-field"
                                                                        v-model="game.decelerate.value"
                                                                        :class="{'red': !isValidValue}">
             </span>
         </div>
 
-        <button v-if="game.unlocks.rainbowUpgrades" class="buy-max" @click="buyMax">
-            Buy max
-        </button>
+        <div class="buy-max-con">
+            <button v-if="game.unlocks.rainbowUpgrades" class="buy-max" @click="buyMax">
+                Buy max
+            </button>
+
+            <button v-if="isAutobuyUnlocked"
+                    class="autobuy-btn"
+                    :class="getAutobuyState"
+                    @click="toggleAutobuy">
+                Auto: {{isAutobuyActive ? "On" : "Off"}}
+            </button>
+        </div>
 
         <div v-if="game.unlocks.upgrades" class="upg-con">
 

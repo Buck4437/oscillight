@@ -36,7 +36,13 @@
                 </div>
 
                 <div class="tab-con">
-                    <component :is="currentTabComponent" :game="game"></component>
+                    <component v-for="tab in tabs"
+                               v-show="currentTab == tab"
+                               :is="toTabComponent(tab)"
+                               :game="game"
+                               :ref="tab"
+                               :key="tab"></component>
+                    <!-- <component :is="currentTabComponent" :game="game"></component> -->
                 </div>
             </main>
          </div>
@@ -91,12 +97,17 @@
 <!-- IDEA: Red has base effect, green has ??? effect, blue boost them -->
 <!-- IDEA: Activate prism animation (use setTimeout to delay prestige) -->
 
-<!-- IDEA: Interference: boost stuff via second laser -->
+<!-- IDEA: Stalemate: freeze laser -->
 
 <!-- IDEA: Interference (challenges): 3/4 type of Interference (modifiers), can choose to toggle/not toggle -->
+
+<!-- IDEA: Interference can be named after colors -->
+
 <!-- IDEA: Everytime u complete an unique combination, u gain Interference point/sth similar -->
 <!-- IDEA: U can spend them / respec them in some sort of upgrade tree -->
 <!-- IDEA: U can beat the game when u have gained all Interference point -->
+
+<!-- IDEA: Two sections: destructive, constructive -->
 
 <!-- IDEA: interference: laser is disabled -->
 

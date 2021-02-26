@@ -1,17 +1,21 @@
 const DATABASE_PRISM = {
     reset(g) {
+        if (this.gain(g).lt(1)) return
+
         DATABASE_WAVE.upgrades.filter(upg => this.hasUpg(g, 6) ? upg.id !== 6 : true)
                               .forEach(upg => g.upgrades[upg.id] = 0);
-        if (!this.hasUpg(g, 6)) {
+        if (!this.hasUpg(g, 9)) {
             g.decelerate.auto = false
             g.decelerate.isActive = false
         }
 
-        g.laser.isActive = false
-        g.laser.time = 0
-        g.lenses = 0
-        g.unlocks.laser = false
-        g.unlocks.lenses = false
+        if (!this.hasUpg(g, 12)) {
+            g.laser.isActive = false
+            g.unlocks.laser = false
+            g.lenses = 0
+            g.unlocks.lenses = false
+            g.laser.time = 0
+        }
 
         g.rainbow = g.rainbow.add(this.gain(g))
         g.light = new Decimal(0)
@@ -69,8 +73,8 @@ const DATABASE_PRISM = {
         },
         {
             id: 6,
-            name: "Backup decelerator",
-            desc: "Keep photon deceleration when activating prism",
+            name: "Quick charge",
+            desc: "Laser charges and stablizes 80% faster",
             cost: new Decimal(2)
         },
         {
@@ -82,16 +86,40 @@ const DATABASE_PRISM = {
         },
         {
             id: 8,
-            name: "Passive boost",
-            desc: "Your unspent rainbow boost laser",
-            current: (g) => Math.pow(g.rainbow, 0.3) + 1,
-            cost: new Decimal(100)
-        },
-        {
-            id: 9,
             name: "Resonance",
             desc: "Unlock autobuyer for oscillation upgrades",
             cost: new Decimal(25)
-        }
+        },
+        {
+            id: 9,
+            name: "Backup decelerator",
+            desc: "Keep photon deceleration when activating prism",
+            cost: new Decimal(25)
+        },
+        {
+            id: 10,
+            name: "Passive boost",
+            desc: "Your unspent rainbow boost laser",
+            current: (g) => Decimal.log10(g.rainbow.plus(1)) / 30 + 1,
+            cost: new Decimal(120)
+        },
+        {
+            id: 11,
+            name: "Enlightened",
+            desc: "You can activate prism automatically",
+            cost: new Decimal(2000)
+        },
+        {
+            id: 12,
+            name: "Backup laser",
+            desc: "Keep laser after activating prism",
+            cost: new Decimal(120)
+        },
+        // {
+        //     id: 13,
+        //     name: "Self-amplification",
+        //     desc: "Gain more rainbow based on your unspent rainbow",
+        //     cost: new Decimal(10000)
+        // }
     ]
 }

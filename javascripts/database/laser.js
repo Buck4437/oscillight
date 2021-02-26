@@ -27,6 +27,15 @@ const DATABASE_LASER = {
                 v.softcapped *= 2;
             }
 
+            if (DATABASE_PRISM.hasUpg(g, 6)) { // Quick charge
+                let reductionC = v.charged * 0.8
+                let reductionS = (v.softcapped - v.stablizing) * 0.8
+                v.charged -= reductionC
+                v.overheat -= reductionC
+                v.stablizing -= reductionC
+                v.softcapped -= (reductionC + reductionS)
+            }
+
             return v
         },
         power: (g, t = 0) => {
@@ -69,7 +78,8 @@ const DATABASE_LASER = {
         },
         effect(g) {
             let base = 1 + this.power(g, g.laser.time)
-                         + 0.1 * g.upgrades[7]
+                         * (1 + 0.1 * g.upgrades[7])
+                         * DATABASE_PRISM.applyUpg(g, 10)
 
             return base
         },

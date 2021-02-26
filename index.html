@@ -23,6 +23,9 @@
                 <div>
                     Light: {{format(game.light)}}
                 </div>
+                <div v-if="game.unlocks.rainbowUpgrades">
+                    Rainbow: {{format(game.rainbow, 2, 0)}}
+                </div>
             </header>
 
             <main class="main">
@@ -63,6 +66,8 @@
 
          <script src="javascripts/components/DispersionTab.js"></script>
          <script src="javascripts/components/PrismSubtab.js"></script>
+         <script src="javascripts/components/UpgradesSubtab.js"></script>
+         <script src="javascripts/components/DispersionTabUpgrade.js"></script>
 
          <script src="javascripts/components/SettingsTab.js"></script>
 
@@ -82,8 +87,8 @@
 1. Laser goes weeee (laser faster)
 2. Laser goes duhhhhh (laser slower)-->
 
-<!-- TODO: Dispersion tab unlocks at 1e63 (?) -->
-<!-- TODO: First prestige at 6.66e66 -->
+<!-- IDEA: Components: seperatae rainbow into components -->
+<!-- IDEA: Red has base effect, green has ??? effect, blue boost them -->
 
 <!-- IDEA: Dispersion: Construct red. green, blue component (after prestige) => different boost -->
 <!-- IDEA: Picuture of prism: check phone -->

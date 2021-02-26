@@ -6,21 +6,21 @@ Vue.component("prism-subtab", {
             canvas: {
                 width: 240,
                 height: 240
-            },
-            colors: ["red", "green", "blue"]
+            }
         }
     },
     props: {
         game: Object
     },
     computed: {
-    },
-    watch: {
-        game: {
-            deep: true,
-            handler() {
-                this.draw();
-            }
+        getUnlocked() {
+            return this.game.unlocks.rainbow
+        },
+        getGain() {
+            return DATABASE_PRISM.rainbow.gain(this.game);
+        },
+        canActivate() {
+            return this.getGain.gt(0);
         }
     },
     methods: {
@@ -38,39 +38,24 @@ Vue.component("prism-subtab", {
             ctx.lineWidth = 2;
             ctx.strokeStyle = this.getCssVar("--color")
 
-            for (let i = 2; i >= 0; i--) {
-                let color = this.colors[i]
-                let height = w * (i + 1) / 3
-                let dx = w/2 * (i + 1) / 3
-
-                ctx.beginPath();
-                ctx.moveTo(w/2, 0);
-                ctx.lineTo(w/2 - dx + 2, height - 2);
-                ctx.lineTo(w/2 + dx - 2, height - 2);
-                ctx.closePath();
-                ctx.stroke();
-
-                if (this.getUnlocked(color)) {
-                    ctx.fillStyle = this.getCssVar("--color-" + color)
-                    ctx.fill();
-                }
-            }
+            ctx.beginPath();
+            ctx.moveTo(w/2, 0);
+            ctx.lineTo(2, h - 2);
+            ctx.lineTo(w - 2, h - 2);
+            ctx.closePath();
+            ctx.stroke();
 
         },
         format(num, a, b) {
             return toSci(num, a, b)
         },
-        getGain(color) {
-            return DATABASE_PRISM[color].gain(this.game);
-        },
-        getUnlocked(color) {
-            switch (color) {
-                case "red": return this.game.unlocks.prism
-                default: return false
-            }
-        },
         capFirstLetter(str) {
             return str.charAt(0).toUpperCase() + str.substring(1)
+        },
+        activate() {
+            if (this.canActivate) {
+                DATABASE_PRISM.reset(this.game)
+            }
         }
     },
     mounted() {
@@ -84,20 +69,19 @@ Vue.component("prism-subtab", {
             </div>
             <canvas class="prism-display" :width="canvas.width" :height="canvas.height"/>
             <div class="prism-output">
-                <span v-for="color in colors"
-                      :class="[color, {'invisible': !getUnlocked(color)}]">
-                    ==> {{format(getGain(color), 2, 0)}} {{capFirstLetter(color)}}
-                </span>
+                    ==> {{format(getGain, 2, 0)}} Rainbow
             </div>
         </div>
 
         Activating the prism will:
         <ul>
-            <li>Convert all your light into color</li>
-            <li class="warning">Reset all your upgrades, laser and lenses</li>
+            <li>Convert all your light into rainbow</li>
+            <li class="warning">Reset all your oscillation upgrades, laser and lenses</li>
         </ul>
 
-        <button class="prism-btn">
+        <button class="prism-btn"
+                @click="activate"
+                :class="{'disabled': !canActivate}">
             Activate the prism!
         </button>
     </div>

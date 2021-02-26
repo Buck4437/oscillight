@@ -12,6 +12,7 @@ Vue.component("dispersion-tab", {
     computed: {
         tabs() {
             let tabs = ["Prism"]
+            if (this.game.unlocks.rainbowUpgrades) tabs.push("Upgrades")
             return tabs
         },
         currentTabComponent() {

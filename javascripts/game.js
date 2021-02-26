@@ -14,13 +14,16 @@ var game = {
         time: 0
     },
     lenses: 0, // 4 => lens 3 active, 3 => lens 1 and 2 active... etc
+    rainbow: new Decimal(0),
+    rainbowUpgrades: 0, // Binary
     unlocks: {
         upgrades: false,
         decelerate: false,
         amplification: false,
         laser: false,
         lenses: false,
-        prism: false
+        prism: false,
+        rainbowUpgrades: false
     },
     settings: {
         theme: 0

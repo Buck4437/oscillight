@@ -21,8 +21,8 @@ var app = new Vue({
         }
     },
     methods: {
-        format(num) {
-            return toSci(num);
+        format(num, a, b) {
+            return toSci(num, a, b);
         },
         loop() {
             return gameLoop(this);

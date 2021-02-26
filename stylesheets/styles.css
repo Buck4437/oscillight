@@ -275,7 +275,7 @@ main {
 }
 
 .nav-bar button {
-    margin-right: 16px;
+    margin: 8px;
     min-width: 120px;
     min-height: 48px;
 }
@@ -388,9 +388,9 @@ main {
 }
 
 .subtab-nav button {
-    margin-right: 16px;
-    min-width: 90px;
-    min-height: 36px;
+    margin: 8px;
+    min-width: 110px;
+    min-height: 38px;
 }
 
 .subtab-con {

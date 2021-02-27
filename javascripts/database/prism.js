@@ -23,7 +23,7 @@ const DATABASE_PRISM = {
 
         if (this.gain(g).lt(1) && !forced) return false
 
-        DATABASE_WAVE.upgrades.filter(upg => (this.hasUpg(g, 6)) ? upg.id !== 6 : true)
+        DATABASE_WAVE.upgrades.filter(upg => (this.hasUpg(g, 9)) ? upg.id !== 6 : true)
                               .forEach(upg => g.upgrades[upg.id] = 0);
 
         if (!this.hasUpg(g, 9)) {

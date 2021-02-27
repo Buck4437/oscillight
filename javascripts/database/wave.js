@@ -6,6 +6,7 @@ const DATABASE_WAVE = {
             if (imprecise) base = new Decimal(1) //average value
 
             base = base.add(g.upgrades[1])
+                       .add(DATABASE_CHALLENGE.isBought(g, 1) ? g.rainbow : 0)
 
             if (!DATABASE_CHALLENGE.isInChallenge(g, 4)) {
                 base = base.times(Decimal.pow(2, g.upgrades[2]))
@@ -18,17 +19,15 @@ const DATABASE_WAVE = {
             let rate = base.pow(DATABASE_LASER.laser.effect(g))
                            .pow(Decimal.pow(1.03, g.upgrades[5]))
 
-            if (!DATABASE_CHALLENGE.isInChallenge(g, 4)) {
-                rate = rate.times(Decimal.pow(2, g.upgrades[9]))
+                           .times(Decimal.pow(2, g.upgrades[9]))
                            .times(DATABASE_PRISM.applyUpg(g, 1))
                            .times(DATABASE_PRISM.applyUpg(g, 2))
                            .times(DATABASE_PRISM.applyUpg(g, 3))
                            .times(DATABASE_PRISM.applyUpg(g, 4))
                            .times(DATABASE_PRISM.applyUpg(g, 7))
-            }
 
             rate = rate.pow(DATABASE_CHALLENGE.isInChallenge(g, 3) ? 0.75 : 1)
-            
+
             return rate
         },
         speed: g => {

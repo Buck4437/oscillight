@@ -60,7 +60,7 @@ Vue.component("oscillation-tab-upgrade", {
             {{upgrade.desc}}
         </div>
         <div v-if="getCurrent !== undefined" class="upg-current">
-            Current: x{{format(getCurrent, 2, 2)}}
+            Currently: x{{format(getCurrent, 2, 2)}}
         </div>
         <div v-if="getState !== 'max'" class="upg-cost">
             Cost: {{format(getCost)}} Light

@@ -58,6 +58,9 @@ const DATABASE_PRISM = {
         }
 
         if (g.interference.respec) {
+            if (DATABASE_CHALLENGE.isBought(g, 8)) {
+                g.lenses = 0
+            }
             g.interference.respec = false
             g.interference.upgrades = 0
         }
@@ -126,7 +129,7 @@ const DATABASE_PRISM = {
         {
             id: 9,
             name: "Backup decelerator",
-            desc: "Keep photon deceleration when activating prism",
+            desc: "Keep auto photon decelerate when activating prism",
             cost: new Decimal(30)
         },
         {

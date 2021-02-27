@@ -28,7 +28,7 @@ Vue.component("interference-tab-upgrade", {
         getCurrent() {
             let c = this.upgrade.current;
             if (c === undefined) return undefined
-            else if (isFunction(c)) return c(this.game);
+            if (isFunction(c)) return c(this.game);
             return c;
         }
     },

@@ -25,7 +25,7 @@ const DATABASE_LASER = {
 
             if ((g.lenses & 4) !== 0) { // 3rd lens
                 v.stablizedP *= 1 + (0.3 * penalty);
-                v.stablized *= 2;
+                v.stablized *= 3;
             }
 
             if (DATABASE_PRISM.hasUpg(g, 6)) { // Quick charge
@@ -67,20 +67,15 @@ const DATABASE_LASER = {
                 let slope = v.stablizedP / (v.stablized - v.stablizing)
                 power = slope * (m - v.stablizing);
 
+            } else if (DATABASE_CHALLENGE.isBought(g, 5)) {
+
+                power = v.stablizedP * (1 + Math.log(m - v.stablized + 1) / 20)
+
             } else {
 
                 power = v.stablizedP
 
             }
-
-            // } else {
-            //
-            //     let k = (v.softcappedP - v.stablizingP) * (v.softcapped + 0.5)
-            //     power = v.softcappedP - k / (m + 0.5)
-
-            // old formula
-            //
-            // }
 
             return Math.max(0, power)
 
@@ -89,6 +84,7 @@ const DATABASE_LASER = {
             let base = 1 + this.power(g, g.laser.time)
                          * (1 + 0.1 * g.upgrades[7])
                          * DATABASE_PRISM.applyUpg(g, 10)
+                         * DATABASE_CHALLENGE.applyUpg(g, 2)
                          * (DATABASE_CHALLENGE.isInChallenge(g, 1) ? 0.5 : 1)
 
             return base
@@ -107,10 +103,11 @@ const DATABASE_LASER = {
                 return "overheat"
             } else if (m <= v.stablized) {
                 return "stablizing"
+            } else if (DATABASE_CHALLENGE.isBought(g, 5)) {
+                return "softcapped"
             } else {
                 return "stablized"
             }
-            // else return "softcapped"
         }
     },
     lensesCost: new Decimal(1e45),
@@ -133,7 +130,7 @@ const DATABASE_LASER = {
             id: 3,
             tier: 1,
             name: "Coolant stablization",
-            desc: "The stablization energy level cap is 30% higher, but it takes x2 time to stablize the laser",
+            desc: "The stablization energy level cap is 30% higher, but it takes x3 time to stablize the laser",
             color: "blue"
         }
     ]

@@ -117,6 +117,9 @@ Vue.component("destructive-subtab", {
                 </div>
             </div>
             <div class="challenge-meta">
+                <div class="meta-desc">
+                    Interference description:
+                </div>
                 <div class="challenge-nav">
                     <button v-for="(c, i) in challenges"
                             @click="currentTab = i"

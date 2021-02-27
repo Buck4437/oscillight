@@ -26,7 +26,7 @@ const DATABASE_CHALLENGE = {
             acronym: "Y",
             color: "gold", //yellow is too bright
             name: "Yellow Interference",
-            desc: "Multipliers to light gain and base light gain are disabled"
+            desc: "Multipliers to base light gain are disabled"
         }
     ],
     enterChallenge(g, id = 0) {
@@ -71,19 +71,23 @@ const DATABASE_CHALLENGE = {
     isBought(g, id) {
         return (g.interference.upgrades & Math.pow(2, id - 1)) !== 0
     },
+    applyUpg(g, id) {
+        return this.isBought(g, id) ? this.upgrades.filter(u => id === u.id)[0].current(g) : 1
+    },
     upgrades: [
         {
             id: 1,
             tier: 1,
-            name: "Placeholder",
-            desc: "Placeholder",
+            name: "Divergence", //Useful for Y
+            desc: "Increased base light gain by amount of rainbow",
             cost: 1
         },
         {
             id: 2,
             tier: 1,
-            name: "Placeholder",
-            desc: "Placeholder",
+            name: "Convergence",
+            desc: "Lenses are stronger based on your rainbow",
+            current: (g) => (Decimal.log10(g.rainbow) * 2)/100 + 1,
             cost: 1
         },
         {
@@ -105,8 +109,8 @@ const DATABASE_CHALLENGE = {
             id: 5,
             tier: 2,
             parent: 2,
-            name: "Placeholder",
-            desc: "Placeholder",
+            name: "Infinity",
+            desc: "The stablization energy level is softcapped instead of hardcapped",
             cost: 3
         },
         {
@@ -130,7 +134,7 @@ const DATABASE_CHALLENGE = {
             tier: 3,
             parent: 5,
             name: "Placeholder",
-            desc: "Placeholder",
+            desc: "You can equip all 3 lens at once",
             cost: 5
         },
         {

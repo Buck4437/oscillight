@@ -530,6 +530,10 @@ main {
     align-items: center;
 }
 
+.meta-desc {
+    margin-bottom: 16px;
+}
+
 .challenge-info span {
     margin-top: 16px;
 }

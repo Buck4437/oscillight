@@ -1,6 +1,16 @@
-function gameLoop(that){
+function gameLoop(that, t = 0){
     let g = that.game;
-    let dt = (Date.now() - g.lastTick) / 1000
+
+    let dt = Math.max(0, (Date.now() - g.lastTick) / 1000)
+
+    if (t !== 0) dt = t;
+
+    if (dt >= 60) {
+        for (let i = 0; i < 1000; i++) {
+            gameLoop(that, dt / 1000)
+        } //Simulate offline progress
+        return
+    }
 
     if (g.decelerate.auto && isNumberString(g.decelerate.value)) {
         if (DATABASE_WAVE.light.energy(g) > g.decelerate.value) {

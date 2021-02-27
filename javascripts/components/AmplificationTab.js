@@ -131,7 +131,7 @@ Vue.component("amplification-tab", {
             <div class="mini-header"
                  :class="{
                      'warning': getStatus === 'overheat',
-                     'green': ['charged', 'softcapped'].includes(getStatus)
+                     'green': ['charged', 'stablized', 'softcapped'].includes(getStatus)
                  }">
                 Laser status: {{capFirstLetter(getStatus)}}
             </div>

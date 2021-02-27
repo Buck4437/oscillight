@@ -2,8 +2,8 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Light Emission</title>
-        <meta name="title" content="Light Emission">
+        <title>Oscillight</title>
+        <meta name="title" content="Oscillight">
         <meta name="description" content="Made for IGJ 2021">
 
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
@@ -22,6 +22,10 @@
             <header>
                 <div>
                     Light: {{format(game.light)}}
+                </div>
+                <div v-if="game.interference.current !== 0">
+                    Interference:
+                    <span v-for="c in challenges" :class="c.color" class="c-display">{{hasCBit(c.id) ? 1 : 0}}</span>
                 </div>
                 <div v-if="game.unlocks.rainbowUpgrades">
                     Rainbow: {{format(game.rainbow, 2, 0)}}
@@ -43,6 +47,22 @@
                                :ref="tab"
                                :key="tab"></component>
                 </div>
+                <win-modal v-if="win">
+                    You have reached the end of the game.<br><br>
+                    Big thanks to my friend for testing the game<br><br>
+                    Created by Buck | Made for IGJ 2021<br>
+                    <template #button>
+                        <button class="green" @click="con">
+                            Continue
+                        </button>
+                        <button class="yellow" @click="replay(true)">
+                            Replay with x2 light bonus
+                        </button>
+                        <button class="red" @click="replay(false)">
+                            Replay without bonus
+                        </button>
+                    </template>
+                </win-modal>
             </main>
          </div>
 
@@ -60,6 +80,7 @@
          <script src="javascripts/components/AlertModal.js"></script>
          <script src="javascripts/components/ConfirmationModal.js"></script>
          <script src="javascripts/components/PromptModal.js"></script>
+         <script src="javascripts/components/WinModal.js"></script>
 
          <script src="javascripts/components/OscillationTab.js"></script>
          <script src="javascripts/components/BaseProgressBar.js"></script>
@@ -97,31 +118,6 @@
 
 <!-- note: upg 1 is useful for Y !-->
 
-
-<!-- IDEA: upg idea:
-lenses boost something else instead
-
-laser also do stuff
-when in a challenge, (boost)
--->
-
-<!-- TODO: Add name for the 3rd tier upg -->
-
-<!-- IDEA: Activate prism animation (use setTimeout to delay prestige) -->
-
-<!-- IDEA: upg idea: u can equip all 3 lenses-->
-
-<!-- IDEA: Hotkeys to navigate between tabs -->
-
-<!-- IDEA: Reflection: more powerful upgs -->
-<!-- IDEA: Refraction: Shape waveform -->
-
-<!-- IDEA: Upg that makes sin abs (polarizer)-->
-
-<!-- TODO: Ending -->
-
 <!-- TODO: Modify caps of 9th upgrade -->
 <!-- TODO: Confirmations for enter / exit challenge -->
 <!-- TODO: Icon -->
-<!-- TODO: hotkeys -->
-<!-- TODO: Finalize name -->

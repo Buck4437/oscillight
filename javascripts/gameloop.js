@@ -30,11 +30,7 @@ function gameLoop(that, t = 0){
         g.laser.time += dt;
     }
 
-    if (dt < 60) {
-        g.light = g.light.add(DATABASE_WAVE.light.rate(g).times(dt))
-    } else {
-        g.light = g.light.add(DATABASE_WAVE.light.rate(g, true).times(dt))
-    }
+    g.light = g.light.add(DATABASE_WAVE.light.rate(g).times(dt))
 
     if (g.activate.auto && isNumberString(g.activate.value)) {
         let val = new Decimal(g.activate.value)

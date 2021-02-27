@@ -5,14 +5,14 @@ const DATABASE_CHALLENGE = {
             acronym: "R",
             color: "red",
             name: "Red Interference",
-            desc: "Laser is 50% weaker"
+            desc: "Lenses are 50% weaker"
         },
         {
             id: 2,
             acronym: "B",
             color: "blue",
             name: "Blue Interference",
-            desc: "Lenses are 50% weaker"
+            desc: "Laser is 50% weaker"
         },
         {
             id: 3,
@@ -39,10 +39,20 @@ const DATABASE_CHALLENGE = {
     requirements: [
         {
             id: 1,
-            requirement: new Decimal("1e55")
+            requirement: new Decimal("1e165")
+        },
+        {
+            id: 2,
+            requirement: new Decimal("1e75")
+        },
+        {
+            id: 3,
+            requirement: new Decimal("1e85")
+        },
+        {
+            id: 4,
+            requirement: new Decimal("1e85")
         }
-
-    // idea: r -> y -> b -> g -> ry -> yb -> bg -> rg -> rb -> yg -> rgb -> rgy -> bgy -> rby -> all
     ],
     getRequirement(id) {
         for (let r of this.requirements) {
@@ -71,15 +81,17 @@ const DATABASE_CHALLENGE = {
     isBought(g, id) {
         return (g.interference.upgrades & Math.pow(2, id - 1)) !== 0
     },
-    applyUpg(g, id) {
-        return this.isBought(g, id) ? this.upgrades.filter(u => id === u.id)[0].current(g) : 1
+    applyUpg(g, id, def = 1) {
+        return this.isBought(g, id) ? this.upgrades.filter(u => id === u.id)[0].current(g) : def
     },
     upgrades: [
         {
             id: 1,
             tier: 1,
             name: "Divergence",
-            desc: "Increased base light gain by amount of rainbow",
+            desc: "Increased base light gain based on unspent rainbow",
+            current: (g) => (Math.pow(g.rainbow, 0.75)),
+            prefix: "+",
             cost: 1
         },
         {
@@ -93,16 +105,18 @@ const DATABASE_CHALLENGE = {
         {
             id: 3,
             tier: 1,
-            name: "Placeholder",
-            desc: "Placeholder",
+            name: "Parallel",
+            desc: "Multiplier to base light gain based on unspent rainbow",
+            current: (g) => Math.pow(Decimal.log10(g.rainbow), 2) + 1,
             cost: 1
         },
         {
             id: 4,
             tier: 2,
             parent: 1,
-            name: "Placeholder",
-            desc: "Placeholder",
+            name: "Recursion",
+            desc: "Gain more rainbow based on unspent rainbow",
+            current: (g) => Math.pow(2, Decimal.log10(g.rainbow + 1)),
             cost: 3
         },
         {
@@ -117,16 +131,21 @@ const DATABASE_CHALLENGE = {
             id: 6,
             tier: 2,
             parent: 3,
-            name: "Placeholder",
-            desc: "Placeholder",
+            name: "Phase shift",
+            desc: "Boost the 4th dispersion upgrade (x => x^2)",
             cost: 3
         },
         {
             id: 7,
             tier: 3,
             parent: 4,
-            name: "Placeholder",
-            desc: "Gain more rainbow based on unspent rainbow",
+            name: "Double slit",
+            desc: "Lenses also boost light gain based on their boost to laser", //big static multiplier to light
+            current: (g) => {
+                return DATABASE_LASER.lenses
+                    .filter(l => (g.lenses & Math.pow(2, l.id - 1)) !== 0)
+                    .reduce((a, l) => a *= Math.pow(1e5, l.boost(g)), 1)
+            },
             cost: 5
         },
         {
@@ -141,8 +160,9 @@ const DATABASE_CHALLENGE = {
             id: 9,
             tier: 3,
             parent: 6,
-            name: "Placeholder",
-            desc: "Placeholder",
+            name: "Supernova",
+            desc: "Static multiplier to light gain", //big static multiplier to light
+            current: (g) => new Decimal(5e5),
             cost: 5
         },
         {
@@ -150,7 +170,7 @@ const DATABASE_CHALLENGE = {
             tier: 4,
             parent: 8,
             name: "Conclusion",
-            desc: "Complete the game.",
+            desc: "Complete the game",
             cost: 6
         }
     ]

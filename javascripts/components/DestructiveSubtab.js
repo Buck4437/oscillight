@@ -3,8 +3,7 @@
 Vue.component("destructive-subtab", {
     data() {
         return {
-            config: 0,
-            currentTab: 0
+            config: 0
         }
     },
     props: {
@@ -16,9 +15,6 @@ Vue.component("destructive-subtab", {
     computed: {
         challenges() {
             return DATABASE_CHALLENGE.challenges
-        },
-        selected() {
-            return this.challenges[this.currentTab]
         },
         current() {
             return this.game.interference.current
@@ -58,6 +54,7 @@ Vue.component("destructive-subtab", {
         }
     },
     mounted() {
+        this.config = this.game.interference.current
     },
     template: `
     <div class="tab challenge">
@@ -117,23 +114,15 @@ Vue.component("destructive-subtab", {
                 </div>
             </div>
             <div class="challenge-meta">
-                <div class="meta-desc">
-                    Interference description:
-                </div>
-                <div class="challenge-nav">
-                    <button v-for="(c, i) in challenges"
-                            @click="currentTab = i"
-                            :class="c.color">
-                            {{c.acronym}}
-                    </button>
-                </div>
-                <div class="challenge-info">
-                    <span class="challenge-name">
-                        {{selected.name}}
+                <div v-for="c in challenges">
+                    <span class="challenge-name" :class="c.color">
+                        {{c.name}}:
                     </span>
-                    <span>
-                        {{selected.desc}}
-                    </span>
+                    <ul>
+                        <li>
+                            {{c.desc}}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -12,7 +12,9 @@ const DATABASE_PRISM = {
 
         if (g.light.lt(requirement)) return new Decimal(0);
 
-        return Decimal.max(1, Decimal.pow(10, Decimal.log(g.light, 1e60) - 1));
+        let base = Decimal.max(1, Decimal.pow(10, Decimal.log(g.light, 1e60) - 1));
+
+        return base.times(DATABASE_CHALLENGE.applyUpg(g, 4))
     },
     reset(g, forced = false) {
 
@@ -97,7 +99,10 @@ const DATABASE_PRISM = {
             id: 4,
             name: "Shallow amplification",
             desc: "Multiplier to light gain based on number of prism activations",
-            current: (g) => Math.pow(g.resets, 1.5) + 1,
+            current: (g) => {
+                let base = Math.pow(g.resets, 1.5) + 1
+                return DATABASE_CHALLENGE.isBought(g, 6) ? Math.pow(base, 2) : base
+            },
             cost: new Decimal(2)
         },
         {

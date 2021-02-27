@@ -241,6 +241,32 @@ ul {
     min-width: 80px;
 }
 
+.modal-win-header {
+	font-size: 20px;
+	padding: 8px;
+	margin-bottom: 16px;
+}
+
+.modal-win-content {
+    font-size: 16px;
+    padding: 8px;
+    padding-bottom: 16px;
+}
+
+.modal-win-footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-win-footer button {
+    font-size: 16px;
+    flex-grow: 0;
+    margin: 8px;
+    padding: 8px 16px;
+    min-width: 80px;
+}
+
+
 
 /* actual layout */
 
@@ -258,6 +284,12 @@ header {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+}
+
+.c-display {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
 }
 
 /* main content */
@@ -506,37 +538,11 @@ main {
 
 .challenge-meta {
     margin: 16px;
+    padding: 8px;
     width: 600px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.challenge-nav {
-    display: inline-flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.challenge-nav button {
-    margin: 8px;
-    width: 110px;
-    height: 40px;
-}
-
-.challenge-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.meta-desc {
-    margin-bottom: 16px;
-}
-
-.challenge-info span {
-    margin-top: 16px;
+    align-items: flex-start;
 }
 
 .stats {

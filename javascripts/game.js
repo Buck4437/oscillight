@@ -38,6 +38,7 @@ var game = {
         rainbowUpgrades: false,
         interference: false
     },
+    buffs: 0,
     settings: {
         theme: 0
     },

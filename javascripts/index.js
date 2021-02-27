@@ -16,9 +16,18 @@ var app = new Vue({
             tabs.push("Settings")
 
             return tabs
+        },
+        challenges() {
+            return DATABASE_CHALLENGE.challenges
+        },
+        win() {
+            return DATABASE_CHALLENGE.isBought(this.game, 10)
         }
     },
     methods: {
+        hasCBit(a) {
+            return (this.game.interference.current & Math.pow(2, a - 1)) !== 0
+        },
         toTabComponent(str = "") {
             return str.toLowerCase() + "-tab"
         },
@@ -27,6 +36,18 @@ var app = new Vue({
         },
         loop() {
             return gameLoop(this);
+        },
+        con() {
+            this.game.interference.upgrades ^= Math.pow(2, 9)
+        },
+        replay(buff) {
+            let newSave = JSON.parse(JSON.stringify(game))
+            newSave.settings.theme = this.game.settings.theme
+            newSave.buffs = this.game.buffs
+            newSave.lastTick = Date.now()
+            if (buff) newSave.buffs++;
+            localStorage.setItem(SAVE_NAME, JSON.stringify(newSave))
+            window.location.reload()
         },
         switchTab(i) {
             this.currentTab = this.tabs[i];
@@ -48,7 +69,6 @@ var app = new Vue({
 
         if (localStorage.getItem(SAVE_NAME) !== null) {
             let data = JSON.parse(localStorage.getItem(SAVE_NAME));
-            console.log(saveFixer(data, this.game));
             this.game = saveFixer(data, this.game);
         }
 

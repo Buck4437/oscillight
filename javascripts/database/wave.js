@@ -1,18 +1,19 @@
 const DATABASE_WAVE = {
     light: {
         energy: (g) => Math.round(Math.max(0, Math.sin(Math.radian(g.period)) + 1) * 1000) / 1000,
-        rate(g, imprecise = false) {
+        rate(g) {
+
             let base = new Decimal(this.energy(g))
-            if (imprecise) base = new Decimal(1) //average value
 
             base = base.add(g.upgrades[1])
-                       .add(DATABASE_CHALLENGE.isBought(g, 1) ? g.rainbow : 0)
+                       .add(DATABASE_CHALLENGE.applyUpg(g, 1, 0))
 
             if (!DATABASE_CHALLENGE.isInChallenge(g, 4)) {
                 base = base.times(Decimal.pow(2, g.upgrades[2]))
                            .times(DATABASE_WAVE.upgrades[7].apply(g)) //8th upgrade
                            .times(Decimal.pow(1.5, g.upgrades[10]))
                            .times(DATABASE_PRISM.applyUpg(g, 5))
+                           .times(DATABASE_CHALLENGE.applyUpg(g, 3))
             }
 
 
@@ -25,6 +26,9 @@ const DATABASE_WAVE = {
                            .times(DATABASE_PRISM.applyUpg(g, 3))
                            .times(DATABASE_PRISM.applyUpg(g, 4))
                            .times(DATABASE_PRISM.applyUpg(g, 7))
+                           .times(DATABASE_CHALLENGE.applyUpg(g, 7))
+                           .times(DATABASE_CHALLENGE.applyUpg(g, 9))
+                           .times(Math.pow(2, g.buffs))
 
             rate = rate.pow(DATABASE_CHALLENGE.isInChallenge(g, 3) ? 0.75 : 1)
 

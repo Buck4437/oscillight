@@ -11,20 +11,18 @@ const DATABASE_LASER = {
                 stablizedP: 0.97,
             }
 
-            let penalty = DATABASE_CHALLENGE.isInChallenge(g, 2) ? 0.5 : 1
-
             if ((g.lenses & 1) !== 0) { // 1st lens
-                v.chargedP *= 1 + (0.3 * penalty);
+                v.chargedP *= DATABASE_LASER.lenses[0].boost(g)
                 v.overheat = 0.8;
             }
 
             if ((g.lenses & 2) !== 0) { // 2nd lens
-                v.chargedP *= 1 + (0.2 * penalty);
-                v.stablizedP *= 1.2;
+                v.chargedP *= DATABASE_LASER.lenses[1].boost(g)
+                v.stablizedP *= DATABASE_LASER.lenses[1].boost(g)
             }
 
             if ((g.lenses & 4) !== 0) { // 3rd lens
-                v.stablizedP *= 1 + (0.3 * penalty);
+                v.stablizedP *= DATABASE_LASER.lenses[2].boost(g)
                 v.stablized *= 3;
             }
 
@@ -85,7 +83,7 @@ const DATABASE_LASER = {
                          * (1 + 0.1 * g.upgrades[7])
                          * DATABASE_PRISM.applyUpg(g, 10)
                          * DATABASE_CHALLENGE.applyUpg(g, 2)
-                         * (DATABASE_CHALLENGE.isInChallenge(g, 1) ? 0.5 : 1)
+                         * (DATABASE_CHALLENGE.isInChallenge(g, 2) ? 0.5 : 1)
 
             return base
         },
@@ -111,27 +109,33 @@ const DATABASE_LASER = {
         }
     },
     lensesCost: new Decimal(1e45),
+    getLens(id) {
+        return this.lenses.filter(l => l.id === id)[0]
+    },
     lenses: [
         {
             id: 1,
             tier: 1,
             name: "Crank it up!",
             desc: "The energy level of the laser when charged is 30% higher, but it overheats 40% faster",
-            color: "red"
+            color: "red",
+            boost: (g) => DATABASE_CHALLENGE.isInChallenge(g, 1) ? 1.15 : 1.3
         },
         {
             id: 2,
             tier: 1,
             name: "Catalyst",
             desc: "The energy level of the laser is 20% higher",
-            color: "green"
+            color: "green",
+            boost: (g) => DATABASE_CHALLENGE.isInChallenge(g, 1) ? 1.1 : 1.2
         },
         {
             id: 3,
             tier: 1,
             name: "Coolant stablization",
             desc: "The stablization energy level cap is 30% higher, but it takes x3 time to stablize the laser",
-            color: "blue"
+            color: "blue",
+            boost: (g) => DATABASE_CHALLENGE.isInChallenge(g, 1) ? 1.15 : 1.3
         }
     ]
 }

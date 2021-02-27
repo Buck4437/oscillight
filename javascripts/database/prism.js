@@ -118,19 +118,19 @@ const DATABASE_PRISM = {
             name: "Anti-prism",
             desc: "Your unspent rainbow boost light gain",
             current: (g) => Decimal.pow(Decimal.log10(g.rainbow.times(5).plus(1)) + 1, 4).plus(1),
-            cost: new Decimal(30)
+            cost: new Decimal(35)
         },
         {
             id: 8,
             name: "Resonance",
             desc: "Unlock autobuyer for oscillation upgrades",
-            cost: new Decimal(30)
+            cost: new Decimal(25)
         },
         {
             id: 9,
             name: "Backup decelerator",
             desc: "Keep auto photon decelerate when activating prism",
-            cost: new Decimal(30)
+            cost: new Decimal(15)
         },
         {
             id: 10,

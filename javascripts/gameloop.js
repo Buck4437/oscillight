@@ -5,7 +5,7 @@ function gameLoop(that, t = 0){
 
     if (t !== 0) dt = t;
 
-    if (dt >= 60) {
+    if (dt >= 60 && t === 0) { // to prevent recursion
         for (let i = 0; i < 1000; i++) {
             gameLoop(that, dt / 1000)
         } //Simulate offline progress
@@ -46,7 +46,7 @@ function gameLoop(that, t = 0){
     if (g.light.gte(17.5)) g.unlocks.upgrades = true;
     if (g.light.gte(50)) g.unlocks.decelerate = true;
     if (g.light.gte(1000)) g.unlocks.amplification = true;
-    if (g.light.gte(1e60)) g.unlocks.prism = true;
+    if (g.light.gte(1e50)) g.unlocks.prism = true;
     if (g.rainbow.gte(1000)) g.unlocks.interference = true;
 
     g.lastTick += dt * 1000

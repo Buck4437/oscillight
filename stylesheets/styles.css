@@ -452,6 +452,7 @@ main {
 
 .btn-row {
     display: flex;
+    justify-content: center;
 }
 
 .challenge-body {

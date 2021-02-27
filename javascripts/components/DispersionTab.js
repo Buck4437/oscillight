@@ -3,18 +3,14 @@
 Vue.component("dispersion-tab", {
     data() {
         return {
-            currentTab: ""
+            currentTab: "",
+            tabs: ["Prism", "Upgrades"]
         }
     },
     props: {
         game: Object
     },
     computed: {
-        tabs() {
-            let tabs = ["Prism"]
-            if (this.game.unlocks.rainbowUpgrades) tabs.push("Upgrades")
-            return tabs
-        },
         currentTabComponent() {
             return this.currentTab.toLowerCase() + "-subtab"
         }

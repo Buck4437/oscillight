@@ -78,7 +78,7 @@ const DATABASE_CHALLENGE = {
         {
             id: 1,
             tier: 1,
-            name: "Divergence", //Useful for Y
+            name: "Divergence",
             desc: "Increased base light gain by amount of rainbow",
             cost: 1
         },
@@ -86,7 +86,7 @@ const DATABASE_CHALLENGE = {
             id: 2,
             tier: 1,
             name: "Convergence",
-            desc: "Lenses are stronger based on your rainbow",
+            desc: "Lenses are stronger based on unspent rainbow",
             current: (g) => (Decimal.log10(g.rainbow) * 2)/100 + 1,
             cost: 1
         },
@@ -126,14 +126,14 @@ const DATABASE_CHALLENGE = {
             tier: 3,
             parent: 4,
             name: "Placeholder",
-            desc: "Placeholder",
+            desc: "Gain more rainbow based on unspent rainbow",
             cost: 5
         },
         {
             id: 8,
             tier: 3,
             parent: 5,
-            name: "Placeholder",
+            name: "RGB",
             desc: "You can equip all 3 lens at once",
             cost: 5
         },
@@ -144,6 +144,14 @@ const DATABASE_CHALLENGE = {
             name: "Placeholder",
             desc: "Placeholder",
             cost: 5
+        },
+        {
+            id: 10,
+            tier: 4,
+            parent: 8,
+            name: "Conclusion",
+            desc: "Complete the game.",
+            cost: 6
         }
     ]
 }

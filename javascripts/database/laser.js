@@ -12,18 +12,20 @@ const DATABASE_LASER = {
                 softcappedP: 0.97
             }
 
+            let penalty = DATABASE_CHALLENGE.isInChallenge(g, 2) ? 0.5 : 1
+
             if ((g.lenses & 1) !== 0) { // 1st lens
-                v.chargedP *= 1.3;
+                v.chargedP *= 1 + (0.3 * penalty);
                 v.overheat = 0.8;
             }
 
             if ((g.lenses & 2) !== 0) { // 2nd lens
-                v.chargedP *= 1.2;
+                v.chargedP *= 1 + (0.2 * penalty);
                 v.softcappedP *= 1.2;
             }
 
             if ((g.lenses & 4) !== 0) { // 3rd lens
-                v.softcappedP *= 1.3;
+                v.softcappedP *= 1 + (0.3 * penalty);
                 v.softcapped *= 2;
             }
 
@@ -80,6 +82,7 @@ const DATABASE_LASER = {
             let base = 1 + this.power(g, g.laser.time)
                          * (1 + 0.1 * g.upgrades[7])
                          * DATABASE_PRISM.applyUpg(g, 10)
+                         * (DATABASE_CHALLENGE.isInChallenge(g, 1) ? 0.5 : 1)
 
             return base
         },

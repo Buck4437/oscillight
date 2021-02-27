@@ -2,7 +2,7 @@ const DATABASE_PRISM = {
     baseRequirement: new Decimal(1e60),
     requirement(g) {
         if (g.interference.current !== 0) {
-            return DATABASE_CHALLENGE.getRequirement(g)
+            return DATABASE_CHALLENGE.getRequirement(g.interference.current)
         } else {
             return this.baseRequirement
         }
@@ -23,7 +23,7 @@ const DATABASE_PRISM = {
 
         if (this.gain(g).lt(1) && !forced) return false
 
-        DATABASE_WAVE.upgrades.filter(upg => this.hasUpg(g, 6) ? upg.id !== 6 : true)
+        DATABASE_WAVE.upgrades.filter(upg => (this.hasUpg(g, 6)) ? upg.id !== 6 : true)
                               .forEach(upg => g.upgrades[upg.id] = 0);
 
         if (!this.hasUpg(g, 9)) {
@@ -32,11 +32,14 @@ const DATABASE_PRISM = {
         }
 
         if (!this.hasUpg(g, 12)) {
-            g.laser.isActive = false
             g.unlocks.laser = false
             g.lenses = 0
             g.unlocks.lenses = false
+        }
+
+        if (!this.hasUpg(g, 12) || forced) {
             g.laser.time = 0
+            g.laser.isActive = false
         }
 
         //When entering / exiting a challenge, the player does not gain activations
@@ -52,6 +55,11 @@ const DATABASE_PRISM = {
         if (!forced && g.interference.current !== 0) {
             g.interference.completed |= Math.pow(2, g.interference.current - 1)
             g.interference.current = 0
+        }
+
+        if (g.interference.respec) {
+            g.interference.respec = false
+            g.interference.upgrades = 0
         }
     },
     hasUpg(g, i) {

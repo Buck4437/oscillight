@@ -36,6 +36,9 @@ Vue.component("prism-subtab", {
         getGainDec() {
             return "." + this.format(this.getGain, 2, 2).split(".")[1]
         },
+        getRequirement() {
+            return DATABASE_PRISM.requirement(this.game)
+        },
         getActivations() {
             return this.game.resets
         },
@@ -116,7 +119,7 @@ Vue.component("prism-subtab", {
         </div>
 
         <div class="prism-energy">
-            Activation energy: <span :class="canActivate ? 'green' : 'red'">1e60 Light</span>
+            Activation energy: <span :class="canActivate ? 'green' : 'red'">{{format(getRequirement)}} Light</span>
         </div>
 
         <div class="prism-activations">

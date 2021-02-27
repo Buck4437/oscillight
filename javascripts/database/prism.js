@@ -1,9 +1,31 @@
 const DATABASE_PRISM = {
-    reset(g) {
-        if (this.gain(g).lt(1)) return
+    baseRequirement: new Decimal(1e60),
+    requirement(g) {
+        if (g.interference.current !== 0) {
+            return DATABASE_CHALLENGE.getRequirement(g)
+        } else {
+            return this.baseRequirement
+        }
+    },
+    gain(g) {
+        let requirement = this.requirement(g)
+
+        if (g.light.lt(requirement)) return new Decimal(0);
+
+        return Decimal.max(1, Decimal.pow(10, Decimal.log(g.light, 1e60) - 1));
+    },
+    reset(g, forced = false) {
+
+        // normally, resetting is not allowed when the player cannot gain anything,
+        // however, when entering / exiting a challenge, the forced mode is used
+
+        // force mode bypasses the check for "has gain"
+
+        if (this.gain(g).lt(1) && !forced) return false
 
         DATABASE_WAVE.upgrades.filter(upg => this.hasUpg(g, 6) ? upg.id !== 6 : true)
                               .forEach(upg => g.upgrades[upg.id] = 0);
+
         if (!this.hasUpg(g, 9)) {
             g.decelerate.auto = false
             g.decelerate.isActive = false
@@ -17,17 +39,20 @@ const DATABASE_PRISM = {
             g.laser.time = 0
         }
 
-        g.rainbow = g.rainbow.add(Decimal.floor(this.gain(g))) //displayed with decimals for dramatic effect
+        //When entering / exiting a challenge, the player does not gain activations
+
+        if (!forced) g.resets ++
+
+        g.rainbow = g.rainbow.add(Decimal.floor(this.gain(g)))
         g.light = new Decimal(0)
-        g.resets ++
         g.unlocks.rainbowUpgrades = true
-    },
-    gain(g) {
-        if (g.light.lt(1e60)) return new Decimal(0);
 
-        let base = Decimal.max(1, Decimal.pow(10, Decimal.log(g.light, 1e60) - 1));
+        // Not entering / exiting a challenge, and is inside a challenge
 
-        return base;
+        if (!forced && g.interference.current !== 0) {
+            g.interference.completed |= Math.pow(2, g.interference.current - 1)
+            g.interference.current = 0
+        }
     },
     hasUpg(g, i) {
         return (g.rainbowUpgrades & Math.pow(2, i - 1)) !== 0

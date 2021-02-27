@@ -24,8 +24,8 @@ var game = {
     },
     interference: {
         current: 0, // binary
-        completed: [], //binary
-        upgrades: 0 // binary
+        completed: 0, //binary
+        upgrades: 0 // binary, 1 => 0001 done, 3 => 0010 + 0001 done etc.
     },
     unlocks: {
         upgrades: false,

@@ -4,7 +4,7 @@ Vue.component("interference-tab", {
     data() {
         return {
             selectedTab: "",
-            tabs: ["Constructive", "Destructive", "Statistics"]
+            tabs: ["Constructive", "Destructive", "Completions"]
         }
     },
     props: {
@@ -31,7 +31,9 @@ Vue.component("interference-tab", {
             </button>
         </div>
         <div class="subtab-con">
-            <component :is="currentTabComponent" :game="game"></component>
+            <keep-alive>
+                <component :is="currentTabComponent" :game="game"></component>
+            </keep-alive>
         </div>
     </div>
     `

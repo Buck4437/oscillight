@@ -4,7 +4,7 @@
     transition: color 0.5s, background-color 0.5s, border 0.5s;
 }
 
-body{
+body {
     color: var(--color);
     margin: 16px;
     font-size: 16px;
@@ -274,6 +274,7 @@ main {
     margin: 0;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 16px;
 }
@@ -436,6 +437,79 @@ main {
 	padding: 8px;
 }
 
+/* interference */
+
+.challenge {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.challenge-config {
+    margin: 16px;
+}
+
+.challenge table {
+    border-collapse: collapse;
+    margin: 8px;
+}
+
+.challenge td {
+    padding: 16px;
+    border: 2px solid var(--color);
+    text-align: center;
+    min-width: 60px;
+    min-height: 60px;
+}
+
+.challenge .config-btn {
+    width: 50px;
+    height: 50px;
+}
+
+.challenge button {
+    padding: 16px;
+}
+
+.challenge .transverse-btn-con {
+    display: flex;
+    flex-direction: row;
+}
+
+.challenge .transverse-btn-con button {
+    margin: 8px;
+    flex-grow: 1;
+}
+
+.challenge-warn {
+    margin: 16px;
+}
+
+.challenge-warn-header {
+    text-align: center;
+}
+
+
+.stats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.stats table {
+    border-collapse: collapse;
+    margin: 16px;
+}
+
+.stats td {
+    padding: 16px;
+    border: 2px solid var(--color);
+    text-align: center;
+}
+
 /* settings */
 
 .settings-btn-con{
@@ -460,10 +534,11 @@ main {
     bottom: 0;
     text-align: center;
     width: 100%;
-    padding: 16px;
+    padding: 16px 0;
 }
 
 /* presets */
+
 .mini-header {
     font-size: 24px;
     margin: 16px;
@@ -574,6 +649,17 @@ button.off {
     color: var(--background);
     border-color: var(--color-blue);
     background-color: var(--color-blue);
+}
+
+.yellow {
+    color: var(--color-yellow);
+    border-color: var(--color-yellow);
+}
+
+.yellow.is-active {
+    color: var(--background);
+    border-color: var(--color-yellow);
+    background-color: var(--color-yellow);
 }
 
 .disabled {

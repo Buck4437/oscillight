@@ -65,7 +65,7 @@ const DATABASE_PRISM = {
             id: 1,
             name: "Decay",
             desc: "Multiplier to light, decays based on your light",
-            current: (g) => Decimal.max(1, 100 - 5 / 3 * Decimal.log10(g.light.add(1))),
+            current: (g) => Decimal.max(1, 20 - Decimal.log10(g.light.add(1)) / 3),
             cost: new Decimal(1)
         },
         {
@@ -79,7 +79,7 @@ const DATABASE_PRISM = {
             id: 3,
             name: "Growth",
             desc: "Multiplier to light, grows based on your light",
-            current: (g) => Decimal.min(100, Decimal.pow(Decimal.log10(g.light.add(1)) / 6 + 1, 2)),
+            current: (g) => Decimal.min(20, Decimal.log10(g.light.add(1)) / 3 + 1),
             cost: new Decimal(1)
         },
         {
@@ -87,20 +87,20 @@ const DATABASE_PRISM = {
             name: "Shallow amplification",
             desc: "Multiplier to light gain based on number of prism activations",
             current: (g) => Math.pow(g.resets, 1.5) + 1,
-            cost: new Decimal(3)
+            cost: new Decimal(2)
         },
         {
             id: 5,
             name: "Deep amplification",
             desc: "Multiplier to base light based on number of prism activations",
             current: (g) => Math.pow(g.resets, 0.3) + 1,
-            cost: new Decimal(3)
+            cost: new Decimal(2)
         },
         {
             id: 6,
             name: "Quick charge",
             desc: "Laser charges and stablizes 80% faster",
-            cost: new Decimal(4)
+            cost: new Decimal(3)
         },
         {
             id: 7,

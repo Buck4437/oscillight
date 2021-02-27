@@ -6,10 +6,9 @@ const DATABASE_LASER = {
                 charged: 0.5,
                 overheat: 1,
                 stablizing: 1.5,
-                softcapped: 19.5,
+                stablized: 19.5,
                 chargedP: 1,
-                stablizingP: 0.9,
-                softcappedP: 0.97
+                stablizedP: 0.97,
             }
 
             let penalty = DATABASE_CHALLENGE.isInChallenge(g, 2) ? 0.5 : 1
@@ -21,21 +20,21 @@ const DATABASE_LASER = {
 
             if ((g.lenses & 2) !== 0) { // 2nd lens
                 v.chargedP *= 1 + (0.2 * penalty);
-                v.softcappedP *= 1.2;
+                v.stablizedP *= 1.2;
             }
 
             if ((g.lenses & 4) !== 0) { // 3rd lens
-                v.softcappedP *= 1 + (0.3 * penalty);
-                v.softcapped *= 2;
+                v.stablizedP *= 1 + (0.3 * penalty);
+                v.stablized *= 2;
             }
 
             if (DATABASE_PRISM.hasUpg(g, 6)) { // Quick charge
                 let reductionC = v.charged * 0.8
-                let reductionS = (v.softcapped - v.stablizing) * 0.8
+                let reductionS = (v.stablized - v.stablizing) * 0.8
                 v.charged -= reductionC
                 v.overheat -= reductionC
                 v.stablizing -= reductionC
-                v.softcapped -= (reductionC + reductionS)
+                v.stablized -= (reductionC + reductionS)
             }
 
             return v
@@ -63,17 +62,25 @@ const DATABASE_LASER = {
                 let k = v.chargedP / Math.pow(v.stablizing - v.overheat, 2)
                 power = k * Math.pow(v.stablizing - m, 2)
 
-            } else if (m <= v.softcapped) {
+            } else if (m <= v.stablized) {
 
-                let slope = v.stablizingP / (v.softcapped - v.stablizing)
+                let slope = v.stablizedP / (v.stablized - v.stablizing)
                 power = slope * (m - v.stablizing);
 
             } else {
 
-                let k = (v.softcappedP - v.stablizingP) * (v.softcapped + 0.5)
-                power = v.softcappedP - k / (m + 0.5)
+                power = v.stablizedP
 
             }
+
+            // } else {
+            //
+            //     let k = (v.softcappedP - v.stablizingP) * (v.softcapped + 0.5)
+            //     power = v.softcappedP - k / (m + 0.5)
+
+            // old formula
+            //
+            // }
 
             return Math.max(0, power)
 
@@ -98,11 +105,12 @@ const DATABASE_LASER = {
                 return "charged"
             } else if (m <= v.stablizing) {
                 return "overheat"
-            } else if (m <= v.softcapped) {
+            } else if (m <= v.stablized) {
                 return "stablizing"
             } else {
-                return "softcapped"
+                return "stablized"
             }
+            // else return "softcapped"
         }
     },
     lensesCost: new Decimal(1e45),
@@ -125,7 +133,7 @@ const DATABASE_LASER = {
             id: 3,
             tier: 1,
             name: "Coolant stablization",
-            desc: "The energy level softcap is 30% higher, but it takes x2 time to stablize the laser",
+            desc: "The stablization energy level cap is 30% higher, but it takes x2 time to stablize the laser",
             color: "blue"
         }
     ]

@@ -39,11 +39,11 @@ const DATABASE_CHALLENGE = {
     requirements: [
         {
             id: 1,
-            requirement: new Decimal("1e165")
+            requirement: new Decimal("1e155")
         },
         {
             id: 2,
-            requirement: new Decimal("1e75")
+            requirement: new Decimal("1e60")
         },
         {
             id: 3,
@@ -51,7 +51,7 @@ const DATABASE_CHALLENGE = {
         },
         {
             id: 4,
-            requirement: new Decimal("1e85")
+            requirement: new Decimal("1e80")
         },
         {
             id: 5,
@@ -95,7 +95,7 @@ const DATABASE_CHALLENGE = {
         },
         {
             id: 15,
-            requirement: new Decimal("1e37")
+            requirement: new Decimal("1e38")
         }
     ],
     getRequirement(id) {

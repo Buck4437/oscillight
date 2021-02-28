@@ -61,7 +61,9 @@ Vue.component("destructive-subtab", {
     <div class="tab challenge">
         <div class="challenge-head">
             Enter interferences to gain node!<br>
-            Each unique completion of interference grants 1 node.
+            Each unique completion of interference grants 1 node.<br>
+            To complete an interference, reach the requirement<br>
+            and activate the prism under the conditions.
         </div>
         <div class="challenge-body">
             <div class="challenge-config">

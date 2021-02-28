@@ -100,7 +100,7 @@ const DATABASE_PRISM = {
             name: "Shallow amplification",
             desc: "Multiplier to light gain based on number of prism activations",
             current: (g) => {
-                let base = Math.pow(g.resets, 1.5) + 1
+                let base = Math.pow(g.resets > 10000 ? 10000 + (g.resets - 10000) / 5 : g.resets, 1.5) + 1
                 return DATABASE_CHALLENGE.isBought(g, 6) ? Math.pow(base, 3) : base
             },
             cost: new Decimal(2)
@@ -122,7 +122,7 @@ const DATABASE_PRISM = {
             id: 7,
             name: "Anti-prism",
             desc: "Your unspent rainbow boost light gain",
-            current: (g) => Decimal.pow(Decimal.log10(g.rainbow.times(5).plus(1)) + 1, 4).plus(1),
+            current: (g) => Decimal.pow(Decimal.log10(g.rainbow.times(5).plus(1)) + 1, 4),
             cost: new Decimal(35)
         },
         {

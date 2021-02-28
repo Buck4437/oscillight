@@ -62,6 +62,7 @@ Vue.component("settings-tab", {
             <ul>
                 <li v-if="game.unlocks.decelerate || game.unlocks.rainbowUpgrades">Photon deceleration: D</li>
                 <li v-if="game.unlocks.laser || game.unlocks.rainbowUpgrades">Toggle laser: L</li>
+                <li v-if="game.unlocks.rainbowUpgrades">Buy Max: M</li>
                 <li v-if="game.unlocks.rainbowUpgrades">Activate prism: P</li>
             </ul>
         </div>

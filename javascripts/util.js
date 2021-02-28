@@ -2,9 +2,9 @@
 
 // Number formatting
 
-function toSci(num, dpSci = 2, dpNorm = 2) {
+function toSci(num, dpSci = 2, dpNorm = 2, useNorm = 1000) {
     if (typeof num === "number") num = new Decimal(num)
-    if(num.lt(1000)) {
+    if(num.lt(useNorm)) {
         return toFixedTrunc(num.toNumber(), dpNorm)
     }
     return toFixedTrunc(num.mantissa, dpSci) + "e" + num.exponent

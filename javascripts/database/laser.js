@@ -1,6 +1,6 @@
 const DATABASE_LASER = {
     laser: {
-        cost: new Decimal(5000),
+        cost: new Decimal(3000),
         vars(g) {
             let v = {
                 charged: 0.5,
@@ -67,7 +67,7 @@ const DATABASE_LASER = {
 
             } else if (DATABASE_CHALLENGE.isBought(g, 5)) {
 
-                power = v.stablizedP * (1 + Math.log(m - v.stablized + 1) / 100)
+                power = v.stablizedP * (1 + Math.log(m - v.stablized + 1) / 50)
 
             } else {
 

@@ -97,6 +97,12 @@ var app = new Vue({
                     case 76: //l
                         if (this.game.unlocks.laser) {
                             this.game.laser.isActive = !this.game.laser.isActive
+                            this.game.laser.time = 0;
+                        }
+                        break;
+                    case 77:
+                        if (this.game.unlocks.rainbowUpgrades) {
+                            this.$refs[this.tabs[0]][0].buyMax()
                         }
                         break;
                     case 80: //p

@@ -84,8 +84,8 @@ Vue.component("prism-subtab", {
             ctx.stroke();
 
         },
-        format(num, a, b) {
-            return toSci(num, a, b)
+        format(num, a, b, c) {
+            return toSci(num, a, b, c)
         },
         capFirstLetter(str) {
             return str.charAt(0).toUpperCase() + str.substring(1)
@@ -134,7 +134,7 @@ Vue.component("prism-subtab", {
         </div>
 
         <div class="prism-activations">
-            Number of activations: {{format(getActivations, 2, 0)}}
+            Number of activations: {{format(getActivations, 2, 0, 100000000)}}
         </div>
 
         <div class="prism-warning">

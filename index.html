@@ -70,7 +70,7 @@
                 </win-modal>
                 <confirmation-modal v-if="buffModal" @yes="replay" @no="hideBuffModal">
                     <template #header>
-                        <span :class="buffModal ? 'yellow' : 'red'">Replay {{buffReset ? "with" : "without"}} bonus</span>
+                        <span :class="buffReset ? 'yellow' : 'red'">Replay {{buffReset ? "with" : "without"}} bonus</span>
                     </template>
 
                     Are you sure you want to replay the game{{buffReset ? "" : " without bonus"}}?
@@ -78,11 +78,7 @@
             </main>
          </div>
 
-         <!-- Development !-->
-         <script src="javascripts/libraries/vue.js"></script>
-
-         <!-- Production !-->
-         <!-- <script src="javascripts/libraries/vue.min.js"></script> -->
+         <script src="javascripts/libraries/vue.min.js"></script>
          <script src="javascripts/libraries/break_infinity.min.js"></script>
 
          <script src="javascripts/components/BaseMenuButton.js"></script>

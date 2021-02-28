@@ -18,10 +18,10 @@
             Calculating...<br>
             This shouldn't take longer than a few seconds...
         </div>
-        <div id="app" :class="{'no-scroll': win}">
+        <div id="app">
             <header>
                 <div>
-                    Light: {{format(game.light)}}
+                    Light: {{format(game.light)}} {{buffDisplay}}
                 </div>
                 <div v-if="game.interference.current !== 0">
                     Interference:
@@ -47,22 +47,32 @@
                                :ref="tab"
                                :key="tab"></component>
                 </div>
-                <win-modal v-if="win">
+                <win-modal v-if="win && !hideWin">
                     You have reached the end of the game.<br><br>
-                    Big thanks to my friend for testing the game<br><br>
-                    Created by Buck | Made for IGJ 2021<br>
+                    Big thanks to my friend for testing the game.<br><br>
+                    You can either continue playing, reset with a bonus or reset without bonus.<br><br>
                     <template #button>
                         <button class="green" @click="con">
-                            Continue
+                            Continue playing
                         </button>
-                        <button class="yellow" @click="replay(true)">
+                        <button class="yellow" @click="showBuffModal(true)">
                             Replay with x2 light bonus
                         </button>
-                        <button class="red" @click="replay(false)">
+                        <button class="red" @click="showBuffModal(false)">
                             Replay without bonus
                         </button>
+                        <span>
+                            Created by Buck | Made for IGJ 2021
+                        </span>
                     </template>
                 </win-modal>
+                <confirmation-modal v-if="buffModal" @yes="replay" @no="hideBuffModal">
+                    <template #header>
+                        <span :class="buffModal ? 'yellow' : 'red'">Replay {{buffReset ? "with" : "without"}} bonus</span>
+                    </template>
+
+                    Are you sure you want to replay the game{{buffReset ? "" : " without bonus"}}?
+                </confirmation-modal>
             </main>
          </div>
 
@@ -118,5 +128,6 @@
 
 <!-- note: upg 1 is useful for Y !-->
 
-<!-- TODO: Confirmations for enter / exit challenge -->
+<!-- TODO: Prism animation -->
+<!-- TODO: Hotkey -->
 <!-- TODO: Icon -->

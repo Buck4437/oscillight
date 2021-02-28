@@ -258,6 +258,13 @@ ul {
     flex-direction: column;
 }
 
+.modal-win-footer span {
+    font-size: 14px;
+    flex-grow: 0;
+    margin: 8px;
+    min-width: 80px;
+}
+
 .modal-win-footer button {
     font-size: 16px;
     flex-grow: 0;

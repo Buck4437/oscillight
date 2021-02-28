@@ -3,7 +3,8 @@
 Vue.component("destructive-subtab", {
     data() {
         return {
-            config: 0
+            config: 0,
+            exitModal: false
         }
     },
     props: {
@@ -47,6 +48,7 @@ Vue.component("destructive-subtab", {
             if (this.canExit) {
                 DATABASE_CHALLENGE.exitChallenge(this.game)
             }
+            this.exitModal = false
         },
         format(n, a, b) {
             return toSci(n, a, b)
@@ -97,7 +99,8 @@ Vue.component("destructive-subtab", {
                     <button :class="{'disabled': !canEnter}" class="green" @click="enter">
                         Enter interference
                     </button>
-                    <button :class="{'disabled': !canExit}" class="warning" @click="exit">
+                    <button :class="{'disabled': !canExit}" class="warning"
+                            @click="if (canExit) exitModal = true">
                         Exit interference
                     </button>
                 </div>
@@ -125,6 +128,13 @@ Vue.component("destructive-subtab", {
                 </div>
             </div>
         </div>
+        <confirmation-modal v-if="exitModal" @yes="exit" @no="exitModal = false">
+            <template #header>
+                <span class="warning">Exit interference</span>
+            </template>
+
+            Are you sure you want to exit interference?
+        </confirmation-modal>
     </div>
     `
 })

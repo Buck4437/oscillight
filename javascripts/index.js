@@ -4,7 +4,19 @@ var app = new Vue({
     el: "#app",
     data: {
         game,
-        currentTab: ""
+        currentTab: "",
+        buffModal: false,
+        buffReset: true,
+        hideWin: false
+    },
+    watch: {
+        win(state) {
+            if (state) {
+                document.querySelector("body").classList.add("no-scroll")
+            } else {
+                document.querySelector("body").classList.remove("no-scroll")
+            }
+        }
     },
     computed: {
         tabs() {
@@ -22,9 +34,22 @@ var app = new Vue({
         },
         win() {
             return DATABASE_CHALLENGE.isBought(this.game, 10)
+        },
+        buffDisplay() {
+            if (this.game.buffs === 0) return ""
+            return `(x${this.format(Math.pow(2, this.game.buffs), 2, 0)} Bonus)`
         }
     },
     methods: {
+        showBuffModal(withBuff) {
+            this.buffReset = withBuff;
+            this.hideWin = true;
+            this.buffModal = true;
+        },
+        hideBuffModal() {
+            this.hideWin = false
+            this.buffModal = false
+        },
         hasCBit(a) {
             return (this.game.interference.current & Math.pow(2, a - 1)) !== 0
         },
@@ -40,12 +65,12 @@ var app = new Vue({
         con() {
             this.game.interference.upgrades ^= Math.pow(2, 9)
         },
-        replay(buff) {
+        replay() {
             let newSave = JSON.parse(JSON.stringify(game))
             newSave.settings.theme = this.game.settings.theme
             newSave.buffs = this.game.buffs
             newSave.lastTick = Date.now()
-            if (buff) newSave.buffs++;
+            if (this.buffReset) newSave.buffs++;
             localStorage.setItem(SAVE_NAME, JSON.stringify(newSave))
             window.location.reload()
         },

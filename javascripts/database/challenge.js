@@ -47,11 +47,51 @@ const DATABASE_CHALLENGE = {
         },
         {
             id: 3,
-            requirement: new Decimal("1e85")
+            requirement: new Decimal("1e75")
         },
         {
             id: 4,
             requirement: new Decimal("1e85")
+        },
+        {
+            id: 5,
+            requirement: new Decimal("1.07e107")
+        },
+        {
+            id: 6,
+            requirement: new Decimal("1e50")
+        },
+        {
+            id: 7,
+            requirement: new Decimal("1e60")
+        },
+        {
+            id: 8,
+            requirement: new Decimal("1e36")
+        },
+        {
+            id: 9,
+            requirement: new Decimal("1e36")
+        },
+        {
+            id: 10,
+            requirement: new Decimal("3.16e32")
+        },
+        {
+            id: 11,
+            requirement: new Decimal("4e41")
+        },
+        {
+            id: 12,
+            requirement: new Decimal("1e40")
+        },
+        {
+            id: 13,
+            requirement: new Decimal("4e35")
+        },
+        {
+            id: 14,
+            requirement: new Decimal("1e99999")
         }
     ],
     getRequirement(id) {
@@ -99,7 +139,7 @@ const DATABASE_CHALLENGE = {
             tier: 1,
             name: "Convergence",
             desc: "Lenses are stronger based on unspent rainbow",
-            current: (g) => (Decimal.log10(g.rainbow) * 2)/100 + 1,
+            current: (g) => (Decimal.log10(g.rainbow) * 2)/50 + 1,
             cost: 1
         },
         {
@@ -132,20 +172,16 @@ const DATABASE_CHALLENGE = {
             tier: 2,
             parent: 3,
             name: "Phase shift",
-            desc: "Boost the 4th dispersion upgrade (x => x^2)",
+            desc: "Boost the 4th dispersion upgrade (x => x^3)",
             cost: 3
         },
         {
             id: 7,
             tier: 3,
             parent: 4,
-            name: "Double slit",
-            desc: "Lenses also boost light gain based on their boost to laser", //big static multiplier to light
-            current: (g) => {
-                return DATABASE_LASER.lenses
-                    .filter(l => (g.lenses & Math.pow(2, l.id - 1)) !== 0)
-                    .reduce((a, l) => a *= Math.pow(1e5, l.boost(g)), 1)
-            },
+            name: "Fusion",
+            desc: "Multiplier to light gain based on amount of light",
+            current: (g) => Math.pow(1.3, Decimal.log10(g.light)) + 1,
             cost: 5
         },
         {
@@ -153,7 +189,7 @@ const DATABASE_CHALLENGE = {
             tier: 3,
             parent: 5,
             name: "RGB",
-            desc: "You can equip all 3 lens at once",
+            desc: "You can equip all 3 lens at once, and lenses are 200% stronger if you are in interference",
             cost: 5
         },
         {
@@ -162,7 +198,7 @@ const DATABASE_CHALLENGE = {
             parent: 6,
             name: "Supernova",
             desc: "Static multiplier to light gain", //big static multiplier to light
-            current: (g) => new Decimal(5e5),
+            current: (g) => new Decimal(6.66e6),
             cost: 5
         },
         {

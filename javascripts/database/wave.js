@@ -123,7 +123,7 @@ const DATABASE_WAVE = {
             desc: "Double light gain",
             base: new Decimal(1e50),
             scale: new Decimal(5),
-            cap: 1000
+            cap: 300
         },
         {
             id: 10,

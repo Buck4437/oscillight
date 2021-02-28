@@ -55,6 +55,9 @@ const DATABASE_PRISM = {
         // Not entering / exiting a challenge, and is inside a challenge
 
         if (!forced && g.interference.current !== 0) {
+            g.laser.time = 0
+            g.laser.isActive = false
+
             g.interference.completed |= Math.pow(2, g.interference.current - 1)
             g.interference.current = 0
         }
@@ -101,7 +104,7 @@ const DATABASE_PRISM = {
             desc: "Multiplier to light gain based on number of prism activations",
             current: (g) => {
                 let base = Math.pow(g.resets, 1.5) + 1
-                return DATABASE_CHALLENGE.isBought(g, 6) ? Math.pow(base, 2) : base
+                return DATABASE_CHALLENGE.isBought(g, 6) ? Math.pow(base, 3) : base
             },
             cost: new Decimal(2)
         },

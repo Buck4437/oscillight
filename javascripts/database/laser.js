@@ -12,17 +12,17 @@ const DATABASE_LASER = {
             }
 
             if ((g.lenses & 1) !== 0) { // 1st lens
-                v.chargedP *= DATABASE_LASER.lenses[0].boost(g)
+                v.chargedP *= DATABASE_LASER.getLensBoost(g, 1)
                 v.overheat = 0.8;
             }
 
             if ((g.lenses & 2) !== 0) { // 2nd lens
-                v.chargedP *= DATABASE_LASER.lenses[1].boost(g)
-                v.stablizedP *= DATABASE_LASER.lenses[1].boost(g)
+                v.chargedP *= DATABASE_LASER.getLensBoost(g, 2)
+                v.stablizedP *= DATABASE_LASER.getLensBoost(g, 2)
             }
 
             if ((g.lenses & 4) !== 0) { // 3rd lens
-                v.stablizedP *= DATABASE_LASER.lenses[2].boost(g)
+                v.stablizedP *= DATABASE_LASER.getLensBoost(g, 3)
                 v.stablized *= 3;
             }
 
@@ -67,7 +67,7 @@ const DATABASE_LASER = {
 
             } else if (DATABASE_CHALLENGE.isBought(g, 5)) {
 
-                power = v.stablizedP * (1 + Math.log(m - v.stablized + 1) / 20)
+                power = v.stablizedP * (1 + Math.log(m - v.stablized + 1) / 100)
 
             } else {
 
@@ -82,7 +82,6 @@ const DATABASE_LASER = {
             let base = 1 + this.power(g, g.laser.time)
                          * (1 + 0.1 * g.upgrades[7])
                          * DATABASE_PRISM.applyUpg(g, 10)
-                         * DATABASE_CHALLENGE.applyUpg(g, 2)
                          * (DATABASE_CHALLENGE.isInChallenge(g, 2) ? 0.5 : 1)
 
             return base
@@ -112,6 +111,18 @@ const DATABASE_LASER = {
     getLens(id) {
         return this.lenses.filter(l => l.id === id)[0]
     },
+    getLensBoost(g, id) {
+        let base = this.getLens(id).boost
+
+        base = 1 + (base - 1) * DATABASE_CHALLENGE.applyUpg(g, 2)
+            * (g.interference.current !== 0 && DATABASE_CHALLENGE.isBought(g, 8) ? 3 : 1)
+
+        if (DATABASE_CHALLENGE.isInChallenge(g, 1)) {
+            base = 1 + (base - 1) * 0.5
+        }
+
+        return base
+    },
     lenses: [
         {
             id: 1,
@@ -119,7 +130,7 @@ const DATABASE_LASER = {
             name: "Crank it up!",
             desc: "The energy level of the laser when charged is 30% higher, but it overheats 40% faster",
             color: "red",
-            boost: (g) => DATABASE_CHALLENGE.isInChallenge(g, 1) ? 1.15 : 1.3
+            boost: 1.3
         },
         {
             id: 2,
@@ -127,7 +138,7 @@ const DATABASE_LASER = {
             name: "Catalyst",
             desc: "The energy level of the laser is 20% higher",
             color: "green",
-            boost: (g) => DATABASE_CHALLENGE.isInChallenge(g, 1) ? 1.1 : 1.2
+            boost: 1.2
         },
         {
             id: 3,
@@ -135,7 +146,7 @@ const DATABASE_LASER = {
             name: "Coolant stablization",
             desc: "The stablization energy level cap is 30% higher, but it takes x3 time to stablize the laser",
             color: "blue",
-            boost: (g) => DATABASE_CHALLENGE.isInChallenge(g, 1) ? 1.15 : 1.3
+            boost: 1.3
         }
     ]
 }

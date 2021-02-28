@@ -734,6 +734,10 @@ button.off {
     visibility: hidden;
 }
 
+.no-scroll {
+    overflow-y: hidden;
+}
+
 /* override */
 
 .prism-upg-con {

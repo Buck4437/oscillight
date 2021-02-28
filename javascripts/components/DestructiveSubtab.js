@@ -10,7 +10,6 @@ Vue.component("destructive-subtab", {
         game: Object
     },
     watch: {
-
     },
     computed: {
         challenges() {
@@ -95,10 +94,10 @@ Vue.component("destructive-subtab", {
                     </tr>
                 </table>
                 <div class="transverse-btn-con">
-                    <button :class="{'disabled': !canEnter}" @click="enter">
+                    <button :class="{'disabled': !canEnter}" class="green" @click="enter">
                         Enter interference
                     </button>
-                    <button :class="{'disabled': !canExit}" @click="exit">
+                    <button :class="{'disabled': !canExit}" class="warning" @click="exit">
                         Exit interference
                     </button>
                 </div>

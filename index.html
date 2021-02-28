@@ -18,7 +18,7 @@
             Calculating...<br>
             This shouldn't take longer than a few seconds...
         </div>
-        <div id="app">
+        <div id="app" :class="{'no-scroll': win}">
             <header>
                 <div>
                     Light: {{format(game.light)}}
@@ -118,6 +118,5 @@
 
 <!-- note: upg 1 is useful for Y !-->
 
-<!-- TODO: Modify caps of 9th upgrade -->
 <!-- TODO: Confirmations for enter / exit challenge -->
 <!-- TODO: Icon -->

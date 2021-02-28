@@ -32,7 +32,7 @@ Vue.component("dispersion-tab", {
             </button>
         </div>
         <div class="subtab-con">
-            <component :is="currentTabComponent" :game="game"></component>
+            <component :is="currentTabComponent" :game="game" @switch-tab="switchTab(tabs[1])"></component>
         </div>
     </div>
     `

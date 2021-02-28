@@ -63,7 +63,7 @@ const DATABASE_CHALLENGE = {
         },
         {
             id: 7,
-            requirement: new Decimal("5e61")
+            requirement: new Decimal("1e63")
         },
         {
             id: 8,
@@ -75,7 +75,7 @@ const DATABASE_CHALLENGE = {
         },
         {
             id: 10,
-            requirement: new Decimal("3.16e32")
+            requirement: new Decimal("1e36")
         },
         {
             id: 11,

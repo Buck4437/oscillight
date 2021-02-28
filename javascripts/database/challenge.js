@@ -79,23 +79,23 @@ const DATABASE_CHALLENGE = {
         },
         {
             id: 11,
-            requirement: new Decimal("4e41")
+            requirement: new Decimal("1e43")
         },
         {
             id: 12,
-            requirement: new Decimal("1e40")
+            requirement: new Decimal("1e37")
         },
         {
             id: 13,
-            requirement: new Decimal("4e35")
+            requirement: new Decimal("1e36")
         },
         {
             id: 14,
-            requirement: new Decimal("4e34")
+            requirement: new Decimal("1e36")
         },
         {
             id: 15,
-            requirement: new Decimal("1e34")
+            requirement: new Decimal("1e37")
         }
     ],
     getRequirement(id) {
@@ -192,9 +192,9 @@ const DATABASE_CHALLENGE = {
             id: 8,
             tier: 3,
             parent: 5,
-            name: "RGB",
-            desc: "You can equip all 3 lens at once, and lenses are 200% stronger if you are in interference",
-            cost: 5
+            name: "Conclusion",
+            desc: "Complete the game",
+            cost: 11
         },
         {
             id: 9,
@@ -204,14 +204,6 @@ const DATABASE_CHALLENGE = {
             desc: "Static multiplier to light gain", //big static multiplier to light
             current: (g) => new Decimal(6.66e6),
             cost: 5
-        },
-        {
-            id: 10,
-            tier: 4,
-            parent: 8,
-            name: "Conclusion",
-            desc: "Complete the game",
-            cost: 6
         }
     ]
 }

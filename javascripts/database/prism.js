@@ -63,9 +63,6 @@ const DATABASE_PRISM = {
         }
 
         if (g.interference.respec) {
-            if (DATABASE_CHALLENGE.isBought(g, 8)) {
-                g.lenses = 0
-            }
             g.interference.respec = false
             g.interference.upgrades = 0
         }

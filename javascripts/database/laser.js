@@ -115,7 +115,6 @@ const DATABASE_LASER = {
         let base = this.getLens(id).boost
 
         base = 1 + (base - 1) * DATABASE_CHALLENGE.applyUpg(g, 2)
-            * (g.interference.current !== 0 && DATABASE_CHALLENGE.isBought(g, 8) ? 3 : 1)
 
         if (DATABASE_CHALLENGE.isInChallenge(g, 1)) {
             base = 1 + (base - 1) * 0.5

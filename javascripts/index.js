@@ -33,7 +33,7 @@ var app = new Vue({
             return DATABASE_CHALLENGE.challenges
         },
         win() {
-            return DATABASE_CHALLENGE.isBought(this.game, 10)
+            return DATABASE_CHALLENGE.isBought(this.game, 8)
         },
         buffDisplay() {
             if (this.game.buffs === 0) return ""
@@ -63,7 +63,7 @@ var app = new Vue({
             return gameLoop(this);
         },
         con() {
-            this.game.interference.upgrades ^= Math.pow(2, 9)
+            this.game.interference.upgrades ^= Math.pow(2, 8 - 1)
         },
         replay() {
             let newSave = JSON.parse(JSON.stringify(game))

@@ -19,9 +19,7 @@ Vue.component("amplification-tab-lens", {
     methods: {
         equip() {
             if (this.isDeactivated) {
-                if (DATABASE_CHALLENGE.isBought(this.game, 8)) {
-                    this.game.lenses ^= this.getBit
-                } else if (this.isActive) {
+                 if (this.isActive) {
                     this.game.lenses = 0; // Dismount the lense
                 } else {
                     this.game.lenses = this.getBit; // Equip the lens

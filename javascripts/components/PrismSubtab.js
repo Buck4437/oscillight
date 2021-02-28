@@ -93,7 +93,6 @@ Vue.component("prism-subtab", {
         activate() {
             if (this.canActivate) {
                 if (!this.game.unlocks.rainbowUpgrades) {
-                    document.querySelector("body").classList.add("no-scroll");
                     document.querySelector(".mask").classList.add("is-active");
                     setTimeout(() => {
                         DATABASE_PRISM.reset(this.game)
@@ -102,9 +101,6 @@ Vue.component("prism-subtab", {
                     setTimeout(() => {
                         document.querySelector(".mask").classList.remove("is-active");
                     }, 2000)
-                    setTimeout(() => {
-                        document.querySelector("body").classList.remove("no-scroll");
-                    }, 3500)
                 } else {
                     DATABASE_PRISM.reset(this.game)
                 }

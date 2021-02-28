@@ -478,7 +478,7 @@ main {
 
 .mask {
     opacity: 0;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: -9999px;
     background-color: var(--background);
@@ -646,7 +646,12 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
+}
+
+.upg div {
+    width: 100%;
 }
 
 .upg div:not(.upg-name){

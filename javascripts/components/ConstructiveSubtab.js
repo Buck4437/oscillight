@@ -48,7 +48,7 @@ Vue.component("constructive-subtab", {
                 <div v-for="u in getTierUpg(i)" class="c-btn-con">
                     <template v-if="u.parent !== undefined">&#8595;</template>
                     <interference-tab-upgrade :game="game" :upgrade="u"/>
-                </template>
+                </div>
             </div>
         </div>
     </div>

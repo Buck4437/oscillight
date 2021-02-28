@@ -100,7 +100,7 @@ Vue.component("destructive-subtab", {
                         Enter interference
                     </button>
                     <button :class="{'disabled': !canExit}" class="warning"
-                            @click="if (canExit) exitModal = true">
+                            @click="exitModal = canExit">
                         Exit interference
                     </button>
                 </div>

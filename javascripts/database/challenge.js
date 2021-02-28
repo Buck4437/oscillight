@@ -63,7 +63,7 @@ const DATABASE_CHALLENGE = {
         },
         {
             id: 7,
-            requirement: new Decimal("1e60")
+            requirement: new Decimal("5e61")
         },
         {
             id: 8,
@@ -160,7 +160,7 @@ const DATABASE_CHALLENGE = {
             parent: 1,
             name: "Recursion",
             desc: "Gain more rainbow based on unspent rainbow",
-            current: (g) => Math.pow(2, Decimal.log10(g.rainbow + 1)),
+            current: (g) => Math.pow(2, Decimal.log10(g.rainbow.add(1))),
             cost: 3
         },
         {

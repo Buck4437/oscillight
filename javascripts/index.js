@@ -85,6 +85,26 @@ var app = new Vue({
                 localStorage.setItem(SAVE_NAME, JSON.stringify(this.game))
                 console.log("Game saved!");
             }, 10000)
+        },
+        setHotKeys() {
+            document.addEventListener('keydown', (e) => {
+                switch(e.keyCode) {
+                    case 68: //d
+                        if (this.game.unlocks.decelerate) {
+                            this.game.decelerate.isActive = !this.game.decelerate.isActive
+                        }
+                        break;
+                    case 76: //l
+                        if (this.game.unlocks.laser) {
+                            this.game.laser.isActive = !this.game.laser.isActive
+                        }
+                        break;
+                    case 80: //p
+                        if (this.game.unlocks.rainbowUpgrades) {
+                            DATABASE_PRISM.reset(this.game)
+                        }
+                }
+            });
         }
     },
     created() {
@@ -98,6 +118,8 @@ var app = new Vue({
         }
 
         loadTheme();
+
+        this.setHotKeys()
 
         setTimeout(() => {
             var body = document.querySelector("body");

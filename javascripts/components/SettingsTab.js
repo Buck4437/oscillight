@@ -57,6 +57,15 @@ Vue.component("settings-tab", {
             </button>
         </div>
 
+        <div class="hotkeys">
+            <div>Hotkeys:</div>
+            <ul>
+                <li v-if="game.unlocks.deceleration || game.unlocks.rainbowUpgrades">Photon deceleration: D</li>
+                <li v-if="game.unlocks.laser || game.unlocks.rainbowUpgrades">Toggle laser: L</li>
+                <li v-if="game.unlocks.rainbowUpgrades">Activate prism: P</li>
+            </ul>
+        </div>
+
         <div class="extra">
             Created by Buck | Made for IGJ 2021 | <a target="_blank" href="https://discord.com/invite/N8MuKMz">Discord</a>
         </div>

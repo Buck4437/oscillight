@@ -45,10 +45,10 @@ Vue.component("constructive-subtab", {
         </button>
         <div>
             <div v-for="i in maxTier" class="btn-row">
-                <interference-tab-upgrade v-for="u in getTierUpg(i)"
-                                          :game="game"
-                                          :upgrade="u"
-                                          :key="u.id"/>
+                <div v-for="u in getTierUpg(i)" class="c-btn-con">
+                    <template v-if="u.parent !== undefined">&#8595;</template>
+                    <interference-tab-upgrade :game="game" :upgrade="u"/>
+                </template>
             </div>
         </div>
     </div>

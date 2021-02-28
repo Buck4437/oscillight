@@ -494,6 +494,12 @@ main {
     justify-content: center;
 }
 
+.c-btn-con {
+    display: flex;
+    flex-direction:column;
+    align-items: center
+}
+
 .challenge-body {
     display: flex;
     flex-direction: row;

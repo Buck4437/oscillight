@@ -21,8 +21,9 @@ Vue.component("interference-tab-upgrade", {
             return DATABASE_CHALLENGE.isBought(this.game, u.parent)
         },
         getState() {
+            if (!this.isUnlocked) return "disabled"
             if (this.isBought) return "max"
-            else if (this.upgrade.cost <= this.getNodes && this.isUnlocked) return "canBuy"
+            else if (this.upgrade.cost <= this.getNodes) return "canBuy"
             return "locked"
         },
         getCurrent() {

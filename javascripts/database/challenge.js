@@ -134,7 +134,7 @@ const DATABASE_CHALLENGE = {
             tier: 1,
             name: "Divergence",
             desc: "Increased base light gain based on unspent rainbow",
-            current: (g) => (Math.pow(g.rainbow, 0.75)),
+            current: (g) => (Decimal.pow(g.rainbow, 0.75)),
             prefix: "+",
             cost: 1
         },

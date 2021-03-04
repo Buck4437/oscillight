@@ -16,7 +16,22 @@
     <body>
         <div class="loading">
             Calculating...<br>
-            This shouldn't take longer than a few seconds...
+            This shouldn't take longer than a few seconds...<br>
+            <div class="fail-save" style="display: none;">
+                <h2>Emergency save recovery system</h2>
+                This appears because the loading took too long.<br>
+                Please press F12 and open the console to see if any error shows up.<br>
+                If error appears, please take a screenshot and send them to me asap.<br>
+                Please also include your save file when you send the screenshot (as it can speed up the debugging process).<br>
+                You can export your game by pressing "export" button<br>
+                Once you are done, press "hard reset" button to reset the game.<br><br>
+                <button onclick="EMERGENCY.export()" style="width: 100px; height: 50px;">
+                    Export
+                </button>
+                <button onclick="EMERGENCY.reset()" style="width: 100px; height: 50px;">
+                    Hard Reset
+                </button>
+            </div>
         </div>
         <div class="mask">
         </div>
@@ -115,6 +130,7 @@
          <script src="javascripts/database/prism.js"></script>
          <script src="javascripts/database/challenge.js"></script>
 
+         <script src="javascripts/emergency.js"></script>
          <script src="javascripts/game.js"></script>
          <script src="javascripts/update.js"></script>
          <script src="javascripts/util.js"></script>
@@ -122,3 +138,4 @@
          <script src="javascripts/index.js"></script>
     </body>
 </html>
+<!-- IDEA: Change "Convergent" to "Multi based on nodes" -->

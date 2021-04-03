@@ -9,6 +9,7 @@ const DATABASE_LASER = {
                 stablized: 19.5,
                 chargedP: 1,
                 stablizedP: 0.97,
+                overheatPenalty: 0.5, // 0-1, 0 means no penalty and 1 means power = 0
             }
 
             if ((g.lenses & 1) !== 0) { // 1st lens
@@ -19,6 +20,11 @@ const DATABASE_LASER = {
             if ((g.lenses & 2) !== 0) { // 2nd lens
                 v.chargedP *= DATABASE_LASER.getLensBoost(g, 2)
                 v.stablizedP *= DATABASE_LASER.getLensBoost(g, 2)
+                let delayO = (v.overheat - v.charged) * 0.5;
+                let reductionS = (v.stablized - v.stablizing) * 0.5
+                v.overheat += delayO;
+                v.stablizing += delayO;
+                v.stablized += (delayO - reductionS);
             }
 
             if ((g.lenses & 4) !== 0) { // 3rd lens
@@ -35,7 +41,7 @@ const DATABASE_LASER = {
                 v.stablized -= (reductionC + reductionS)
             }
 
-            return v
+            return v;
         },
         power: (g, t = 0) => {
             // The unit used is second
@@ -45,6 +51,7 @@ const DATABASE_LASER = {
             let v = DATABASE_LASER.laser.vars(g)
             let m = Math.max(0, t/60)
             let power;
+            v.overheatP = v.chargedP * (1 - v.overheatPenalty)
 
             if (m <= v.charged) {
 
@@ -57,13 +64,13 @@ const DATABASE_LASER = {
 
             } else if (m <= v.stablizing) {
 
-                let k = v.chargedP / Math.pow(v.stablizing - v.overheat, 2)
-                power = k * Math.pow(v.stablizing - m, 2)
+                let k = (v.chargedP - v.overheatP) / Math.pow(v.stablizing - v.overheat, 2)
+                power = k * Math.pow(v.stablizing - m, 2) + v.overheatP
 
             } else if (m <= v.stablized) {
 
-                let slope = v.stablizedP / (v.stablized - v.stablizing)
-                power = slope * (m - v.stablizing);
+                let slope = (v.stablizedP - v.overheatP) / (v.stablized - v.stablizing)
+                power = slope * (m - v.stablizing) + v.overheatP;
 
             } else if (DATABASE_CHALLENGE.isBought(g, 5)) {
 
@@ -84,7 +91,7 @@ const DATABASE_LASER = {
                          * DATABASE_PRISM.applyUpg(g, 10)
                          * (DATABASE_CHALLENGE.isInChallenge(g, 2) ? 0.5 : 1)
 
-            return base
+            return base;
         },
         status: (g) => {
             if (!g.laser.isActive) return "deactivated"
@@ -135,9 +142,9 @@ const DATABASE_LASER = {
             id: 2,
             tier: 1,
             name: "Catalyst",
-            desc: "The energy level of the laser is 20% higher",
+            desc: "The energy level of the laser is 25% higher, the laser overheats 50% slower and stablizes 2x faster",
             color: "green",
-            boost: 1.2
+            boost: 1.25
         },
         {
             id: 3,

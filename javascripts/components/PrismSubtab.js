@@ -140,7 +140,7 @@ Vue.component("prism-subtab", {
         <div class="prism-warning">
             Activating the prism will:
             <ul>
-                <li>Convert all your light into rainbow</li>
+                <li>Convert all your light into rainbow, rounded down</li>
                 <li class="warning">
                     {{warning}}
                 </li>

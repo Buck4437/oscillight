@@ -25,6 +25,7 @@ var app = new Vue({
             if (this.game.unlocks.amplification) tabs.push("Amplification")
             if (this.game.unlocks.prism) tabs.push("Dispersion")
             if (this.game.unlocks.interference) tabs.push("Interference")
+            tabs.push("Achievements")
             tabs.push("Settings")
 
             return tabs
@@ -86,6 +87,25 @@ var app = new Vue({
                 console.log("Game saved!");
             }, 10000)
         },
+        setToast() {
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": true,
+              "progressBar": true,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "300",
+              "timeOut": "3000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "slideDown",
+              "hideMethod": "slideUp"
+            }
+        },
         setHotKeys() {
             document.addEventListener('keydown', (e) => {
                 switch(e.keyCode) {
@@ -100,7 +120,7 @@ var app = new Vue({
                             this.game.laser.time = 0;
                         }
                         break;
-                    case 77:
+                    case 77: //m
                         if (this.game.unlocks.rainbowUpgrades) {
                             this.$refs[this.tabs[0]][0].buyMax()
                         }
@@ -125,7 +145,8 @@ var app = new Vue({
 
         loadTheme();
 
-        this.setHotKeys()
+        this.setToast();
+        this.setHotKeys();
 
         setTimeout(() => {
             var body = document.querySelector("body");

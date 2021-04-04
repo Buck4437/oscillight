@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="stylesheets/colors.css">
         <link rel="stylesheet" href="stylesheets/loading.css">
         <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ==" crossorigin="anonymous" />
     </head>
     <body>
         <div class="loading">
@@ -93,7 +94,15 @@
             </main>
          </div>
 
-         <script src="javascripts/libraries/vue.min.js"></script>
+         <!-- Production !-->
+         <!-- <script src="javascripts/libraries/vue.min.js"></script> -->
+
+         <!-- Development !-->
+         <script src="javascripts/libraries/vue.js"></script>
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+			     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			     crossorigin="anonymous"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
          <script src="javascripts/libraries/break_infinity.min.js"></script>
 
          <script src="javascripts/components/BaseMenuButton.js"></script>
@@ -123,18 +132,62 @@
          <script src="javascripts/components/DestructiveSubtab.js"></script>
          <script src="javascripts/components/CompletionsSubtab.js"></script>
 
+         <script src="javascripts/components/AchievementsTab.js"></script>
+         <script src="javascripts/components/Achievement.js"></script>
+
          <script src="javascripts/components/SettingsTab.js"></script>
 
          <script src="javascripts/database/wave.js"></script>
          <script src="javascripts/database/laser.js"></script>
          <script src="javascripts/database/prism.js"></script>
          <script src="javascripts/database/challenge.js"></script>
+         <script src="javascripts/database/achievements.js"></script>
 
+         <script src="javascripts/gameloop.js"></script>
          <script src="javascripts/emergency.js"></script>
          <script src="javascripts/game.js"></script>
          <script src="javascripts/update.js"></script>
          <script src="javascripts/util.js"></script>
-         <script src="javascripts/gameloop.js"></script>
          <script src="javascripts/index.js"></script>
     </body>
 </html>
+
+<!-- TODO: Secret achievements -->
+
+<!-- TODO: Achievements -->
+
+<!-- TODO: Achievement img -->
+
+<!-- TODO: Achievements popup -->
+
+<!-- TODO: Increase multiplier cap -->
+
+<!-- IDEA: Upg that reduces overheat penalty -->
+
+<!-- IDEA: Change yellow interference to sth new, move current to new Black (K) interference (make K glow because dark theme) -->
+
+<!-- IDEA: A meta tab after stuff (Contains buffs (adjustable), achievements and Statistics) -->
+
+<!-- IDEA: Keep buy max when meta reset -->
+
+<!-- IDEA: Add disclaimer -->
+
+<!-- IDEA: Game updater -->
+
+<!-- IDEA: Make green lens stronger somehow -->
+
+<!-- IDEA: Change "Convergent" to "Multi based on nodes" -->
+
+<!-- IDEA: More Constructive upg stuff (bring back rgb) -->
+
+<!-- IDEA: Interference might be too grindy -->
+
+<!-- IDEA: Statistics, Achievements (Normal ach and meta ach), game finish timer -->
+
+<!-- IDEA: Add game version -->
+
+<!-- IDEA: Changelog (Embedded in game) -->
+
+<!-- IDEA: How to play (?) -->
+
+<!-- IDEA: Make this update open beta (by making a new branch) -->

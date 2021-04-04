@@ -594,6 +594,40 @@ main {
     text-align: center;
 }
 
+/* achievements */
+.move-ach {
+	margin: 16px;
+	padding: 16px;
+	font-size: 12px;
+}
+
+.ach-con {
+    width: 70%;
+    border: 2px solid var(--color);
+    height: 116px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.ach-img {
+    padding: 8px;
+    width: 100px;
+    height: 100px;
+}
+
+.ach-text {
+    font-size: 12px;
+    padding: 8px;
+	display: flex;
+	flex-direction: column;
+    justify-content: space-between;
+}
+
+.ach-name {
+    font-size: 16px;
+}
+
 /* settings */
 
 .settings-btn-con{

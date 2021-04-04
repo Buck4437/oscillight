@@ -41,8 +41,9 @@ var game = {
     achievements: 0, // binary
     buffs: 0,
     settings: {
+        moveAchievement: false,
         theme: 0
     },
     lastTick: Date.now(),
-    saveVersion: 1
+    saveVersion: 2
 }

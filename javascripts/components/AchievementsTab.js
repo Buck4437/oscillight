@@ -1,13 +1,15 @@
 Vue.component("achievements-tab", {
     data() {
         return {
-            moveCompletedDown: false
         }
     },
     props: {
         game: Object
     },
     computed: {
+        moveCompletedDown() {
+            return this.game.settings.moveAchievement;
+        },
         totalAchievements() {
             return DATABASE_ACHIEVEMENT.achievements;
         },
@@ -38,7 +40,7 @@ Vue.component("achievements-tab", {
         </span>
         <button class="move-ach"
                 :class="moveCompletedDown ? 'on' : 'off'"
-                @click="moveCompletedDown = !moveCompletedDown">
+                @click="game.settings.moveAchievement = !moveCompletedDown">
             Move completed achievement to the bottom: {{moveCompletedDown ? 'On' : 'Off'}}
         </button>
         <achievement v-for="a in getAchievements"

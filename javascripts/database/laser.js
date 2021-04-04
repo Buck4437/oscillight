@@ -55,7 +55,7 @@ const DATABASE_LASER = {
             let v = DATABASE_LASER.laser.vars(g)
             let m = Math.max(0, t/60)
             let power;
-            v.overheatP = v.chargedP * (1 - v.overheatPenalty)
+            v.overheatP = Math.min(v.chargedP, v.stablizedP) * (1 - v.overheatPenalty)
 
             if (m <= v.charged) {
 

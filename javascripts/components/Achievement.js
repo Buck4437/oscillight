@@ -40,7 +40,7 @@ Vue.component("achievement", {
     <div class="ach-con" :class="hasAchievement ? 'green' : ''">
         <img class="ach-img" :src="path">
         <div class="ach-text">
-            <span class="ach-name">{{isSecret ? toQuestionMark(achievement.name) : achievement.name}} {{hasAchievement ? "(Completed!)" : ""}}</span>
+            <span class="ach-name">{{achievement.name}} {{hasAchievement ? "(Completed!)" : ""}}</span>
             <span>{{isSecret ? toQuestionMark(achievement.description) : achievement.description}}</span>
             <span>{{achievement.reward ? "Reward: " + (isSecret ? toQuestionMark(achievement.reward) : achievement.reward) : ""}}</span>
         </div>

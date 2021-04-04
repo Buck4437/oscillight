@@ -41,6 +41,10 @@ const DATABASE_LASER = {
                 v.stablized -= (reductionC + reductionS)
             }
 
+            if (DATABASE_ACHIEVEMENT.hasAchievement(g, 7)) { // Reduce penalty
+                v.overheatPenalty = 0.1
+            }
+
             return v;
         },
         power: (g, t = 0) => {

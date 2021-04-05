@@ -136,9 +136,9 @@ const DATABASE_ACHIEVEMENT = {
         {
             id: 10,
             name: "The Beacon",
-            description: "Reach 1e200 Light",
+            description: "Reach 1e250 Light",
             condition(g) {
-                return g.light.gte("1e200")
+                return g.light.gte("1e250")
             }
         },
         {

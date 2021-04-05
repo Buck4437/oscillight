@@ -13,12 +13,12 @@ Vue.component("interference-tab-upgrade", {
             return DATABASE_CHALLENGE.nodes(this.game)
         },
         isBought() {
-            return DATABASE_CHALLENGE.isBought(this.game, this.upgrade.id)
+            return DATABASE_CHALLENGE.hasUpg(this.game, this.upgrade.id)
         },
         isUnlocked() {
             let u = this.upgrade
             if (u.parent === undefined) return true
-            return DATABASE_CHALLENGE.isBought(this.game, u.parent)
+            return DATABASE_CHALLENGE.hasUpg(this.game, u.parent)
         },
         getState() {
             if (!this.isUnlocked) return "disabled"

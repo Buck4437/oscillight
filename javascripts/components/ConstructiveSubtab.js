@@ -3,7 +3,6 @@
 Vue.component("constructive-subtab", {
     data() {
         return {
-
         }
     },
     props: {
@@ -15,6 +14,9 @@ Vue.component("constructive-subtab", {
     computed: {
         getNodes() {
             return DATABASE_CHALLENGE.nodes(this.game)
+        },
+        totalNodes() {
+            return DATABASE_CHALLENGE.totalNodes(this.game)
         },
         respec() {
             return this.game.interference.respec
@@ -36,7 +38,7 @@ Vue.component("constructive-subtab", {
     template: `
     <div class="tab challenge-upg">
         <div class="node-count">
-            Node: {{getNodes}}
+            Node: {{getNodes}}/{{totalNodes}}
         </div>
         <button class="respec-btn"
                 @click="toggle"

@@ -117,15 +117,15 @@ const DATABASE_CHALLENGE = {
         return count;
     },
     nodes(g) {
-        let spent = this.upgrades.filter(u => this.isBought(g, u.id))
+        let spent = this.upgrades.filter(u => this.hasUpg(g, u.id))
                                  .reduce((a, g) => a += g.cost, 0)
         return this.totalNodes(g) - spent;
     },
-    isBought(g, id) {
+    hasUpg(g, id) {
         return (g.interference.upgrades & Math.pow(2, id - 1)) !== 0
     },
     applyUpg(g, id, def = 1) {
-        return this.isBought(g, id) ? this.upgrades.filter(u => id === u.id)[0].current(g) : def
+        return this.hasUpg(g, id) ? this.upgrades.filter(u => id === u.id)[0].current(g) : def
     },
     /*
     Upgrade format:
@@ -148,25 +148,24 @@ const DATABASE_CHALLENGE = {
         {
             id: 1,
             tier: 1,
-            name: "Photofertilizer",
-            desc: "Multiplier to light, grows based on light",
+            name: "Fusion",
+            desc: "Multiplier to light, increases based on light",
             current: (g) => Math.pow(1.2, Decimal.log10(g.light)) + 1,
             cost: 2
         },
         {
             id: 2,
             tier: 1,
-            name: "Upgrade 2",
-            desc: "Stuff",
-            current: (g) => 1,
+            name: "Overclock",
+            desc: "Red lens is 50% stronger",
             cost: 1
         },
         {
             id: 3,
             tier: 1,
-            name: "Upgrade 3",
-            desc: "Stuff",
-            current: (g) => 1,
+            name: "Darkness",
+            desc: "Multiplier to light based on total number of nodes",
+            current: (g) => Math.pow(30, DATABASE_CHALLENGE.totalNodes(g)),
             cost: 1
         },
         {

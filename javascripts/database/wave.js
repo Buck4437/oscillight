@@ -27,8 +27,7 @@ const DATABASE_WAVE = {
                            .times(DATABASE_PRISM.applyUpg(g, 4))
                            .times(DATABASE_PRISM.applyUpg(g, 7))
                            .times(DATABASE_CHALLENGE.applyUpg(g, 1))
-                           // .times(DATABASE_CHALLENGE.applyUpg(g, 7))
-                           // .times(DATABASE_CHALLENGE.applyUpg(g, 9))
+                           .times(DATABASE_CHALLENGE.applyUpg(g, 3))
                            .times(Math.pow(2, g.buffs))
 
             rate = rate.pow(DATABASE_CHALLENGE.isInChallenge(g, 3) ? 0.75 : 1)

@@ -100,11 +100,7 @@ const DATABASE_PRISM = {
             id: 4,
             name: "Shallow amplification",
             desc: "Multiplier to light gain based on number of prism activations",
-            current: (g) => {
-                let base = Math.pow(g.stats.resets.prism > 10000 ? 10000 + (g.stats.resets.prism - 10000) / 5 : g.stats.resets.prism, 1.5) + 1
-                return base
-                // return DATABASE_CHALLENGE.isBought(g, 6) ? Math.pow(base, 3) : base
-            },
+            current: (g) => Math.pow(g.stats.resets.prism > 10000 ? 10000 + (g.stats.resets.prism - 10000) / 5 : g.stats.resets.prism, 1.5) + 1,
             cost: new Decimal(2)
         },
         {

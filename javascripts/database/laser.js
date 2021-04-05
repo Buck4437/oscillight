@@ -41,6 +41,7 @@ const DATABASE_LASER = {
                 v.stablizing -= reductionC
                 v.stablized -= (reductionC + reductionS)
             }
+
             if (DATABASE_ACHIEVEMENT.hasAchievement(g, 7)) { // Reduce penalty
                 v.overheatPenalty = 0.1
             }
@@ -76,7 +77,7 @@ const DATABASE_LASER = {
                 let slope = (v.stablizedP - v.overheatP) / (v.stablized - v.stablizing)
                 power = slope * (m - v.stablizing) + v.overheatP;
 
-            // } else if (DATABASE_CHALLENGE.isBought(g, 5)) {
+            // } else if (DATABASE_CHALLENGE.hasUpg(g, 5)) {
             //
             //     power = v.stablizedP * (1 + Math.log(m - v.stablized + 1) / 50)
 
@@ -111,7 +112,7 @@ const DATABASE_LASER = {
                 return "overheat"
             } else if (m <= v.stablized) {
                 return "stablizing"
-            // } else if (DATABASE_CHALLENGE.isBought(g, 5)) {
+            // } else if (DATABASE_CHALLENGE.hasUpg(g, 5)) {
             //     return "softcapped"
             } else {
                 return "stablized"
@@ -123,12 +124,12 @@ const DATABASE_LASER = {
         return this.lenses.filter(l => l.id === id)[0]
     },
     getLensBoost(g, id) {
-        let base = this.getLens(id).boost
+        let base = this.getLens(id).boost(g)
 
         base = 1 + (base - 1)
-        // * DATABASE_CHALLENGE.applyUpg(g, 2)
+        // * DATABASE_CHALLENGE.applyUpg(g, 2) (Makes lens 20% stronger)
 
-        if (DATABASE_CHALLENGE.isInChallenge(g, 1)) {
+        if (DATABASE_CHALLENGE.isInChallenge(g, 1)) { // Lenses are 50% weaker
             base = 1 + (base - 1) * 0.5
         }
 
@@ -141,7 +142,7 @@ const DATABASE_LASER = {
             name: "Crank it up!",
             desc: "The energy level of the laser when charged is 30% higher, but it overheats 40% faster",
             color: "red",
-            boost: 1.3
+            boost: (g) => 1 + 0.3 * (DATABASE_CHALLENGE.hasUpg(g, 2) ? 1.5 : 1)
         },
         {
             id: 2,
@@ -149,7 +150,7 @@ const DATABASE_LASER = {
             name: "Catalyst",
             desc: "The energy level of the laser is 25% higher, the laser overheats 50% slower and stablizes 2x faster",
             color: "green",
-            boost: 1.25
+            boost: (g) => 1.3
         },
         {
             id: 3,
@@ -157,7 +158,7 @@ const DATABASE_LASER = {
             name: "Coolant stablization",
             desc: "The stablization energy level cap is 30% higher, but it takes x3 time to stablize the laser",
             color: "blue",
-            boost: 1.3
+            boost: (g) => 1.3
         }
     ]
 }

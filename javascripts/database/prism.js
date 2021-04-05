@@ -14,7 +14,8 @@ const DATABASE_PRISM = {
 
         let base = Decimal.max(1, Decimal.pow(10, Decimal.log(g.light, 1e60) - 1));
 
-        return base.times(DATABASE_CHALLENGE.applyUpg(g, 4))
+        return base
+        // return base.times(DATABASE_CHALLENGE.applyUpg(g, 4))
     },
     reset(g, forced = false) {
 
@@ -101,7 +102,8 @@ const DATABASE_PRISM = {
             desc: "Multiplier to light gain based on number of prism activations",
             current: (g) => {
                 let base = Math.pow(g.resets > 10000 ? 10000 + (g.resets - 10000) / 5 : g.resets, 1.5) + 1
-                return DATABASE_CHALLENGE.isBought(g, 6) ? Math.pow(base, 3) : base
+                return base
+                // return DATABASE_CHALLENGE.isBought(g, 6) ? Math.pow(base, 3) : base
             },
             cost: new Decimal(2)
         },

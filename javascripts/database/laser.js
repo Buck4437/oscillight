@@ -36,11 +36,11 @@ const DATABASE_LASER = {
                 let reductionC = v.charged * 0.8
                 let reductionS = (v.stablized - v.stablizing) * 0.8
                 v.charged -= reductionC
+
                 v.overheat -= reductionC
                 v.stablizing -= reductionC
                 v.stablized -= (reductionC + reductionS)
             }
-
             if (DATABASE_ACHIEVEMENT.hasAchievement(g, 7)) { // Reduce penalty
                 v.overheatPenalty = 0.1
             }
@@ -76,9 +76,9 @@ const DATABASE_LASER = {
                 let slope = (v.stablizedP - v.overheatP) / (v.stablized - v.stablizing)
                 power = slope * (m - v.stablizing) + v.overheatP;
 
-            } else if (DATABASE_CHALLENGE.isBought(g, 5)) {
-
-                power = v.stablizedP * (1 + Math.log(m - v.stablized + 1) / 50)
+            // } else if (DATABASE_CHALLENGE.isBought(g, 5)) {
+            //
+            //     power = v.stablizedP * (1 + Math.log(m - v.stablized + 1) / 50)
 
             } else {
 
@@ -111,8 +111,8 @@ const DATABASE_LASER = {
                 return "overheat"
             } else if (m <= v.stablized) {
                 return "stablizing"
-            } else if (DATABASE_CHALLENGE.isBought(g, 5)) {
-                return "softcapped"
+            // } else if (DATABASE_CHALLENGE.isBought(g, 5)) {
+            //     return "softcapped"
             } else {
                 return "stablized"
             }
@@ -125,7 +125,8 @@ const DATABASE_LASER = {
     getLensBoost(g, id) {
         let base = this.getLens(id).boost
 
-        base = 1 + (base - 1) * DATABASE_CHALLENGE.applyUpg(g, 2)
+        base = 1 + (base - 1)
+        // * DATABASE_CHALLENGE.applyUpg(g, 2)
 
         if (DATABASE_CHALLENGE.isInChallenge(g, 1)) {
             base = 1 + (base - 1) * 0.5

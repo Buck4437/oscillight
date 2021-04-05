@@ -26,7 +26,7 @@ const DATABASE_CHALLENGE = {
             acronym: "Y",
             color: "gold", //yellow is too bright
             name: "Yellow Interference",
-            desc: "Multipliers to base light gain are disabled"
+            desc: "All base light gain multipliers from oscillation upgrades are disabled"
         }
     ],
     enterChallenge(g, id = 0) {
@@ -128,82 +128,279 @@ const DATABASE_CHALLENGE = {
     applyUpg(g, id, def = 1) {
         return this.isBought(g, id) ? this.upgrades.filter(u => id === u.id)[0].current(g) : def
     },
+    /*
+    Upgrade format:
+    REQUIRED
+    id: number, must be unique
+    tier: n-th row the upgrade will be on
+    name: string, self explainatory
+    desc: string, self explainatory
+    cost: number, self explainatory
+
+    OPTIONAL
+    current: function that accepts g as input,
+             should output a number / decimal
+    prefix: the prefix used when displaying "current"
+            the default is "x"
+    parent: the upgrades needed to purchase before unlocking this one,
+            should be a number (because yes)
+    */
     upgrades: [
         {
             id: 1,
             tier: 1,
-            name: "Divergence",
-            desc: "Increased base light gain based on unspent rainbow",
-            current: (g) => (Decimal.pow(g.rainbow, 0.75)),
+            name: "Upgrade 1",
+            desc: "Stuff",
+            current: (g) => 1,
             prefix: "+",
             cost: 1
         },
         {
             id: 2,
             tier: 1,
-            name: "Convergence",
-            desc: "Lenses are stronger based on unspent rainbow",
-            current: (g) => (Decimal.log10(g.rainbow) * 2)/50 + 1,
+            name: "Upgrade 2",
+            desc: "Stuff",
+            current: (g) => 1,
             cost: 1
         },
         {
             id: 3,
             tier: 1,
-            name: "Parallel",
-            desc: "Multiplier to base light gain based on unspent rainbow",
-            current: (g) => Math.pow(Decimal.log10(g.rainbow), 2) + 1,
+            name: "Upgrade 3",
+            desc: "Stuff",
+            current: (g) => 1,
             cost: 1
         },
         {
             id: 4,
-            tier: 2,
-            parent: 1,
-            name: "Recursion",
-            desc: "Gain more rainbow based on unspent rainbow",
-            current: (g) => Math.pow(2, Decimal.log10(g.rainbow.add(1))),
-            cost: 3
+            tier: 1,
+            name: "Upgrade 4",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
         },
         {
             id: 5,
-            tier: 2,
-            parent: 2,
-            name: "Infinity",
-            desc: "The stablization energy level is softcapped instead of hardcapped",
-            cost: 3
+            tier: 1,
+            name: "Upgrade 5",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
         },
         {
             id: 6,
             tier: 2,
-            parent: 3,
-            name: "Phase shift",
-            desc: "Boost the 4th dispersion upgrade (x => x^3)",
-            cost: 3
+            parent: 2,
+            name: "Upgrade 6",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
         },
         {
             id: 7,
-            tier: 3,
-            parent: 4,
-            name: "Fusion",
-            desc: "Multiplier to light gain based on amount of light",
-            current: (g) => Math.pow(1.3, Decimal.log10(g.light)) + 1,
-            cost: 5
+            tier: 2,
+            parent: 3,
+            name: "Upgrade 7",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
         },
         {
             id: 8,
-            tier: 3,
-            parent: 5,
-            name: "Conclusion",
-            desc: "Complete the game",
-            cost: 11
+            tier: 2,
+            parent: 4,
+            name: "Upgrade 8",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
         },
         {
             id: 9,
-            tier: 3,
+            tier: 2,
+            parent: 5,
+            name: "Upgrade 9",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
+        },
+        {
+            id: 10,
+            tier: 2,
             parent: 6,
-            name: "Supernova",
-            desc: "Static multiplier to light gain", //big static multiplier to light
-            current: (g) => new Decimal(6.66e6),
-            cost: 5
+            name: "Upgrade 10",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
+        },
+        {
+            id: 11,
+            tier: 3,
+            parent: 7,
+            name: "Upgrade 11",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
+        },
+        {
+            id: 12,
+            tier: 3,
+            parent: 8,
+            name: "Upgrade 12",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
+        },
+        {
+            id: 13,
+            tier: 3,
+            parent: 9,
+            name: "Upgrade 13",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
+        },
+        {
+            id: 14,
+            tier: 3,
+            parent: 10,
+            name: "Upgrade 14",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
+        },
+        {
+            id: 15,
+            tier: 3,
+            parent: 11,
+            name: "Upgrade 15",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
+        },
+        {
+            id: 16,
+            tier: 4,
+            parent: 12,
+            name: "Upgrade 16",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
+        },
+        {
+            id: 17,
+            tier: 4,
+            parent: 13,
+            name: "Upgrade 17",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
+        },
+        {
+            id: 18,
+            tier: 4,
+            parent: 14,
+            name: "Conclusion",
+            desc: "Complete the game",
+            cost: 1
+        },
+        {
+            id: 19,
+            tier: 4,
+            parent: 15,
+            name: "Upgrade 19",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
+        },
+        {
+            id: 20,
+            tier: 4,
+            parent: 16,
+            name: "Upgrade 20",
+            desc: "Stuff",
+            current: (g) => 1,
+            cost: 1
         }
+
+
+
+
+
+        // {
+        //     id: 1,
+        //     tier: 1,
+        //     name: "Divergence",
+        //     desc: "Increased base light gain based on unspent rainbow",
+        //     current: (g) => (Decimal.pow(g.rainbow, 0.75)),
+        //     prefix: "+",
+        //     cost: 1
+        // },
+        // {
+        //     id: 2,
+        //     tier: 1,
+        //     name: "Convergence",
+        //     desc: "Lenses are stronger based on unspent rainbow",
+        //     current: (g) => (Decimal.log10(g.rainbow) * 2)/50 + 1,
+        //     cost: 1
+        // },
+        // {
+        //     id: 3,
+        //     tier: 1,
+        //     name: "Parallel",
+        //     desc: "Multiplier to base light gain based on unspent rainbow",
+        //     current: (g) => Math.pow(Decimal.log10(g.rainbow), 2) + 1,
+        //     cost: 1
+        // },
+        // {
+        //     id: 4,
+        //     tier: 2,
+        //     parent: 1,
+        //     name: "Recursion",
+        //     desc: "Gain more rainbow based on unspent rainbow",
+        //     current: (g) => Math.pow(2, Decimal.log10(g.rainbow.add(1))),
+        //     cost: 3
+        // },
+        // {
+        //     id: 5,
+        //     tier: 2,
+        //     parent: 2,
+        //     name: "Infinity",
+        //     desc: "The stablization energy level is softcapped instead of hardcapped",
+        //     cost: 3
+        // },
+        // {
+        //     id: 6,
+        //     tier: 2,
+        //     parent: 3,
+        //     name: "Phase shift",
+        //     desc: "Boost the 4th dispersion upgrade (x => x^3)",
+        //     cost: 3
+        // },
+        // {
+        //     id: 7,
+        //     tier: 3,
+        //     parent: 4,
+        //     name: "Fusion",
+        //     desc: "Multiplier to light gain based on amount of light",
+        //     current: (g) => Math.pow(1.3, Decimal.log10(g.light)) + 1,
+        //     cost: 5
+        // },
+        // {
+        //     id: 8,
+        //     tier: 3,
+        //     parent: 5,
+        //     name: "Conclusion",
+        //     desc: "Complete the game",
+        //     cost: 11
+        // },
+        // {
+        //     id: 9,
+        //     tier: 3,
+        //     parent: 6,
+        //     name: "Supernova",
+        //     desc: "Static multiplier to light gain", //big static multiplier to light
+        //     current: (g) => new Decimal(6.66e6),
+        //     cost: 5
+        // }
     ]
 }

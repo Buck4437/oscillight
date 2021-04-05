@@ -34,7 +34,7 @@ var app = new Vue({
             return DATABASE_CHALLENGE.challenges
         },
         win() {
-            return DATABASE_CHALLENGE.isBought(this.game, 8)
+            return DATABASE_CHALLENGE.isBought(this.game, 18)
         },
         buffDisplay() {
             if (this.game.buffs === 0) return ""

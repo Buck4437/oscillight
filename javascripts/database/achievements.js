@@ -127,9 +127,9 @@ const DATABASE_ACHIEVEMENT = {
         {
             id: 9,
             name: "Red, Green, Blue",
-            description: "Reach 1e7 rainbow",
+            description: "Reach 1e9 rainbow",
             condition(g) {
-                return g.rainbow.gte("1e7")
+                return g.rainbow.gte("1e9")
             },
             reward: "You can equip all three lenses at once"
         },
@@ -149,9 +149,9 @@ const DATABASE_ACHIEVEMENT = {
         {
             id: 12,
             name: "Chromaticity",
-            description: "Reach 1e14 rainbow",
+            description: "Reach 1e15 rainbow",
             condition(g) {
-                return g.rainbow.gte("1e14")
+                return g.rainbow.gte("1e15")
             }
         },
         {

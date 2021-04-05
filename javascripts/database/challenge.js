@@ -148,11 +148,10 @@ const DATABASE_CHALLENGE = {
         {
             id: 1,
             tier: 1,
-            name: "Upgrade 1",
-            desc: "Stuff",
-            current: (g) => 1,
-            prefix: "+",
-            cost: 1
+            name: "Photofertilizer",
+            desc: "Multiplier to light, grows based on light",
+            current: (g) => Math.pow(1.2, Decimal.log10(g.light)) + 1,
+            cost: 2
         },
         {
             id: 2,
@@ -184,7 +183,7 @@ const DATABASE_CHALLENGE = {
             name: "Upgrade 5",
             desc: "Stuff",
             current: (g) => 1,
-            cost: 1
+            cost: 2
         },
         {
             id: 6,
@@ -193,7 +192,7 @@ const DATABASE_CHALLENGE = {
             name: "Upgrade 6",
             desc: "Stuff",
             current: (g) => 1,
-            cost: 1
+            cost: 2
         },
         {
             id: 7,
@@ -202,7 +201,7 @@ const DATABASE_CHALLENGE = {
             name: "Upgrade 7",
             desc: "Stuff",
             current: (g) => 1,
-            cost: 1
+            cost: 2
         },
         {
             id: 8,
@@ -229,7 +228,7 @@ const DATABASE_CHALLENGE = {
             name: "Upgrade 10",
             desc: "Stuff",
             current: (g) => 1,
-            cost: 1
+            cost: 2
         },
         {
             id: 11,
@@ -238,7 +237,7 @@ const DATABASE_CHALLENGE = {
             name: "Upgrade 11",
             desc: "Stuff",
             current: (g) => 1,
-            cost: 1
+            cost: 4
         },
         {
             id: 12,
@@ -273,8 +272,9 @@ const DATABASE_CHALLENGE = {
             parent: 10,
             name: "Upgrade 15",
             desc: "Stuff",
+            prefix: "+",
             current: (g) => 1,
-            cost: 1
+            cost: 4
         },
         {
             id: 16,

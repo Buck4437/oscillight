@@ -100,7 +100,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 6,
-            name: "Fractured ray",
+            name: "Fracture ray",
             description: "Activate prism",
             condition(g) {
                 return g.unlocks.rainbowUpgrades === true

@@ -103,7 +103,6 @@ const DATABASE_CHALLENGE = {
             if (id === r.id) return r.requirement
         }
         return new Decimal("1e9999")
-        // return DATABASE_PRISM.baseRequirement
     },
     isInChallenge(g, id) {
         return (g.interference.current & Math.pow(2, id - 1)) !== 0
@@ -190,7 +189,7 @@ const DATABASE_CHALLENGE = {
         {
             id: 6,
             tier: 2,
-            parent: 2,
+            parent: 1,
             name: "Upgrade 6",
             desc: "Stuff",
             current: (g) => 1,
@@ -199,7 +198,7 @@ const DATABASE_CHALLENGE = {
         {
             id: 7,
             tier: 2,
-            parent: 3,
+            parent: 2,
             name: "Upgrade 7",
             desc: "Stuff",
             current: (g) => 1,
@@ -208,7 +207,7 @@ const DATABASE_CHALLENGE = {
         {
             id: 8,
             tier: 2,
-            parent: 4,
+            parent: 3,
             name: "Upgrade 8",
             desc: "Stuff",
             current: (g) => 1,
@@ -217,7 +216,7 @@ const DATABASE_CHALLENGE = {
         {
             id: 9,
             tier: 2,
-            parent: 5,
+            parent: 4,
             name: "Upgrade 9",
             desc: "Stuff",
             current: (g) => 1,
@@ -226,7 +225,7 @@ const DATABASE_CHALLENGE = {
         {
             id: 10,
             tier: 2,
-            parent: 6,
+            parent: 5,
             name: "Upgrade 10",
             desc: "Stuff",
             current: (g) => 1,
@@ -235,7 +234,7 @@ const DATABASE_CHALLENGE = {
         {
             id: 11,
             tier: 3,
-            parent: 7,
+            parent: 6,
             name: "Upgrade 11",
             desc: "Stuff",
             current: (g) => 1,
@@ -244,7 +243,7 @@ const DATABASE_CHALLENGE = {
         {
             id: 12,
             tier: 3,
-            parent: 8,
+            parent: 7,
             name: "Upgrade 12",
             desc: "Stuff",
             current: (g) => 1,
@@ -253,7 +252,7 @@ const DATABASE_CHALLENGE = {
         {
             id: 13,
             tier: 3,
-            parent: 9,
+            parent: 8,
             name: "Upgrade 13",
             desc: "Stuff",
             current: (g) => 1,
@@ -262,7 +261,7 @@ const DATABASE_CHALLENGE = {
         {
             id: 14,
             tier: 3,
-            parent: 10,
+            parent: 9,
             name: "Upgrade 14",
             desc: "Stuff",
             current: (g) => 1,
@@ -271,7 +270,7 @@ const DATABASE_CHALLENGE = {
         {
             id: 15,
             tier: 3,
-            parent: 11,
+            parent: 10,
             name: "Upgrade 15",
             desc: "Stuff",
             current: (g) => 1,
@@ -280,48 +279,12 @@ const DATABASE_CHALLENGE = {
         {
             id: 16,
             tier: 4,
-            parent: 12,
-            name: "Upgrade 16",
-            desc: "Stuff",
-            current: (g) => 1,
-            cost: 1
-        },
-        {
-            id: 17,
-            tier: 4,
             parent: 13,
-            name: "Upgrade 17",
-            desc: "Stuff",
-            current: (g) => 1,
-            cost: 1
-        },
-        {
-            id: 18,
-            tier: 4,
-            parent: 14,
             name: "Conclusion",
             desc: "Complete the game",
-            cost: 1
-        },
-        {
-            id: 19,
-            tier: 4,
-            parent: 15,
-            name: "Upgrade 19",
-            desc: "Stuff",
-            current: (g) => 1,
-            cost: 1
-        },
-        {
-            id: 20,
-            tier: 4,
-            parent: 16,
-            name: "Upgrade 20",
-            desc: "Stuff",
             current: (g) => 1,
             cost: 1
         }
-
 
 
 

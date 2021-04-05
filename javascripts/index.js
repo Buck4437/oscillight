@@ -34,7 +34,7 @@ var app = new Vue({
             return DATABASE_CHALLENGE.challenges
         },
         win() {
-            return DATABASE_CHALLENGE.isBought(this.game, 18)
+            return DATABASE_CHALLENGE.isBought(this.game, 16)
         },
         buffDisplay() {
             if (this.game.buffs === 0) return ""
@@ -64,13 +64,14 @@ var app = new Vue({
             return gameLoop(this);
         },
         con() {
-            this.game.interference.upgrades ^= Math.pow(2, 8 - 1)
+            this.game.interference.upgrades ^= Math.pow(2, 16 - 1)
         },
         replay() {
             let newSave = JSON.parse(JSON.stringify(game))
             newSave.settings.theme = this.game.settings.theme
             newSave.buffs = this.game.buffs
             newSave.lastTick = Date.now()
+            newSave.stats.resets.meta = this.game.stats.resets.meta
             if (this.buffReset) newSave.buffs++;
             localStorage.setItem(SAVE_NAME, JSON.stringify(newSave))
             window.location.reload()
@@ -140,7 +141,7 @@ var app = new Vue({
 
         if (localStorage.getItem(SAVE_NAME) !== null) {
             let data = JSON.parse(localStorage.getItem(SAVE_NAME));
-            this.game = saveFixer(data, this.game);
+            this.game = saveFixer(data, this.game, true);
         }
 
         loadTheme();
@@ -156,7 +157,7 @@ var app = new Vue({
     }
 })
 
-function saveFixer(obj, def) {
+function saveFixer(obj, def, update = false) {
     let data = {}
     if (obj === null) obj = {}
     if (Array.isArray(def)) {
@@ -180,5 +181,10 @@ function saveFixer(obj, def) {
             data[key] = obj[key]
         }
     }
+
+    if (update) {
+        data = saveUpdater(obj, data)
+    }
+
     return data;
 }

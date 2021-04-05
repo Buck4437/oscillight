@@ -1,7 +1,7 @@
 function gameLoop(that, t = 0){
     let g = that.game;
 
-    let dt = Math.max(0, (Date.now() - g.lastTick) / 1000)
+    let dt = Math.max(0, (Date.now() - g.lastTick) / 1000) // Unit is second
 
     if (t !== 0) dt = t;
 
@@ -37,6 +37,10 @@ function gameLoop(that, t = 0){
         if (DATABASE_PRISM.gain(g).gte(val)) {
             DATABASE_PRISM.reset(g);
         }
+    }
+
+    for (stat in g.stats.currentTime) {
+        g.stats.currentTime[stat] += 1000 * dt
     }
 
     if (g.light.gte(17.5)) g.unlocks.upgrades = true;

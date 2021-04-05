@@ -47,7 +47,7 @@ const DATABASE_PRISM = {
 
         //When entering / exiting a challenge, the player does not gain activations
 
-        if (!forced) g.resets ++
+        if (!forced) g.stats.resets.prism ++
 
         g.rainbow = g.rainbow.add(Decimal.floor(this.gain(g)))
         g.light = new Decimal(0)
@@ -101,7 +101,7 @@ const DATABASE_PRISM = {
             name: "Shallow amplification",
             desc: "Multiplier to light gain based on number of prism activations",
             current: (g) => {
-                let base = Math.pow(g.resets > 10000 ? 10000 + (g.resets - 10000) / 5 : g.resets, 1.5) + 1
+                let base = Math.pow(g.stats.resets.prism > 10000 ? 10000 + (g.stats.resets.prism - 10000) / 5 : g.stats.resets.prism, 1.5) + 1
                 return base
                 // return DATABASE_CHALLENGE.isBought(g, 6) ? Math.pow(base, 3) : base
             },
@@ -111,7 +111,7 @@ const DATABASE_PRISM = {
             id: 5,
             name: "Deep amplification",
             desc: "Multiplier to base light based on number of prism activations",
-            current: (g) => Math.pow(g.resets, 0.3) + 1,
+            current: (g) => Math.pow(g.stats.resets.prism, 0.3) + 1,
             cost: new Decimal(2)
         },
         {

@@ -40,7 +40,7 @@ Vue.component("prism-subtab", {
             return DATABASE_PRISM.requirement(this.game)
         },
         getActivations() {
-            return this.game.resets
+            return this.game.stats.resets.prism
         },
         isAutoUnlocked() {
             return this.hasUpg(11)

@@ -171,16 +171,16 @@ const DATABASE_CHALLENGE = {
         {
             id: 4,
             tier: 1,
-            name: "Upgrade 4",
-            desc: "Stuff",
+            name: "Infinity",
+            desc: "Stuff (WIP)",
             current: (g) => 1,
             cost: 1
         },
         {
             id: 5,
             tier: 1,
-            name: "Upgrade 5",
-            desc: "Stuff",
+            name: "Supernova",
+            desc: "Stuff (WIP)",
             current: (g) => 1,
             cost: 2
         },
@@ -281,8 +281,7 @@ const DATABASE_CHALLENGE = {
             parent: 13,
             name: "Conclusion",
             desc: "Complete the game",
-            current: (g) => 1,
-            cost: 1
+            cost: 13
         }
 
 

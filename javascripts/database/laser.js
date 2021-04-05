@@ -126,9 +126,6 @@ const DATABASE_LASER = {
     getLensBoost(g, id) {
         let base = this.getLens(id).boost(g)
 
-        base = 1 + (base - 1)
-        // * DATABASE_CHALLENGE.applyUpg(g, 2) (Makes lens 20% stronger)
-
         if (DATABASE_CHALLENGE.isInChallenge(g, 1)) { // Lenses are 50% weaker
             base = 1 + (base - 1) * 0.5
         }

@@ -11,16 +11,19 @@ const DATABASE_WAVE = {
             if (!DATABASE_CHALLENGE.isInChallenge(g, 4)) {
                 base = base.times(Decimal.pow(2, g.upgrades[2]))
                            .times(DATABASE_WAVE.upgrades[7].apply(g)) //8th upgrade
-                           .times(Decimal.pow(1.5, g.upgrades[10]))
+                           .times(Decimal.pow(1.5, g.upgrades[9]))
             }
 
             base = base.times(DATABASE_PRISM.applyUpg(g, 5))
-                       // .times(DATABASE_CHALLENGE.applyUpg(g, 3))
+                       .times(DATABASE_CHALLENGE.applyUpg(g, 10))
 
             let rate = base.pow(DATABASE_LASER.laser.effect(g))
                            .pow(Decimal.pow(1.03, g.upgrades[5]))
 
-                           .times(Decimal.pow(2, g.upgrades[9]))
+                           .times(Decimal.pow(
+                               (DATABASE_CHALLENGE.hasUpg(g, 11) ? 2.5 : 2),
+                               g.upgrades[10]
+                           ))
                            .times(DATABASE_PRISM.applyUpg(g, 1))
                            .times(DATABASE_PRISM.applyUpg(g, 2))
                            .times(DATABASE_PRISM.applyUpg(g, 3))
@@ -122,20 +125,20 @@ const DATABASE_WAVE = {
         {
             id: 9,
             tier: 3,
-            name: "Duplicator",
-            desc: "Double light gain",
-            base: new Decimal(1e50),
-            scale: new Decimal(5),
-            cap: 3000
-        },
-        {
-            id: 10,
-            tier: 3,
             name: "Multiplier",
             desc: "x1.5 to base light gain",
             base: new Decimal(1e50),
             scale: new Decimal(11),
             cap: 100
+        },
+        {
+            id: 10,
+            tier: 3,
+            name: "Duplicator",
+            desc: "x2 to light gain",
+            base: new Decimal(1e50),
+            scale: new Decimal(5),
+            cap: 50000
         }
     ],
 }

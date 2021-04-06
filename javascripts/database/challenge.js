@@ -150,7 +150,7 @@ const DATABASE_CHALLENGE = {
             tier: 1,
             name: "Fusion",
             desc: "Multiplier to light, increases based on light",
-            current: (g) => Math.pow(1.2, Decimal.log10(g.light)) + 1,
+            current: (g) => Decimal.pow(1.2, Decimal.log10(g.light)).add(1),
             cost: 2
         },
         {
@@ -189,7 +189,7 @@ const DATABASE_CHALLENGE = {
             parent: 1,
             name: "Recursion",
             desc: "Gain more rainbow based on unspent rainbow",
-            current: (g) => Math.pow(3, Math.log10(g.rainbow)),
+            current: (g) => Decimal.pow(3, Decimal.log10(g.rainbow)),
             cost: 2
         },
         {
@@ -198,14 +198,14 @@ const DATABASE_CHALLENGE = {
             parent: 2,
             name: "htootwaS",
             desc: "Multiplier to light, decreases based on time in current activation",
-            current: (g) => Math.max(1, Math.pow(10, 10 - g.stats.currentTime.prism / 120)),
+            current: (g) => Math.max(1, Math.pow(10, 10 - g.stats.currentTime.prism / 60)),
             cost: 2
         },
         {
             id: 8,
             tier: 2,
             parent: 3,
-            name: "Diamond lens",
+            name: "Divergence",
             desc: "All lenses are 25% stronger",
             cost: 1
         },
@@ -222,18 +222,23 @@ const DATABASE_CHALLENGE = {
             id: 10,
             tier: 2,
             parent: 5,
-            name: "Upgrade 10",
-            desc: "Stuff",
-            current: (g) => 1,
+            name: "Absolute",
+            desc: "Multiplier to base light gain, based on number of interference you are in",
+            current: (g) => {
+                let count = 0;
+                for (let c of DATABASE_CHALLENGE.challenges) {
+                    if (DATABASE_CHALLENGE.isInChallenge(g, c.id)) count++;
+                }
+                return Math.pow(10, count)
+            },
             cost: 2
         },
         {
             id: 11,
             tier: 3,
             parent: 6,
-            name: "Upgrade 11",
-            desc: "Stuff",
-            current: (g) => 1,
+            name: "Mitosis",
+            desc: "10th oscillation upgrade boost x2 -> x2.5",
             cost: 4
         },
         {
@@ -249,7 +254,7 @@ const DATABASE_CHALLENGE = {
             id: 13,
             tier: 3,
             parent: 8,
-            name: "Upgrade 13",
+            name: "Convergence",
             desc: "Stuff",
             current: (g) => 1,
             cost: 1

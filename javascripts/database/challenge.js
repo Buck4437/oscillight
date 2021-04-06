@@ -205,9 +205,8 @@ const DATABASE_CHALLENGE = {
             id: 8,
             tier: 2,
             parent: 3,
-            name: "Upgrade 8",
-            desc: "Stuff",
-            current: (g) => 1,
+            name: "Diamond lens",
+            desc: "All lenses are 25% stronger",
             cost: 1
         },
         {
@@ -215,8 +214,8 @@ const DATABASE_CHALLENGE = {
             tier: 2,
             parent: 4,
             name: "Sawtooth",
-            desc: "Stuff",
-            current: (g) => 1,
+            desc: "Multiplier to light, increases based on time in current activation",
+            current: (g) => Math.pow(g.stats.currentTime.prism + 1, 2.5),
             cost: 1
         },
         {

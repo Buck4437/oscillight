@@ -143,7 +143,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 11,
-            name: "I broke the laser",
+            name: "I broke the laser (Does not work currently)",
             description: "Reach 1e60 Light without using laser"
         },
         {

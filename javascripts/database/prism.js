@@ -86,7 +86,7 @@ const DATABASE_PRISM = {
             id: 2,
             name: "Static",
             desc: "Static multiplier to light",
-            current: (g) => new Decimal(10),
+            current: () => new Decimal(10),
             cost: new Decimal(1)
         },
         {
@@ -154,11 +154,5 @@ const DATABASE_PRISM = {
             desc: "Keep laser after activating prism",
             cost: new Decimal(300)
         }
-        // {
-        //     id: 13,
-        //     name: "RGB",
-        //     desc: "You can equip all three lenses at once",
-        //     cost: new Decimal(1e99)
-        // }
     ]
 }

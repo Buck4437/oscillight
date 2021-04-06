@@ -5,7 +5,7 @@ const DATABASE_CHALLENGE = {
             acronym: "R",
             color: "red",
             name: "Red Interference",
-            desc: "Lenses are 50% weaker"
+            desc: "Lenses are 75% weaker"
         },
         {
             id: 2,
@@ -172,25 +172,24 @@ const DATABASE_CHALLENGE = {
             id: 4,
             tier: 1,
             name: "Infinity",
-            desc: "Stuff (WIP)",
-            current: (g) => 1,
+            desc: "The stablization energy level is softcapped instead of hardcapped",
             cost: 1
         },
         {
             id: 5,
             tier: 1,
             name: "Supernova",
-            desc: "Stuff (WIP)",
-            current: (g) => 1,
+            desc: "Static multiplier to light",
+            current: () => 1e10,
             cost: 2
         },
         {
             id: 6,
             tier: 2,
             parent: 1,
-            name: "Upgrade 6",
-            desc: "Stuff",
-            current: (g) => 1,
+            name: "Recursion",
+            desc: "Gain more rainbow based on unspent rainbow",
+            current: (g) => Math.pow(3, Math.log10(g.rainbow)),
             cost: 2
         },
         {

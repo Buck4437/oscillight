@@ -77,9 +77,9 @@ const DATABASE_LASER = {
                 let slope = (v.stablizedP - v.overheatP) / (v.stablized - v.stablizing)
                 power = slope * (m - v.stablizing) + v.overheatP;
 
-            // } else if (DATABASE_CHALLENGE.hasUpg(g, 5)) {
-            //
-            //     power = v.stablizedP * (1 + Math.log(m - v.stablized + 1) / 50)
+            } else if (DATABASE_CHALLENGE.hasUpg(g, 4)) {
+
+                power = v.stablizedP * (1 + Math.pow(Math.log(m - v.stablized + 1), 0.3) / 8)
 
             } else {
 
@@ -112,8 +112,8 @@ const DATABASE_LASER = {
                 return "overheat"
             } else if (m <= v.stablized) {
                 return "stablizing"
-            // } else if (DATABASE_CHALLENGE.hasUpg(g, 5)) {
-            //     return "softcapped"
+            } else if (DATABASE_CHALLENGE.hasUpg(g, 4)) {
+                return "softcapped"
             } else {
                 return "stablized"
             }
@@ -127,7 +127,7 @@ const DATABASE_LASER = {
         let base = this.getLens(id).boost(g)
 
         if (DATABASE_CHALLENGE.isInChallenge(g, 1)) { // Lenses are 50% weaker
-            base = 1 + (base - 1) * 0.5
+            base = 1 + (base - 1) * 0.25
         }
 
         return base

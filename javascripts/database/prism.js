@@ -14,8 +14,7 @@ const DATABASE_PRISM = {
 
         let base = Decimal.max(1, Decimal.pow(10, Decimal.log(g.light, 1e60) - 1));
 
-        return base
-        // return base.times(DATABASE_CHALLENGE.applyUpg(g, 4))
+        return base.times(DATABASE_CHALLENGE.applyUpg(g, 6))
     },
     reset(g, forced = false) {
 
@@ -52,6 +51,7 @@ const DATABASE_PRISM = {
         g.rainbow = g.rainbow.add(Decimal.floor(this.gain(g)))
         g.light = new Decimal(0)
         g.unlocks.rainbowUpgrades = true
+        g.stats.currentTime.prism = 0
 
         // Not entering / exiting a challenge, and is inside a challenge
 

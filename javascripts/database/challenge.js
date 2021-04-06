@@ -165,7 +165,7 @@ const DATABASE_CHALLENGE = {
             tier: 1,
             name: "Darkness",
             desc: "Multiplier to light based on total number of nodes",
-            current: (g) => Math.pow(30, DATABASE_CHALLENGE.totalNodes(g)),
+            current: (g) => Math.pow(10, DATABASE_CHALLENGE.totalNodes(g)),
             cost: 1
         },
         {
@@ -180,7 +180,7 @@ const DATABASE_CHALLENGE = {
             tier: 1,
             name: "Supernova",
             desc: "Static multiplier to light",
-            current: () => 1e10,
+            current: () => 1e12,
             cost: 2
         },
         {
@@ -196,9 +196,9 @@ const DATABASE_CHALLENGE = {
             id: 7,
             tier: 2,
             parent: 2,
-            name: "Upgrade 7",
-            desc: "Stuff",
-            current: (g) => 1,
+            name: "htootwaS",
+            desc: "Multiplier to light, decreases based on time in current activation",
+            current: (g) => Math.max(1, Math.pow(10, 10 - g.stats.currentTime.prism / 120)),
             cost: 2
         },
         {
@@ -214,7 +214,7 @@ const DATABASE_CHALLENGE = {
             id: 9,
             tier: 2,
             parent: 4,
-            name: "Upgrade 9",
+            name: "Sawtooth",
             desc: "Stuff",
             current: (g) => 1,
             cost: 1

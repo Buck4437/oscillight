@@ -29,6 +29,7 @@ const DATABASE_WAVE = {
                            .times(DATABASE_CHALLENGE.applyUpg(g, 1))
                            .times(DATABASE_CHALLENGE.applyUpg(g, 3))
                            .times(DATABASE_CHALLENGE.applyUpg(g, 5))
+                           .times(DATABASE_CHALLENGE.applyUpg(g, 7))
                            .times(Math.pow(2, g.buffs))
 
             rate = rate.pow(DATABASE_CHALLENGE.isInChallenge(g, 3) ? 0.75 : 1)

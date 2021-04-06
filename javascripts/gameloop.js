@@ -40,7 +40,7 @@ function gameLoop(that, t = 0){
     }
 
     for (stat in g.stats.currentTime) {
-        g.stats.currentTime[stat] += 1000 * dt
+        g.stats.currentTime[stat] += dt
     }
 
     if (g.light.gte(17.5)) g.unlocks.upgrades = true;

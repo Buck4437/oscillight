@@ -41,7 +41,7 @@ var game = {
     buffs: 0,
     stats: {
         currentTime: {
-            prism: 0, // the unit is ms
+            prism: 0, // the unit is s
             meta: 0
         },
         resets: {

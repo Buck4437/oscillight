@@ -27,7 +27,8 @@ function gameLoop(that, t = 0){
     g.period = (g.period + DATABASE_WAVE.light.speed(g) * dt) % 360
 
     if (g.laser.isActive) {
-        g.laser.time += dt;
+        g.laser.time += dt * (DATABASE_CHALLENGE.hasUpg(g, 12) ? 3 : 1)
+                           * (DATABASE_CHALLENGE.hasUpg(g, 14) ? 1/3 : 1);
     }
 
     g.light = g.light.add(DATABASE_WAVE.light.rate(g).times(dt))

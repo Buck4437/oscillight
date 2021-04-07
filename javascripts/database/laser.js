@@ -101,7 +101,7 @@ const DATABASE_LASER = {
         status: (g) => {
             if (!g.laser.isActive) return "deactivated"
 
-            let m = g.laser.time/60
+            let m = g.laser.time / 60
             let v = DATABASE_LASER.laser.vars(g)
 
             if (m <= v.charged) {
@@ -141,7 +141,10 @@ const DATABASE_LASER = {
             name: "Crank it up!",
             desc: "The energy level of the laser when charged is 30% higher, but it overheats 40% faster",
             color: "red",
-            boost: (g) => 1 + 0.3 * (DATABASE_CHALLENGE.hasUpg(g, 2) ? 1.5 : 1)
+            boost: (g) => {
+                return 1 + 0.3 * (DATABASE_CHALLENGE.hasUpg(g, 2) ? 1.5 : 1)
+                               * (DATABASE_CHALLENGE.hasUpg(g, 12) ? 1.25 : 1)
+            }
         },
         {
             id: 2,
@@ -157,7 +160,9 @@ const DATABASE_LASER = {
             name: "Coolant stablization",
             desc: "The stablization energy level cap is 30% higher, but it takes x3 time to stablize the laser",
             color: "blue",
-            boost: () => 1.3
+            boost: (g) => {
+                return 1 + 0.3 * (DATABASE_CHALLENGE.hasUpg(g, 14) ? 1.25 : 1)
+            }
         }
     ]
 }

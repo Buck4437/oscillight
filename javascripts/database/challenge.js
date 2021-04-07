@@ -199,7 +199,7 @@ const DATABASE_CHALLENGE = {
             name: "htootwaS",
             desc: "Multiplier to light, decreases based on time in current activation",
             current: (g) => Math.max(1, Math.pow(10, 10 - g.stats.currentTime.prism / 60)),
-            cost: 2
+            cost: 1
         },
         {
             id: 8,
@@ -223,13 +223,13 @@ const DATABASE_CHALLENGE = {
             tier: 2,
             parent: 5,
             name: "Absolute",
-            desc: "Multiplier to base light gain, based on number of interference you are in",
+            desc: "Multiplier to light, based on number of interference you are in",
             current: (g) => {
                 let count = 0;
                 for (let c of DATABASE_CHALLENGE.challenges) {
                     if (DATABASE_CHALLENGE.isInChallenge(g, c.id)) count++;
                 }
-                return Math.pow(10, count)
+                return Math.pow(1e5, count)
             },
             cost: 2
         },
@@ -238,16 +238,15 @@ const DATABASE_CHALLENGE = {
             tier: 3,
             parent: 6,
             name: "Mitosis",
-            desc: "10th oscillation upgrade boost x2 -> x2.5",
+            desc: "10th oscillation upgrade boost x2 -> x2.75",
             cost: 4
         },
         {
             id: 12,
             tier: 3,
             parent: 7,
-            name: "Upgrade 12",
-            desc: "Stuff",
-            current: (g) => 1,
+            name: "Tachyon",
+            desc: "Laser runs x3 faster, but red lens is 25% stronger",
             cost: 1
         },
         {
@@ -255,26 +254,25 @@ const DATABASE_CHALLENGE = {
             tier: 3,
             parent: 8,
             name: "Convergence",
-            desc: "Stuff",
-            current: (g) => 1,
+            desc: "Increase base light gain based on your rainbow",
+            current: (g) => Math.pow(g.rainbow, 0.3),
+            prefix: "+",
             cost: 1
         },
         {
             id: 14,
             tier: 3,
             parent: 9,
-            name: "Upgrade 14",
-            desc: "Stuff",
-            current: (g) => 1,
+            name: "Dilation",
+            desc: "Laser runs x3 slower, but blue lens is 25% stronger",
             cost: 1
         },
         {
             id: 15,
             tier: 3,
             parent: 10,
-            name: "Upgrade 15",
-            desc: "Stuff",
-            prefix: "+",
+            name: "Stability",
+            desc: "Set the base light gain multi to x1e5",
             current: (g) => 1,
             cost: 4
         },

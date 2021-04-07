@@ -6,22 +6,26 @@ const DATABASE_WAVE = {
             let base = new Decimal(this.energy(g))
 
             base = base.add(g.upgrades[1])
-                       // .add(DATABASE_CHALLENGE.applyUpg(g, 1, 0))
+                       .add(DATABASE_CHALLENGE.applyUpg(g, 13, 0))
 
-            if (!DATABASE_CHALLENGE.isInChallenge(g, 4)) {
-                base = base.times(Decimal.pow(2, g.upgrades[2]))
-                           .times(DATABASE_WAVE.upgrades[7].apply(g)) //8th upgrade
-                           .times(Decimal.pow(1.5, g.upgrades[9]))
+            if (DATABASE_CHALLENGE.hasUpg(g, 15)) {
+                base = base.times(1e5)
+            } else {
+
+                if (!DATABASE_CHALLENGE.isInChallenge(g, 4)) {
+                    base = base.times(Decimal.pow(2, g.upgrades[2]))
+                               .times(DATABASE_WAVE.upgrades[7].apply(g)) //8th upgrade
+                               .times(Decimal.pow(1.5, g.upgrades[9]))
+                }
+
+                base = base.times(DATABASE_PRISM.applyUpg(g, 5))
             }
-
-            base = base.times(DATABASE_PRISM.applyUpg(g, 5))
-                       .times(DATABASE_CHALLENGE.applyUpg(g, 10))
 
             let rate = base.pow(DATABASE_LASER.laser.effect(g))
                            .pow(Decimal.pow(1.03, g.upgrades[5]))
 
                            .times(Decimal.pow(
-                               (DATABASE_CHALLENGE.hasUpg(g, 11) ? 2.5 : 2),
+                               (DATABASE_CHALLENGE.hasUpg(g, 11) ? 2.75 : 2),
                                g.upgrades[10]
                            ))
                            .times(DATABASE_PRISM.applyUpg(g, 1))
@@ -34,6 +38,7 @@ const DATABASE_WAVE = {
                            .times(DATABASE_CHALLENGE.applyUpg(g, 5))
                            .times(DATABASE_CHALLENGE.applyUpg(g, 7))
                            .times(DATABASE_CHALLENGE.applyUpg(g, 9))
+                           .times(DATABASE_CHALLENGE.applyUpg(g, 10))
                            .times(Math.pow(2, g.buffs))
 
             rate = rate.pow(DATABASE_CHALLENGE.isInChallenge(g, 3) ? 0.75 : 1)
@@ -135,10 +140,10 @@ const DATABASE_WAVE = {
             id: 10,
             tier: 3,
             name: "Duplicator",
-            desc: "x2 to light gain",
+            desc: "Double light gain",
             base: new Decimal(1e50),
             scale: new Decimal(5),
-            cap: 50000
+            cap: 750
         }
     ],
 }

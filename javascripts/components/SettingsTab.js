@@ -55,6 +55,14 @@ Vue.component("settings-tab", {
             <button class="warning" @click="showWipeDataModal = true">
                 Wipe all data
             </button>
+
+            <div class="break"></div>
+
+            <button v-if="game.unlocks.interference"
+                    :class="game.settings.effect.interference ? 'on' : 'off'"
+                    @click="game.settings.effect.interference = !game.settings.effect.interference">
+                Interference background effect: {{game.settings.effect.interference ? "Enabled" : "Disabled"}}
+            </button>
         </div>
 
         <div class="hotkeys">

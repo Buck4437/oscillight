@@ -51,6 +51,9 @@ var game = {
     },
     settings: {
         moveAchievement: false,
+        effect: {
+            interference: true
+        },
         theme: 0
     },
     lastTick: Date.now(),

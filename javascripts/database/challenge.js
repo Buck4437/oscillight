@@ -39,7 +39,7 @@ const DATABASE_CHALLENGE = {
     requirements: [
         {
             id: 1,
-            requirement: new Decimal("1e155")
+            requirement: new Decimal("1e120")
         },
         {
             id: 2,
@@ -273,7 +273,6 @@ const DATABASE_CHALLENGE = {
             parent: 10,
             name: "Stability",
             desc: "Set the base light gain multi to x1e5",
-            current: (g) => 1,
             cost: 4
         },
         {
@@ -282,87 +281,7 @@ const DATABASE_CHALLENGE = {
             parent: 13,
             name: "Conclusion",
             desc: "Complete the game",
-            cost: 13
+            cost: 12
         }
-
-
-
-
-        // {
-        //     id: 1,
-        //     tier: 1,
-        //     name: "Divergence",
-        //     desc: "Increased base light gain based on unspent rainbow",
-        //     current: (g) => (Decimal.pow(g.rainbow, 0.75)),
-        //     prefix: "+",
-        //     cost: 1
-        // },
-        // {
-        //     id: 2,
-        //     tier: 1,
-        //     name: "Convergence",
-        //     desc: "Lenses are stronger based on unspent rainbow",
-        //     current: (g) => (Decimal.log10(g.rainbow) * 2)/50 + 1,
-        //     cost: 1
-        // },
-        // {
-        //     id: 3,
-        //     tier: 1,
-        //     name: "Parallel",
-        //     desc: "Multiplier to base light gain based on unspent rainbow",
-        //     current: (g) => Math.pow(Decimal.log10(g.rainbow), 2) + 1,
-        //     cost: 1
-        // },
-        // {
-        //     id: 4,
-        //     tier: 2,
-        //     parent: 1,
-        //     name: "Recursion",
-        //     desc: "Gain more rainbow based on unspent rainbow",
-        //     current: (g) => Math.pow(2, Decimal.log10(g.rainbow.add(1))),
-        //     cost: 3
-        // },
-        // {
-        //     id: 5,
-        //     tier: 2,
-        //     parent: 2,
-        //     name: "Infinity",
-        //     desc: "The stablization energy level is softcapped instead of hardcapped",
-        //     cost: 3
-        // },
-        // {
-        //     id: 6,
-        //     tier: 2,
-        //     parent: 3,
-        //     name: "Phase shift",
-        //     desc: "Boost the 4th dispersion upgrade (x => x^3)",
-        //     cost: 3
-        // },
-        // {
-        //     id: 7,
-        //     tier: 3,
-        //     parent: 4,
-        //     name: "Fusion",
-        //     desc: "Multiplier to light gain based on amount of light",
-        //     current: (g) => Math.pow(1.3, Decimal.log10(g.light)) + 1,
-        //     cost: 5
-        // },
-        // {
-        //     id: 8,
-        //     tier: 3,
-        //     parent: 5,
-        //     name: "Conclusion",
-        //     desc: "Complete the game",
-        //     cost: 11
-        // },
-        // {
-        //     id: 9,
-        //     tier: 3,
-        //     parent: 6,
-        //     name: "Supernova",
-        //     desc: "Static multiplier to light gain", //big static multiplier to light
-        //     current: (g) => new Decimal(6.66e6),
-        //     cost: 5
-        // }
     ]
 }

@@ -95,7 +95,7 @@ const DATABASE_CHALLENGE = {
         },
         {
             id: 15,
-            requirement: new Decimal("1e140")
+            requirement: new Decimal("1e120")
         }
     ],
     getRequirement(id) {

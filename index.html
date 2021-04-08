@@ -37,6 +37,8 @@
         <div class="mask">
         </div>
         <div id="app">
+            <background-animation :game="game"></background-animation>
+
             <header>
                 <div>
                     Light: {{format(game.light)}} {{buffDisplay}}
@@ -105,6 +107,7 @@
          <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
          <script src="javascripts/libraries/break_infinity.min.js"></script>
 
+         <script src="javascripts/components/Background.js"></script>
          <script src="javascripts/components/BaseMenuButton.js"></script>
          <script src="javascripts/components/TooltipButton.js"></script>
 
@@ -177,10 +180,7 @@ Rebalance Interference (might be too grindy) -->
 
 <!-- IDEA: Keep buy max when meta reset -->
 
-<!-- IDEA: Background effect when in an interference (maybe 4 color waves oscillating)
-Create background.js,
-use canvas, z-index = -1, pos abs, width, heighy = vw vh
--->
+<!-- TODO: disable background option -->
 
 <!-- IDEA: Winning animation -->
 
@@ -208,6 +208,7 @@ use canvas, z-index = -1, pos abs, width, heighy = vw vh
 Major change:
 Completely revamped interference
 Added achievement
+Background effect when you enter interference
 ???
 ???
 

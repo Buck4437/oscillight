@@ -71,9 +71,10 @@ Vue.component("prism-subtab", {
             let c = this.$el.querySelector(".prism-display")
             if (c === null) return;
             let ctx = c.getContext("2d");
-            ctx.clearRect(0, 0, w, h);
+            ctx.clearRect(0, 0, w, h); // clear the canvas
 
             ctx.lineWidth = 2;
+            ctx.fillStyle = this.getCssVar("--background")
             ctx.strokeStyle = this.getCssVar("--color")
 
             ctx.beginPath();
@@ -82,6 +83,7 @@ Vue.component("prism-subtab", {
             ctx.lineTo(w - 2, h - 2);
             ctx.closePath();
             ctx.stroke();
+            ctx.fill();
 
         },
         format(num, a, b, c) {

@@ -76,7 +76,7 @@ Vue.component("settings-tab", {
         </div>
 
         <div class="extra">
-            Created by Buck | Made for IGJ 2021 | <a target="_blank" href="https://discord.com/invite/N8MuKMz">Discord</a>
+            Created by Buck | Made for IGJ 2021 | <a target="_blank" href="changelog/index.html">Changelog</a> | <a target="_blank" href="https://discord.com/invite/N8MuKMz">Discord</a>
         </div>
 
         <confirmation-modal v-if="showWipeDataModal" @yes="reset" @no="showWipeDataModal = false">

@@ -86,7 +86,8 @@ var app = new Vue({
             setInterval(() => {
                 localStorage.setItem(SAVE_NAME, JSON.stringify(this.game))
                 console.log("Game saved!");
-            }, 10000)
+                toastr.info("", "Game saved!")
+            }, 20000)
         },
         setToast() {
             toastr.options = {

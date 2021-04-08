@@ -38,6 +38,9 @@ var game = {
         interference: false
     },
     achievements: 0, // binary
+    achievementConditions: {
+        11: false
+    },
     buffs: 0,
     stats: {
         currentTime: {

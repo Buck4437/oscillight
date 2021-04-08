@@ -126,7 +126,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 9,
-            name: "Red, Green, Blue",
+            name: "Infinity",
             description: "Reach 1e308 Light",
             condition(g) {
                 return g.light.gte("1e308")
@@ -135,7 +135,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 10,
-            name: "Equilibrium",
+            name: "Red and Blue and Green",
             description: "Complete 7 interferences",
             condition(g) {
                 return DATABASE_CHALLENGE.totalNodes(g) >= 7
@@ -151,7 +151,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 12,
-            name: "Chromaticity",
+            name: "Fragments of color",
             description: "Reach 1e20 rainbow",
             condition(g) {
                 return g.rainbow.gte("1e20")
@@ -159,7 +159,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 13,
-            name: "Maximum (Does not work currently)",
+            name: "Maximum",
             description: "Max all oscillation upgrades",
             condition(g) {
                 let allMax = true
@@ -174,10 +174,18 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 14,
-            name: "The Beacon",
-            description: "Reach 1e999 Light",
+            name: "Chromaticity",
+            description: "Reach 1e30 Rainbow",
             condition(g) {
-                return g.light.gte("1e999")
+                return g.rainbow.gte("1e30")
+            }
+        },
+        {
+            id: 15,
+            name: "The Beacon",
+            description: "Reach 1e900 Light",
+            condition(g) {
+                return g.light.gte("1e900")
             }
         }
 

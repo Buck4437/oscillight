@@ -33,21 +33,21 @@ Vue.component("background-animation", {
             const COLORS = DATABASE_CHALLENGE.challenges.map(x => x.color)
             for (let i = 0; i < COLORS.length; i++) {
                 if (this.getInterferences[i]) {
-                    let color = this.getCssVar(`--color-${COLORS[i]}`) + "0A"
+                    let color = this.getCssVar(`--color-${COLORS[i]}`) + "09"
                     this.drawWave(ctx, w, h, color, i / COLORS.length * 360)
                 }
             }
         },
         drawWave(ctx, w, h, color, offset = 0) {
             ctx.strokeStyle = color
-            ctx.lineWidth = 5;
+            ctx.lineWidth = 3;
 
             ctx.moveTo(0, h/2);  // move to the left before drawing the sine
             ctx.beginPath()
 
             for (let x = 0; x <= 360; x += 1) {
                 let x2 = x + offset + this.period
-                let y = 180.0 - Math.sin(x2 * Math.PI / 180) * 150; // calculate y flipped horizontally, converting from DEG to RADIAN
+                let y = 180.0 - Math.sin(x2 * Math.PI / 180) * 120; // calculate y flipped horizontally, converting from DEG to RADIAN
                 ctx.lineTo(w/360 * x, h/360 * y); // draw the point
             }
             ctx.stroke(); // strokes the drawing to the canvas
@@ -58,7 +58,7 @@ Vue.component("background-animation", {
             let dt = (Date.now() - this.tick) / 1000
             this.tick = Date.now()
 
-            this.period = (this.period + dt * 18) % 360
+            this.period = (this.period + dt * 12) % 360
             this.draw()
         }, 50)
     },

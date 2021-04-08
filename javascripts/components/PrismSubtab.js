@@ -153,7 +153,7 @@ Vue.component("prism-subtab", {
             <button class="prism-btn"
                     @click="activate"
                     :class="{'disabled': !canActivate}">
-                Activate the prism!
+                {{game.interference.current === 0 ? "Activate the prism!" : "Complete the interference!"}}
             </button>
 
             <button v-if="isAutoUnlocked"

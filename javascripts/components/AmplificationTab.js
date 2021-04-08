@@ -110,6 +110,7 @@ Vue.component("amplification-tab", {
             }
         },
         toggle() {
+            this.game.achievementConditions["11"] = false
             this.game.laser.isActive = !this.isLaserActive
             this.game.laser.time = 0; //reset
         },

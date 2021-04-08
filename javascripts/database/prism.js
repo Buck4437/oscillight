@@ -67,6 +67,10 @@ const DATABASE_PRISM = {
             g.interference.respec = false
             g.interference.upgrades = 0
         }
+
+        if (g.laser.time === 0) { // The laser is deactivated
+            g.achievementConditions["11"] = true
+        }
     },
     hasUpg(g, i) {
         return (g.rainbowUpgrades & Math.pow(2, i - 1)) !== 0

@@ -127,39 +127,57 @@ const DATABASE_ACHIEVEMENT = {
         {
             id: 9,
             name: "Red, Green, Blue",
-            description: "Reach 1e9 rainbow",
+            description: "Reach 1e308 Light",
             condition(g) {
-                return g.rainbow.gte("1e9")
+                return g.light.gte("1e308")
             },
             reward: "You can equip all three lenses at once"
         },
         {
             id: 10,
-            name: "The Beacon",
-            description: "Reach 1e250 Light",
+            name: "Equilibrium",
+            description: "Complete 7 interferences",
             condition(g) {
-                return g.light.gte("1e250")
+                return DATABASE_CHALLENGE.totalNodes(g) >= 7
             }
         },
         {
             id: 11,
-            name: "I broke the laser (Does not work currently)",
-            description: "Reach 1e60 Light without using laser"
+            name: "I broke the laser",
+            description: "Reach 1e150 Light without ever activating laser in current prism reset",
+            condition(g) {
+                return g.light.gte("1e150") && g.achievementConditions["11"]
+            }
         },
         {
             id: 12,
             name: "Chromaticity",
-            description: "Reach 1e15 rainbow",
+            description: "Reach 1e20 rainbow",
             condition(g) {
-                return g.rainbow.gte("1e15")
+                return g.rainbow.gte("1e20")
             }
         },
         {
             id: 13,
-            name: "Infinity",
-            description: "Reach 1e308 Light",
+            name: "Maximum (Does not work currently)",
+            description: "Max all oscillation upgrades",
             condition(g) {
-                return g.light.gte("1e308")
+                let allMax = true
+                for (let upg of DATABASE_WAVE.upgrades) {
+                    if (g.upgrades[upg.id] < upg.cap) {
+                        allMax = false
+                        break
+                    }
+                }
+                return allMax
+            }
+        },
+        {
+            id: 14,
+            name: "The Beacon",
+            description: "Reach 1e999 Light",
+            condition(g) {
+                return g.light.gte("1e999")
             }
         }
 

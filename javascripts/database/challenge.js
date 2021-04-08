@@ -47,43 +47,43 @@ const DATABASE_CHALLENGE = {
         },
         {
             id: 3,
-            requirement: new Decimal("1e75")
+            requirement: new Decimal("1e100")
         },
         {
             id: 4,
-            requirement: new Decimal("1e80")
+            requirement: new Decimal("1e125")
         },
         {
             id: 5,
-            requirement: new Decimal("1.07e107")
+            requirement: new Decimal("1e125")
         },
         {
             id: 6,
-            requirement: new Decimal("1e50")
+            requirement: new Decimal("1e85")
         },
         {
             id: 7,
-            requirement: new Decimal("1e63")
+            requirement: new Decimal("1e100")
         },
         {
             id: 8,
-            requirement: new Decimal("1e36")
+            requirement: new Decimal("1e85")
         },
         {
             id: 9,
-            requirement: new Decimal("1e36")
+            requirement: new Decimal("1e100")
         },
         {
             id: 10,
-            requirement: new Decimal("1e36")
+            requirement: new Decimal("1e105")
         },
         {
             id: 11,
-            requirement: new Decimal("1e43")
+            requirement: new Decimal("1e110")
         },
         {
             id: 12,
-            requirement: new Decimal("1e37")
+            requirement: new Decimal("1e145")
         },
         {
             id: 13,
@@ -150,7 +150,7 @@ const DATABASE_CHALLENGE = {
             tier: 1,
             name: "Fusion",
             desc: "Multiplier to light, increases based on light",
-            current: (g) => Decimal.pow(1.2, Decimal.log10(g.light)).add(1),
+            current: (g) => Decimal.pow(1.25, Decimal.log10(g.light)).add(1),
             cost: 2
         },
         {
@@ -180,7 +180,7 @@ const DATABASE_CHALLENGE = {
             tier: 1,
             name: "Supernova",
             desc: "Static multiplier to light",
-            current: () => 1e12,
+            current: () => 1e15,
             cost: 2
         },
         {
@@ -198,7 +198,7 @@ const DATABASE_CHALLENGE = {
             parent: 2,
             name: "htootwaS",
             desc: "Multiplier to light, decreases based on time in current activation",
-            current: (g) => Math.max(1, Math.pow(10, 10 - g.stats.currentTime.prism / 60)),
+            current: (g) => Math.max(1, Math.pow(10, 10 - g.stats.currentTime.prism / 120)),
             cost: 1
         },
         {
@@ -272,7 +272,7 @@ const DATABASE_CHALLENGE = {
             tier: 3,
             parent: 10,
             name: "Stability",
-            desc: "Set the base light gain multi to x1e5",
+            desc: "Set the base light gain multi to x1e10",
             cost: 4
         },
         {

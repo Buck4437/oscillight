@@ -9,7 +9,7 @@ const DATABASE_WAVE = {
                        .add(DATABASE_CHALLENGE.applyUpg(g, 13, 0))
 
             if (DATABASE_CHALLENGE.hasUpg(g, 15)) {
-                base = base.times(1e5)
+                base = base.times(1e10)
             } else {
 
                 if (!DATABASE_CHALLENGE.isInChallenge(g, 4)) {
@@ -143,7 +143,7 @@ const DATABASE_WAVE = {
             desc: "Double light gain",
             base: new Decimal(1e50),
             scale: new Decimal(5),
-            cap: 750
+            cap: 1111
         }
     ],
 }

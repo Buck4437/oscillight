@@ -136,6 +136,8 @@ var app = new Vue({
         }
     },
     created() {
+        this.setToast();
+        this.setHotKeys();
         this.switchTab(0);
     },
     mounted() {
@@ -147,9 +149,6 @@ var app = new Vue({
 
         loadTheme();
 
-        this.setToast();
-        this.setHotKeys();
-
         setTimeout(() => {
             var body = document.querySelector("body");
             body.classList.add("ready");
@@ -159,6 +158,11 @@ var app = new Vue({
 })
 
 function saveFixer(obj, def, update = false) {
+
+    if (update) {
+        obj = saveUpdater(obj)
+    }
+
     let data = {}
     if (obj === null) obj = {}
     if (Array.isArray(def)) {
@@ -181,10 +185,6 @@ function saveFixer(obj, def, update = false) {
         } else {
             data[key] = obj[key]
         }
-    }
-
-    if (update) {
-        data = saveUpdater(obj, data)
     }
 
     return data;

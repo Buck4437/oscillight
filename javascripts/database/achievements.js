@@ -187,7 +187,7 @@ const DATABASE_ACHIEVEMENT = {
             condition(g) {
                 return g.light.gte("1e900")
             }
-        }
+        },
 
 
 
@@ -198,18 +198,13 @@ const DATABASE_ACHIEVEMENT = {
         //     id: 49,
         //     path: "src/oscillight.png",
         //     name: "Image",
-        //     description: "Placeholder2",
-        //     condition(g) {
-        //         return false;
-        //     },
-        //     reward: "blobble"
+        //     description: "Placeholder",
+        //     isSecret: true
         // },
         // {
         //     id: 50,
-        //     name: "Unachievable achievement",
-        //     description: "Placeholder2",
-        //     reward: "blobble",
-        //     path: "src/oscillight.png",
+        //     name: "NO idea",
+        //     description: "test",
         //     isSecret: true
         // }
     ]

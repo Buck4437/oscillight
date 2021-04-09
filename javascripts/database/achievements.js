@@ -60,6 +60,7 @@ const DATABASE_ACHIEVEMENT = {
     achievements: [
         {
             id: 1,
+            path: "src/light.png",
             name: "Let there be light!",
             description: "Reach 10 Light",
             condition(g) {
@@ -68,6 +69,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 2,
+            path: "src/deceleration.png",
             name: "Photon stock market takeover",
             description: "Decelerate photon",
             condition(g) {
@@ -76,6 +78,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 3,
+            path: "src/laser.png",
             name: "Optical Amplification",
             description: "Activate laser",
             condition(g) {
@@ -84,6 +87,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 4,
+            path: "src/universe.png",
             name: "Light up the universe!",
             description: "Reach 1e25 Light",
             condition(g) {
@@ -92,6 +96,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 5,
+            path: "src/lens.png",
             name: "Pre-emission tampering",
             description: "Equip a lens",
             condition(g) {
@@ -100,6 +105,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 6,
+            path: "src/prism.png",
             name: "Fractured ray",
             description: "Activate prism",
             condition(g) {
@@ -109,6 +115,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 7,
+            path: "src/spectral.png",
             name: "Spectral Rupture",
             description: "Reach 1000 rainbow",
             condition(g) {
@@ -118,6 +125,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 8,
+            path: "src/double-slit.png",
             name: "Double-slit experiment",
             description: "Complete an interference",
             condition(g) {
@@ -126,6 +134,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 9,
+            path: "src/infinity.png",
             name: "Infinity",
             description: "Reach 1e308 Light",
             condition(g) {
@@ -135,6 +144,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 10,
+            path: "src/rbg.png",
             name: "Red and Blue and Green",
             description: "Complete 7 interferences",
             condition(g) {
@@ -143,6 +153,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 11,
+            path: "src/broke laser.png",
             name: "I broke the laser",
             description: "Reach 1e150 Light without ever activating laser in current prism reset",
             condition(g) {
@@ -151,6 +162,7 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 12,
+            path: "src/fragment.png",
             name: "Fragments of color",
             description: "Reach 1e20 rainbow",
             condition(g) {
@@ -159,21 +171,21 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 13,
+            path: "src/maximum.png",
             name: "Maximum",
             description: "Max all oscillation upgrades",
             condition(g) {
-                let allMax = true
                 for (let upg of DATABASE_WAVE.upgrades) {
                     if (g.upgrades[upg.id] < upg.cap) {
-                        allMax = false
-                        break
+                        return false
                     }
                 }
-                return allMax
+                return true
             }
         },
         {
             id: 14,
+            path: "src/chromaticity.png",
             name: "Chromaticity",
             description: "Reach 1e30 Rainbow",
             condition(g) {
@@ -182,30 +194,12 @@ const DATABASE_ACHIEVEMENT = {
         },
         {
             id: 15,
+            path: "src/beacon.png",
             name: "The Beacon",
             description: "Reach 1e900 Light",
             condition(g) {
                 return g.light.gte("1e900")
             }
-        },
-
-
-
-
-
-
-        // {
-        //     id: 49,
-        //     path: "src/oscillight.png",
-        //     name: "Image",
-        //     description: "Placeholder",
-        //     isSecret: true
-        // },
-        // {
-        //     id: 50,
-        //     name: "NO idea",
-        //     description: "test",
-        //     isSecret: true
-        // }
+        }
     ]
 }

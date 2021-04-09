@@ -8,17 +8,17 @@ Vue.component("achievement", {
         achievement: Object
     },
     computed: {
-        hasAchievement() {
+        completed() {
             return DATABASE_ACHIEVEMENT.hasAchievement(this.game, this.achievement.id)
         },
         isSecret() {
-            return this.achievement.isSecret === true && !this.hasAchievement;
+            return this.achievement.isSecret === true && !this.completed;
         },
         path() {
             if (this.isSecret) {
                 return "src/secret.png"
             }
-            return this.achievement.path ? this.achievement.path : "src/icon.png";
+            return this.achievement.path ? this.achievement.path : "src/blank.png";
         }
     },
     methods: {
@@ -37,10 +37,13 @@ Vue.component("achievement", {
     mounted() {
     },
     template: `
-    <div class="ach-con" :class="hasAchievement ? 'green' : ''">
-        <img class="ach-img" :src="path">
+    <div class="ach-con" :class="completed ? 'green' : ''">
+        <div class="ach-img-con">
+            <div v-if="completed" class="ach-mask"/>
+            <img class="ach-img" :src="path">
+        </div>
         <div class="ach-text">
-            <span class="ach-name">{{achievement.name}} {{hasAchievement ? "(Completed!)" : ""}}</span>
+            <span class="ach-name">{{achievement.name}} {{completed ? "(Completed!)" : ""}}</span>
             <span>{{isSecret ? toQuestionMark(achievement.description) : achievement.description}}</span>
             <span>{{achievement.reward ? "Reward: " + (isSecret ? toQuestionMark(achievement.reward) : achievement.reward) : ""}}</span>
         </div>

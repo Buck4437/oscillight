@@ -635,7 +635,8 @@ main {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: var(--color-achievement) 
+    background-color: var(--color-achievement);
+    z-index: 1;
 }
 
 .ach-img {

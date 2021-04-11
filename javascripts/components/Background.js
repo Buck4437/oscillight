@@ -33,7 +33,7 @@ Vue.component("background-animation", {
             const COLORS = DATABASE_CHALLENGE.challenges.map(x => x.color)
             for (let i = 0; i < COLORS.length; i++) {
                 if (this.getInterferences[i]) {
-                    let color = this.getCssVar(`--color-${COLORS[i]}`) + "09"
+                    let color = this.getCssVar(`--color-${COLORS[i]}`) + "11"
                     this.drawWave(ctx, w, h, color, i / COLORS.length * 360)
                 }
             }

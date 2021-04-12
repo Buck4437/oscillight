@@ -155,7 +155,7 @@ Vue.component("oscillation-tab", {
         </div>
 
         <div class="buy-max-con">
-            <button v-if="game.unlocks.rainbowUpgrades || game.stats.resets.meta >= 1"
+            <button v-if="(game.unlocks.rainbowUpgrades || game.stats.resets.meta >= 1) && game.unlocks.upgrades"
                     class="buy-max"
                     @click="buyMax">
                 Buy max

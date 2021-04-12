@@ -18,6 +18,7 @@ const DATA = {
                     list: [
                         "Made overheat less punishing",
                         "Swapped the placement of 9th and 10th oscillation upgrade",
+                        "Made buy max unlocks permenantly when you replay the game",
                         "Added changelog"
                     ]
                 },

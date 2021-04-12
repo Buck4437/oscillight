@@ -71,7 +71,7 @@ var app = new Vue({
             newSave.settings.theme = this.game.settings.theme
             newSave.buffs = this.game.buffs
             newSave.lastTick = Date.now()
-            newSave.stats.resets.meta = this.game.stats.resets.meta
+            newSave.stats.resets.meta = this.game.stats.resets.meta + 1
             if (this.buffReset) newSave.buffs++;
             localStorage.setItem(SAVE_NAME, JSON.stringify(newSave))
             window.location.reload()

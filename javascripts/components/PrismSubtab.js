@@ -40,7 +40,7 @@ Vue.component("prism-subtab", {
             return DATABASE_PRISM.requirement(this.game)
         },
         getActivations() {
-            return this.game.resets
+            return this.game.stats.resets.prism
         },
         isAutoUnlocked() {
             return this.hasUpg(11)
@@ -71,9 +71,10 @@ Vue.component("prism-subtab", {
             let c = this.$el.querySelector(".prism-display")
             if (c === null) return;
             let ctx = c.getContext("2d");
-            ctx.clearRect(0, 0, w, h);
+            ctx.clearRect(0, 0, w, h); // clear the canvas
 
             ctx.lineWidth = 2;
+            ctx.fillStyle = this.getCssVar("--background")
             ctx.strokeStyle = this.getCssVar("--color")
 
             ctx.beginPath();
@@ -82,6 +83,7 @@ Vue.component("prism-subtab", {
             ctx.lineTo(w - 2, h - 2);
             ctx.closePath();
             ctx.stroke();
+            ctx.fill();
 
         },
         format(num, a, b, c) {
@@ -140,7 +142,7 @@ Vue.component("prism-subtab", {
         <div class="prism-warning">
             Activating the prism will:
             <ul>
-                <li>Convert all your light into rainbow</li>
+                <li>Convert all your light into rainbow, rounded down</li>
                 <li class="warning">
                     {{warning}}
                 </li>
@@ -151,7 +153,7 @@ Vue.component("prism-subtab", {
             <button class="prism-btn"
                     @click="activate"
                     :class="{'disabled': !canActivate}">
-                Activate the prism!
+                {{game.interference.current === 0 ? "Activate the prism!" : "Complete the interference!"}}
             </button>
 
             <button v-if="isAutoUnlocked"

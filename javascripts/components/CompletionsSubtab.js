@@ -52,7 +52,7 @@ Vue.component("completions-subtab", {
                     /
                 </td>
                 <td v-else :class="completed(i) ? 'green' : 'red'">
-                    {{completed(i) ? "Yes" : "No"}}
+                    {{completed(i) ? "✓" : "✗"}}
                 </td>
             </tr>
         </table>

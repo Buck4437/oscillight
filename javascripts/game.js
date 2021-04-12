@@ -15,7 +15,6 @@ var game = {
     },
     lenses: 0, // 4 => lens 3 active, 3 => lens 1 and 2 active... etc
     rainbow: new Decimal(0),
-    resets: 0,
     rainbowUpgrades: 0, // binary
     autobuyUpgrades: false,
     activate: {
@@ -38,10 +37,28 @@ var game = {
         rainbowUpgrades: false,
         interference: false
     },
+    achievements: 0, // binary
+    achievementConditions: {
+        11: false
+    },
     buffs: 0,
+    stats: {
+        currentTime: {
+            prism: 0, // the unit is s
+            meta: 0
+        },
+        resets: {
+            prism: 0,
+            meta: 0
+        }
+    },
     settings: {
+        moveAchievement: false,
+        effect: {
+            interference: true
+        },
         theme: 0
     },
     lastTick: Date.now(),
-    saveVersion: 1
+    saveVersion: 2
 }

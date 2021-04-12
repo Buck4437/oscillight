@@ -80,7 +80,8 @@ Vue.component("oscillation-tab", {
             let c = this.$el.querySelector(".wave-display") // get the canvas object to draw onto
             if (c === null) return; // Stops running if the canvas is hidden
             let ctx = c.getContext("2d"); // will use simpe 2D context on the canvas
-            ctx.clearRect(0, 0, w, h); // clear the canvas
+            ctx.fillStyle = this.getCssVar("--background")
+            ctx.fillRect(0, 0, w, h); // clear the canvas
 
             ctx.strokeStyle = this.getCssVar("--color")
             ctx.lineWidth = 2;
@@ -99,8 +100,6 @@ Vue.component("oscillation-tab", {
             ctx.fillStyle = this.getCssVar("--color-yellow")
             ctx.fill()
             ctx.stroke()
-
-            //area under sine curve is 1
         },
         getY(x) {
             return 180.0 + Math.sin(x * Math.PI / 180 + Math.radian(this.game.period)) * 160;
@@ -156,7 +155,9 @@ Vue.component("oscillation-tab", {
         </div>
 
         <div class="buy-max-con">
-            <button v-if="game.unlocks.rainbowUpgrades" class="buy-max" @click="buyMax">
+            <button v-if="(game.unlocks.rainbowUpgrades || game.stats.resets.meta >= 1) && game.unlocks.upgrades"
+                    class="buy-max"
+                    @click="buyMax">
                 Buy max
             </button>
 

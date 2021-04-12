@@ -1,7 +1,7 @@
 function gameLoop(that, t = 0){
     let g = that.game;
 
-    let dt = Math.max(0, (Date.now() - g.lastTick) / 1000)
+    let dt = Math.max(0, (Date.now() - g.lastTick) / 1000) // Unit is second
 
     if (t !== 0) dt = t;
 
@@ -27,7 +27,8 @@ function gameLoop(that, t = 0){
     g.period = (g.period + DATABASE_WAVE.light.speed(g) * dt) % 360
 
     if (g.laser.isActive) {
-        g.laser.time += dt;
+        g.laser.time += dt * (DATABASE_CHALLENGE.hasUpg(g, 12) ? 3 : 1)
+                           * (DATABASE_CHALLENGE.hasUpg(g, 14) ? 1/3 : 1);
     }
 
     g.light = g.light.add(DATABASE_WAVE.light.rate(g).times(dt))
@@ -39,11 +40,17 @@ function gameLoop(that, t = 0){
         }
     }
 
+    for (stat in g.stats.currentTime) {
+        g.stats.currentTime[stat] += dt
+    }
+
     if (g.light.gte(17.5)) g.unlocks.upgrades = true;
     if (g.light.gte(50)) g.unlocks.decelerate = true;
     if (g.light.gte(1000)) g.unlocks.amplification = true;
     if (g.light.gte(1e50)) g.unlocks.prism = true;
     if (g.rainbow.gte(1000)) g.unlocks.interference = true;
+
+    DATABASE_ACHIEVEMENT.check(g);
 
     g.lastTick += dt * 1000
 }

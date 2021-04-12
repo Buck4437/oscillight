@@ -14,7 +14,7 @@ const DATABASE_PRISM = {
 
         let base = Decimal.max(1, Decimal.pow(10, Decimal.log(g.light, 1e60) - 1));
 
-        return base.times(DATABASE_CHALLENGE.applyUpg(g, 4))
+        return base.times(DATABASE_CHALLENGE.applyUpg(g, 6))
     },
     reset(g, forced = false) {
 
@@ -46,11 +46,12 @@ const DATABASE_PRISM = {
 
         //When entering / exiting a challenge, the player does not gain activations
 
-        if (!forced) g.resets ++
+        if (!forced) g.stats.resets.prism ++
 
         g.rainbow = g.rainbow.add(Decimal.floor(this.gain(g)))
         g.light = new Decimal(0)
         g.unlocks.rainbowUpgrades = true
+        g.stats.currentTime.prism = 0
 
         // Not entering / exiting a challenge, and is inside a challenge
 
@@ -65,6 +66,10 @@ const DATABASE_PRISM = {
         if (g.interference.respec) {
             g.interference.respec = false
             g.interference.upgrades = 0
+        }
+
+        if (g.laser.time === 0) { // The laser is deactivated
+            g.achievementConditions["11"] = true
         }
     },
     hasUpg(g, i) {
@@ -85,7 +90,7 @@ const DATABASE_PRISM = {
             id: 2,
             name: "Static",
             desc: "Static multiplier to light",
-            current: (g) => new Decimal(10),
+            current: () => new Decimal(10),
             cost: new Decimal(1)
         },
         {
@@ -99,17 +104,14 @@ const DATABASE_PRISM = {
             id: 4,
             name: "Shallow amplification",
             desc: "Multiplier to light gain based on number of prism activations",
-            current: (g) => {
-                let base = Math.pow(g.resets > 10000 ? 10000 + (g.resets - 10000) / 5 : g.resets, 1.5) + 1
-                return DATABASE_CHALLENGE.isBought(g, 6) ? Math.pow(base, 3) : base
-            },
+            current: (g) => Math.pow(g.stats.resets.prism > 10000 ? 10000 + (g.stats.resets.prism - 10000) / 5 : g.stats.resets.prism, 1.5) + 1,
             cost: new Decimal(2)
         },
         {
             id: 5,
             name: "Deep amplification",
             desc: "Multiplier to base light based on number of prism activations",
-            current: (g) => Math.pow(g.resets, 0.3) + 1,
+            current: (g) => Math.pow(g.stats.resets.prism, 0.3) + 1,
             cost: new Decimal(2)
         },
         {

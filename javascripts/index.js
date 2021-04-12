@@ -25,6 +25,7 @@ var app = new Vue({
             if (this.game.unlocks.amplification) tabs.push("Amplification")
             if (this.game.unlocks.prism) tabs.push("Dispersion")
             if (this.game.unlocks.interference) tabs.push("Interference")
+            tabs.push("Achievements")
             tabs.push("Settings")
 
             return tabs
@@ -33,7 +34,7 @@ var app = new Vue({
             return DATABASE_CHALLENGE.challenges
         },
         win() {
-            return DATABASE_CHALLENGE.isBought(this.game, 8)
+            return DATABASE_CHALLENGE.hasUpg(this.game, 16)
         },
         buffDisplay() {
             if (this.game.buffs === 0) return ""
@@ -63,13 +64,14 @@ var app = new Vue({
             return gameLoop(this);
         },
         con() {
-            this.game.interference.upgrades ^= Math.pow(2, 8 - 1)
+            this.game.interference.upgrades ^= Math.pow(2, 16 - 1)
         },
         replay() {
             let newSave = JSON.parse(JSON.stringify(game))
             newSave.settings.theme = this.game.settings.theme
             newSave.buffs = this.game.buffs
             newSave.lastTick = Date.now()
+            newSave.stats.resets.meta = this.game.stats.resets.meta + 1
             if (this.buffReset) newSave.buffs++;
             localStorage.setItem(SAVE_NAME, JSON.stringify(newSave))
             window.location.reload()
@@ -84,7 +86,27 @@ var app = new Vue({
             setInterval(() => {
                 localStorage.setItem(SAVE_NAME, JSON.stringify(this.game))
                 console.log("Game saved!");
-            }, 10000)
+                toastr.info("", "Game saved!")
+            }, 20000)
+        },
+        setToast() {
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": true,
+              "progressBar": true,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "300",
+              "timeOut": "5000",
+              "extendedTimeOut": "3000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "slideDown",
+              "hideMethod": "slideUp"
+            }
         },
         setHotKeys() {
             document.addEventListener('keydown', (e) => {
@@ -100,7 +122,7 @@ var app = new Vue({
                             this.game.laser.time = 0;
                         }
                         break;
-                    case 77:
+                    case 77: //m
                         if (this.game.unlocks.rainbowUpgrades) {
                             this.$refs[this.tabs[0]][0].buyMax()
                         }
@@ -114,18 +136,18 @@ var app = new Vue({
         }
     },
     created() {
+        this.setToast();
+        this.setHotKeys();
         this.switchTab(0);
     },
     mounted() {
 
         if (localStorage.getItem(SAVE_NAME) !== null) {
             let data = JSON.parse(localStorage.getItem(SAVE_NAME));
-            this.game = saveFixer(data, this.game);
+            this.game = saveFixer(data, this.game, true);
         }
 
         loadTheme();
-
-        this.setHotKeys()
 
         setTimeout(() => {
             var body = document.querySelector("body");
@@ -135,7 +157,12 @@ var app = new Vue({
     }
 })
 
-function saveFixer(obj, def) {
+function saveFixer(obj, def, update = false) {
+
+    if (update) {
+        obj = saveUpdater(obj)
+    }
+
     let data = {}
     if (obj === null) obj = {}
     if (Array.isArray(def)) {
@@ -159,5 +186,6 @@ function saveFixer(obj, def) {
             data[key] = obj[key]
         }
     }
+
     return data;
 }

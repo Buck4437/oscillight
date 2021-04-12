@@ -69,7 +69,8 @@ Vue.component("amplification-tab", {
             if (c === null) return;
 
             let ctx = c.getContext("2d"); // will use simpe 2D context on the canvas
-            ctx.clearRect(0, 0, w, h); // clear the canvas
+            ctx.fillStyle = this.getCssVar("--background")
+            ctx.fillRect(0, 0, w, h); // clear the canvas
 
             ctx.strokeStyle = this.getCssVar("--color")
             ctx.lineWidth = 2;
@@ -109,6 +110,7 @@ Vue.component("amplification-tab", {
             }
         },
         toggle() {
+            this.game.achievementConditions["11"] = false
             this.game.laser.isActive = !this.isLaserActive
             this.game.laser.time = 0; //reset
         },

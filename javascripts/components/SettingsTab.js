@@ -55,6 +55,14 @@ Vue.component("settings-tab", {
             <button class="warning" @click="showWipeDataModal = true">
                 Wipe all data
             </button>
+
+            <div class="break"></div>
+
+            <button v-if="game.unlocks.interference"
+                    :class="game.settings.effect.interference ? 'on' : 'off'"
+                    @click="game.settings.effect.interference = !game.settings.effect.interference">
+                Interference background effect: {{game.settings.effect.interference ? "Enabled" : "Disabled"}}
+            </button>
         </div>
 
         <div class="hotkeys">
@@ -68,7 +76,7 @@ Vue.component("settings-tab", {
         </div>
 
         <div class="extra">
-            Created by Buck | Made for IGJ 2021 | <a target="_blank" href="https://discord.com/invite/N8MuKMz">Discord</a>
+            Created by Buck | Made for IGJ 2021 | <a target="_blank" href="changelog/index.html">Changelog</a> | <a target="_blank" href="https://discord.com/invite/N8MuKMz">Discord</a>
         </div>
 
         <confirmation-modal v-if="showWipeDataModal" @yes="reset" @no="showWipeDataModal = false">

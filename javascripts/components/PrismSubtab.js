@@ -28,7 +28,7 @@ Vue.component("prism-subtab", {
             return DATABASE_PRISM.gain(this.game);
         },
         canActivate() {
-            return this.getGain.gt(0);
+            return DATABASE_PRISM.canReset(this.game)
         },
         getGainInt() {
             return this.format(this.getGain, 2, 0)

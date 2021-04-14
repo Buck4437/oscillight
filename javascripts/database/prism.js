@@ -7,12 +7,14 @@ const DATABASE_PRISM = {
             return this.baseRequirement
         }
     },
-    gain(g) {
+    canReset(g) {
         let requirement = this.requirement(g)
+        return g.light.gte(requirement)
+    },
+    gain(g) {
+        if (!this.canReset(g)) return new Decimal(0);
 
-        if (g.light.lt(requirement)) return new Decimal(0);
-
-        let base = Decimal.max(1, Decimal.pow(10, Decimal.log(g.light, 1e60) - 1));
+        let base = Decimal.max(1, Decimal.pow(10, Decimal.log(g.light.add(1), 1e60) - 1));
 
         return base.times(DATABASE_CHALLENGE.applyUpg(g, 6))
     },
@@ -23,7 +25,7 @@ const DATABASE_PRISM = {
 
         // force mode bypasses the check for "has gain"
 
-        if (this.gain(g).lt(1) && !forced) return false
+        if (!this.canReset(g) && !forced) return false
 
         DATABASE_WAVE.upgrades.filter(upg => (this.hasUpg(g, 9)) ? upg.id !== 6 : true)
                               .forEach(upg => g.upgrades[upg.id] = 0);

@@ -150,7 +150,7 @@ const DATABASE_CHALLENGE = {
             tier: 1,
             name: "Fusion",
             desc: "Multiplier to light, increases based on light",
-            current: (g) => Decimal.pow(1.25, Decimal.log10(g.light)).add(1),
+            current: (g) => Decimal.pow(1.25, Decimal.log10(g.light.add(1))),
             cost: 2
         },
         {
@@ -189,7 +189,7 @@ const DATABASE_CHALLENGE = {
             parent: 1,
             name: "Recursion",
             desc: "Gain more rainbow based on unspent rainbow",
-            current: (g) => Decimal.pow(3, Decimal.log10(g.rainbow)),
+            current: (g) => Decimal.pow(3, Decimal.log10(g.rainbow.add(1))),
             cost: 2
         },
         {

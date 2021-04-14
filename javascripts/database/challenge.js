@@ -150,7 +150,7 @@ const DATABASE_CHALLENGE = {
             tier: 1,
             name: "Fusion",
             desc: "Multiplier to light, increases based on light",
-            current: (g) => Decimal.pow(1.25, Decimal.log10(g.light.add(1))).add(1),
+            current: (g) => Decimal.pow(1.25, Decimal.log10(g.light.add(1))),
             cost: 2
         },
         {

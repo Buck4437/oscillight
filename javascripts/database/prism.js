@@ -7,16 +7,16 @@ const DATABASE_PRISM = {
             return this.baseRequirement
         }
     },
+    canReset(g) {
+        let requirement = this.requirement(g)
+        return g.light.gte(requirement)
+    },
     gain(g) {
         if (!this.canReset(g)) return new Decimal(0);
 
         let base = Decimal.max(1, Decimal.pow(10, Decimal.log(g.light.add(1), 1e60) - 1));
 
         return base.times(DATABASE_CHALLENGE.applyUpg(g, 6))
-    },
-    canReset(g) {
-        let requirement = this.requirement(g)
-        return g.light.gte(requirement)
     },
     reset(g, forced = false) {
 

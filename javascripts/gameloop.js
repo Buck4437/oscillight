@@ -50,6 +50,8 @@ function gameLoop(that, t = 0){
     if (g.light.gte(1e50)) g.unlocks.prism = true;
     if (g.rainbow.gte(1000)) g.unlocks.interference = true;
 
+    console.log(g.laser.isActive)
+    if (g.laser.isActive === true) g.achievementConditions["11"] = false;
     DATABASE_ACHIEVEMENT.check(g);
 
     g.lastTick += dt * 1000

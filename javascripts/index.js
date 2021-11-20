@@ -80,7 +80,7 @@ var app = new Vue({
             this.currentTab = this.tabs[i];
             scroll(0,0); //scroll to top
         },
-        setIntevals() {
+        setIntervals() {
             setInterval(this.loop, 50);
 
             setInterval(() => {
@@ -152,8 +152,8 @@ var app = new Vue({
         setTimeout(() => {
             var body = document.querySelector("body");
             body.classList.add("ready");
-            this.setIntevals();
-        }, 500) // for the theme to apply propertly, and also to prevent sudden transition
+            this.setIntervals();
+        }, 500) // for the theme to apply properly, and also to prevent sudden transition
     }
 })
 

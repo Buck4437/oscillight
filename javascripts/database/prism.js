@@ -119,7 +119,7 @@ const DATABASE_PRISM = {
         {
             id: 6,
             name: "Quick charge",
-            desc: "Laser charges and stablizes 80% faster",
+            desc: "Laser charges and stabilizes 80% faster",
             cost: new Decimal(3)
         },
         {
@@ -132,7 +132,7 @@ const DATABASE_PRISM = {
         {
             id: 8,
             name: "Resonance",
-            desc: "Unlock autobuyer for oscillation upgrades",
+            desc: "Unlock oscillation upgrades autobuyer",
             cost: new Decimal(25)
         },
         {

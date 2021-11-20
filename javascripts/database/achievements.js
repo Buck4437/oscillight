@@ -54,7 +54,7 @@ const DATABASE_ACHIEVEMENT = {
 
 
     All secret achievement id should go from 50 to 49, 48...
-    to sepereate them from normal achievements
+    to separate them from normal achievements
     */
 
     achievements: [
@@ -145,7 +145,7 @@ const DATABASE_ACHIEVEMENT = {
         {
             id: 10,
             path: "src/rbg.png",
-            name: "Red and Blue and Green",
+            name: "Red, Blue, Green",
             description: "Complete 7 interferences",
             condition(g) {
                 return DATABASE_CHALLENGE.totalNodes(g) >= 7

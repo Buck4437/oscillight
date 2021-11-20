@@ -47,7 +47,7 @@ function copyText(text){
     document.body.removeChild(el);
 }
 
-// Themeing
+// Theming
 
 var themes = ["Light", "Dark"];
 

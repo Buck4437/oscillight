@@ -2,6 +2,19 @@ const DATA = {
     header: "Changelog",
     changelogs: [
         {
+            version: "1.1.1",
+            description: "Typou updeta",
+            changes: [
+                {
+                    header: "Changes:",
+                    list: [
+                        "Fixed some typos",
+                        "Changed a couple of descriptions"
+                    ]
+                }
+            ]
+        },
+        {
             version: "1.1",
             description: "Interference remake",
             changes: [

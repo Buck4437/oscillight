@@ -22,7 +22,7 @@ Vue.component("amplification-tab-lens", {
                 if (DATABASE_ACHIEVEMENT.hasAchievement(this.game, 9)) {
                     this.game.lenses ^= this.getBit;
                 } else if (this.isActive) {
-                    this.game.lenses = 0; // Dismount the lense
+                    this.game.lenses = 0; // Dismount the lens
                 } else {
                     this.game.lenses = this.getBit; // Equip the lens
                 }

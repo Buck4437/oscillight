@@ -27,7 +27,7 @@ Vue.component("background-animation", {
             if (c === null) return; // Stops running if the canvas is hidden
             const w = c.width, h = c.height;
 
-            let ctx = c.getContext("2d"); // will use simpe 2D context on the canvas
+            let ctx = c.getContext("2d"); // will use simple 2D context on the canvas
             ctx.clearRect(0, 0, w, h); // clear the canvas
 
             const COLORS = DATABASE_CHALLENGE.challenges.map(x => x.color)

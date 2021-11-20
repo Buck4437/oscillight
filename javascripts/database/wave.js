@@ -120,7 +120,7 @@ const DATABASE_WAVE = {
             id: 8,
             tier: 3,
             name: "Amplifier",
-            desc: "Extra base multipler to light based on current energy level",
+            desc: "Extra base multiplier to light based on current energy level",
             base: new Decimal(1e40),
             scale: new Decimal(1e99),
             current: (g) => DATABASE_WAVE.light.energy(g) * 5 + 1,

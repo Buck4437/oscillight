@@ -54,7 +54,7 @@ function saveUpdater(old) {
     if (old.saveVersion === 2) {
         // Added new mode to timer
         if (typeof old.activate.value === 'string' || old.activate.value instanceof String) {
-            old.activate.value = [old.activate.value, "0", "0"];
+            old.activate.value = [old.activate.value, "", ""];
             old.activate.mode = 0;
         }
 

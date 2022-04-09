@@ -75,7 +75,7 @@
                         <button class="green" @click="con">
                             Continue playing
                         </button>
-                        <button class="yellow" @click="showBuffModal(true)">
+                        <button class="gold" @click="showBuffModal(true)">
                             Replay with x2 light bonus
                         </button>
                         <button class="red" @click="showBuffModal(false)">
@@ -88,7 +88,7 @@
                 </win-modal>
                 <confirmation-modal v-if="buffModal" @yes="replay" @no="hideBuffModal">
                     <template #header>
-                        <span :class="buffReset ? 'yellow' : 'red'">Replay {{buffReset ? "with" : "without"}} bonus</span>
+                        <span :class="buffReset ? 'gold' : 'red'">Replay {{buffReset ? "with" : "without"}} bonus</span>
                     </template>
 
                     Are you sure you want to replay the game{{buffReset ? "" : " without bonus"}}?

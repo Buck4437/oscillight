@@ -182,7 +182,8 @@ Vue.component("prism-subtab", {
                 Auto: {{isAutoActive ? "On" : "Off"}}
             </button>
 
-            <button class="prism-toggle-mode-btn"
+            <button v-if="isAutoUnlocked"
+                    class="prism-toggle-mode-btn"
                     @click="toggleAutoMode">
                 Mode: {{getAutoModeText}}
             </button>

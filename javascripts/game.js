@@ -20,7 +20,7 @@ var game = {
     activate: {
         auto: false,
         mode: 0, // Rainbow, Time, Light
-        value: ["0", "0", "0"]
+        value: ["", "", ""]
     },
     interference: {
         respec: false,

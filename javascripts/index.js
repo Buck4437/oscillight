@@ -34,7 +34,10 @@ var app = new Vue({
             return DATABASE_CHALLENGE.challenges
         },
         win() {
-            return DATABASE_CHALLENGE.hasUpg(this.game, 16)
+            return DATABASE_CHALLENGE.hasWon(this.game);
+        },
+        getWinTime() {
+            return toTime(this.game.stats.currentTime.meta);
         },
         buffDisplay() {
             if (this.game.buffs === 0) return ""

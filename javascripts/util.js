@@ -21,6 +21,21 @@ function toFixedTrunc(x, n) {
   return `${v[0]}.${f}`
 }
 
+function toTime(ts) {
+    let d = Math.floor(ts / 86400);
+    ts -= d * 86400;
+    let h = Math.floor(ts / 3600);
+    ts -= h * 3600
+    let m = Math.floor(ts / 60);
+    let s = Math.floor(ts - 60 * m);
+
+    let hoursDisplay = [h, m, s].map(x => String(x).padStart(2, "0")).join(":");
+    if (d === 0) {
+        return hoursDisplay
+    }
+    return `${d} ${d === 1 ? "day" : "days"}, ` + hoursDisplay;
+}
+
 // Formula
 
 Math.radian = deg => deg / 180 * Math.PI;

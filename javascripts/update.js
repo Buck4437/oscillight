@@ -51,5 +51,21 @@ function saveUpdater(old) {
         console.log("The save file has been updated to version: 2")
     }
 
+    if (old.saveVersion === 2) {
+        // Added new mode to timer
+        if (typeof old.activate.value === 'string' || old.activate.value instanceof String) {
+            old.activate.value = [old.activate.value, "0", "0"];
+            old.activate.mode = 0;
+        }
+
+        // Added new stat to keep track of the timer
+        old.hasWon = true;
+
+        // Changed the version
+        old.saveVersion = 3;
+
+        console.log("The save file has been updated to version: 3")
+    }
+
     return old
 }

@@ -18,6 +18,30 @@ const DATABASE_PRISM = {
 
         return base.times(DATABASE_CHALLENGE.applyUpg(g, 6))
     },
+    toggleAutoMode(g) {
+        g.activate.mode = (g.activate.mode + 1) % this.getAutoModes().length;
+    },
+    getAutoModes() {
+        return ["Rainbow", "Light", "Time"];
+    },
+    getAutoDescriptions() {
+        return [
+            "Activate the prism at X Rainbow:",
+            "Activate the prism at X Light:",
+            "Activate the prism after X seconds:"
+        ]
+    },
+    hasMetAutoRequirement(g) {
+        let mode = g.activate.mode;
+        if (!g.activate.auto || !isNumberString(g.activate.value[mode])) return false;
+        let val = new Decimal(g.activate.value[mode]);
+        switch (mode) {
+            case 0: return DATABASE_PRISM.gain(g).gte(val);
+            case 1: return g.light.gte(val);
+            case 2: return val.lt(g.stats.currentTime.prism); // Time >= val
+            default: return false;
+        }
+    },
     reset(g, forced = false) {
 
         // normally, resetting is not allowed when the player cannot gain anything,

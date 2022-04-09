@@ -33,14 +33,16 @@ function gameLoop(that, t = 0){
 
     g.light = g.light.add(DATABASE_WAVE.light.rate(g).times(dt))
 
-    if (g.activate.auto && isNumberString(g.activate.value)) {
-        let val = new Decimal(g.activate.value)
-        if (DATABASE_PRISM.gain(g).gte(val)) {
-            DATABASE_PRISM.reset(g);
-        }
+    if (DATABASE_PRISM.hasMetAutoRequirement(g)) {
+        DATABASE_PRISM.reset(g);
+    }
+
+    if (DATABASE_CHALLENGE.hasWon(g)) {
+        g.hasWon = true; // This pauses the timer
     }
 
     for (stat in g.stats.currentTime) {
+        if (stat === "meta" && g.hasWon) continue;
         g.stats.currentTime[stat] += dt
     }
 

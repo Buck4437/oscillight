@@ -127,6 +127,9 @@ const DATABASE_CHALLENGE = {
     applyUpg(g, id, def = 1) {
         return this.hasUpg(g, id) ? this.upgrades.filter(u => id === u.id)[0].current(g) : def
     },
+    hasWon(g) {
+        return this.hasUpg(g, 16)
+    },
     /*
     Upgrade format:
     REQUIRED

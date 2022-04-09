@@ -52,13 +52,25 @@ Vue.component("prism-subtab", {
             return this.isAutoActive ? "on" : "off"
         },
         isValidValue() {
-            return isNumberString(this.game.activate.value)
+            return isNumberString(this.game.activate.value[this.getAutoMode])
         },
         warning() {
             let str = "Reset all your oscillation upgrades"
             str += this.hasUpg(9) ? " (Except photon deceleration upgrade)" : ""
             str += !this.hasUpg(12) ? ", laser and lenses" : ""
             return str;
+        },
+        getAutoMode() {
+            return this.game.activate.mode;
+        },
+        getAutoModeText() {
+            return DATABASE_PRISM.getAutoModes()[this.getAutoMode];
+        },
+        getAutoDescription() {
+            return DATABASE_PRISM.getAutoDescriptions()[this.getAutoMode];
+        },
+        getTime() {
+            return this.game.stats.currentTime.prism;
         }
     },
     methods: {
@@ -113,6 +125,9 @@ Vue.component("prism-subtab", {
         },
         hasUpg(i) {
             return DATABASE_PRISM.hasUpg(this.game, i)
+        },
+        toggleAutoMode() {
+            DATABASE_PRISM.toggleAutoMode(this.game);
         }
     },
     mounted() {
@@ -139,6 +154,10 @@ Vue.component("prism-subtab", {
             Number of activations: {{format(getActivations, 2, 0, 100000000)}}
         </div>
 
+        <div class="prism-activations">
+            Time spent in current activation (seconds): {{format(getTime, 2, 2, 100000)}}
+        </div>
+
         <div class="prism-warning">
             Activating the prism will:
             <ul>
@@ -162,12 +181,16 @@ Vue.component("prism-subtab", {
                     @click="toggleAuto">
                 Auto: {{isAutoActive ? "On" : "Off"}}
             </button>
+
+            <button class="prism-toggle-mode-btn"
+                    @click="toggleAutoMode">
+                Mode: {{getAutoModeText}}
+            </button>
         </div>
 
         <span v-if="isAutoUnlocked" class="auto-desc">
-            Activate the prism at X Rainbow:&nbsp<input class="auto-field"
-                                                        v-model="game.activate.value"
-                                                        :class="{'red': !isValidValue}">
+            {{getAutoDescription}}&nbsp<input class="auto-field" v-model="game.activate.value[getAutoMode]"
+                            :class="{'red': !isValidValue}">
         </span>
     </div>
     `

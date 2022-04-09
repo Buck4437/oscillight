@@ -19,7 +19,8 @@ var game = {
     autobuyUpgrades: false,
     activate: {
         auto: false,
-        value: ""
+        mode: 0, // Rainbow, Time, Light
+        value: ["0", "0", "0"]
     },
     interference: {
         respec: false,
@@ -52,6 +53,7 @@ var game = {
             meta: 0
         }
     },
+    hasWon: false,
     settings: {
         moveAchievement: false,
         effect: {
@@ -60,5 +62,5 @@ var game = {
         theme: 0
     },
     lastTick: Date.now(),
-    saveVersion: 2
+    saveVersion: 3
 }

@@ -68,7 +68,7 @@
                                :key="tab"></component>
                 </div>
                 <win-modal v-if="win && !hideWin">
-                    You have reached the end of the game.<br><br>
+                    You have completed the game in: <span class="green">{{getWinTime}}</span><br><br>
                     Big thanks to my friend for testing the game.<br><br>
                     You can either continue playing, reset with a bonus or reset without bonus.<br><br>
                     <template #button>

@@ -3,6 +3,11 @@ function gameLoop(that, t = 0){
 
     let dt = Math.max(0, (Date.now() - g.lastTick) / 1000) // Unit is second
 
+    if (dt <= 0) {
+        g.lastTick = Date.now() // Prevent softlock when the last tick is in the future - Encouraged cheating though!
+        return
+    }
+
     if (t !== 0) dt = t;
 
     if (dt >= 60 && t === 0) { // to prevent recursion
